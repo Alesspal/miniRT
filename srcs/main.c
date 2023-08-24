@@ -1,5 +1,7 @@
 #include "../libft/libft.h"
 #include "../incl/ft_mlx.h"
+#include "../incl/ft_vector.h"
+#include "../incl/ft_shapes.h"
 #include <stdio.h>
 
 //test
@@ -40,7 +42,7 @@ int main(void)
 		printf("Error : initialisation");
 		return (EXIT_FAILURE);
 	}
-
+	draw_filled_sphere(&data, create_sphere((t_vector){200, 200, 200}, 100, 0x77B5FE));
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_programm, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);

@@ -19,7 +19,8 @@ INCL_LIST	=	-I${LIBFT_DIR} \
 SRCS_LIST	=	main.c \
 				ft_controle.c \
 				ft_img_pix_put.c \
-				ft_vector.c
+				ft_vector.c \
+				ft_shapes.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
