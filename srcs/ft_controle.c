@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_controle.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/24 11:06:53 by alesspal          #+#    #+#             */
+/*   Updated: 2023/08/24 12:25:16 by alesspal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../incl/ft_mlx.h"
+#include <stdlib.h>
+
+int	exit_programm(t_data *prm)
+{
+	if (prm)
+	{
+		if (prm->img.mlx_img)
+			mlx_destroy_image(prm->win->mlx_ptr, prm->img.mlx_img);
+		if (prm->win)
+		{
+			if (prm->win->mlx_ptr)
+				mlx_destroy_window(prm->win->mlx_ptr, prm->win->mlx_win);
+			free(prm->win);
+		}
+	}
+	exit(0);
+}
+
+int	ft_key_event(int key, void *params)
+{
+	t_data	*data;
+
+	if (!params)
+		return (1);
+	data = (t_data *)params;
+	if (key == 53)
+		exit_programm(data);
+	return (0);
+}
