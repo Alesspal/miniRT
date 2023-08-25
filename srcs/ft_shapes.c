@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:28:28 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/24 15:45:25 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_shapes.h"
 #include <math.h>
 
-t_sphere create_sphere(t_vector origin, int radius, int color)
+t_sphere create_sphere(t_vec origin, int radius, int color)
 {
 	t_sphere sphere;
 
@@ -24,7 +24,7 @@ t_sphere create_sphere(t_vector origin, int radius, int color)
 	return (sphere);
 }
 
-t_cylinder create_cylinder(t_vector origin, t_vector orientation, int radius,
+t_cylinder create_cylinder(t_vec origin, t_vec orientation, int radius,
 int height, int color)
 {
 	t_cylinder cylinder;
@@ -38,7 +38,7 @@ int height, int color)
 	return (cylinder);
 }
 
-t_plan create_plan(t_vector origin, t_vector orientation, int color)
+t_plan create_plan(t_vec origin, t_vec orientation, int color)
 {
 	t_plan plan;
 

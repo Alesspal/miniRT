@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:36:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/24 15:52:49 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SHAPES_H
-#define FT_SHAPES_H
+# define FT_SHAPES_H
 
-#include "ft_mlx.h"
-#include "ft_vector.h"
+# include "ft_mlx.h"
+# include "ft_vector.h"
 
 typedef struct s_sphere
 {
-	t_vector origin;
-	int		radius;
-	int		color;
+	t_vec	origin;
+	int			radius;
+	int			color;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_vector 	origin;
-	t_vector	orientation;
+	t_vec	origin;
+	t_vec	orientation;
 	int			radius;
 	int			height;
 	int			color;
@@ -34,8 +34,8 @@ typedef struct s_cylinder
 
 typedef struct s_plan
 {
-	t_vector	origin;
-	t_vector	orientation;
+	t_vec	origin;
+	t_vec	orientation;
 	int			color;
 }	t_plan;
 
@@ -54,10 +54,10 @@ typedef struct s_shapes
 	struct s_shapes	*next;
 }	t_shapes;
 
-t_sphere	create_sphere(t_vector origin, int radius, int color); // changer le premier parametre en un s_point (coordonnées) ?
-t_cylinder	create_cylinder(t_vector origin, t_vector orientation, int radius,
+t_sphere	create_sphere(t_vec origin, int radius, int color); // changer le premier parametre en un s_point (coordonnées) ?
+t_cylinder	create_cylinder(t_vec origin, t_vec orientation, int radius,
 						int height, int color);
-t_plan		create_plan(t_vector origin, t_vector orientation, int color);
+t_plan		create_plan(t_vec origin, t_vec orientation, int color);
 
 void		draw_filled_sphere(t_data *data, t_sphere sphere);
 

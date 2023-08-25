@@ -17,7 +17,7 @@ INCL_LIST	=	-I${LIBFT_DIR} \
 				-I${INCL_DIR}
 
 SRCS_LIST	=	main.c \
-				ft_controle.c \
+				ft_control.c \
 				ft_img_pix_put.c \
 				ft_vector.c \
 				ft_shapes.c
@@ -32,7 +32,7 @@ ${OBJS_DIR}:
 				mkdir -p ${OBJS_DIR}
 
 ${OBJS_DIR}%.o:	${SRCS_DIR}%.c
-				${CC} ${CFLAGS} -c $< -o $@
+				${CC} ${CFLAGS} ${INCL_LIST} -c $< -o $@
 
 ${LIBFT}:
 				${MAKE} -C ${LIBFT_DIR}

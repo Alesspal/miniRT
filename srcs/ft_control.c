@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_controle.c                                      :+:      :+:    :+:   */
+/*   ft_control.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:06:53 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/24 12:25:16 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:32:04 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ft_mlx.h"
 #include <stdlib.h>
 
-int	exit_programm(t_data *prm)
+int	exit_program(t_data *prm)
 {
 	if (prm)
 	{
@@ -37,6 +37,6 @@ int	ft_key_event(int key, void *params)
 		return (1);
 	data = (t_data *)params;
 	if (key == 53)
-		exit_programm(data);
+		exit_program(data);
 	return (0);
 }

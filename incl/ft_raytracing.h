@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytracing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/24 15:56:31 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:32:26 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_RAYTRACING_H
-#define FT_RAYTRACING_H
+# define FT_RAYTRACING_H
 
-#include "ft_vector.h"
-#include "ft_shapes.h"
-#include "../libft/libft.h"
+# include "ft_vector.h"
+# include "ft_shapes.h"
+# include "libft.h"
 
 // tout les processus du raytraing vont aller dans ce fichier
 
@@ -30,14 +30,14 @@ typedef struct s_spot_light
 	int			id;
 	int			color;
 	int			intensity;
-	t_vector	coordinate;
+	t_vec		coordinate;
 }	t_spot_light;
 
 typedef struct s_camera
 {
 	int			fov;
-	t_vector	coordinate;
-	t_vector	orientation;
+	t_vec		coordinate;
+	t_vec		orientation;
 }	t_camera;
 
 typedef struct s_scene
@@ -50,7 +50,7 @@ typedef struct s_scene
 
 typedef struct s_intersection
 {
-	t_vector				p;
+	t_vec					p;
 	void					*shape;
 	struct s_intersection	*next;
 }	t_intersection;
@@ -58,6 +58,6 @@ typedef struct s_intersection
 // sphere N = P - C
 // cylinder N = P - C - dot(cam, P - C) * cam
 // plan N = orientation of plan
-t_vector	get_normalized_n(t_vector P, int id, t_scene scene);
+t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 
 #endif

@@ -1,7 +1,19 @@
-#include "../libft/libft.h"
-#include "../incl/ft_mlx.h"
-#include "../incl/ft_vector.h"
-#include "../incl/ft_shapes.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/25 11:24:39 by eholzer           #+#    #+#             */
+/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include "ft_mlx.h"
+#include "ft_vector.h"
+#include "ft_shapes.h"
 #include <stdio.h>
 
 //test
@@ -16,14 +28,14 @@ int	init_data(t_data *data)
 	data->win->mlx_ptr = mlx_init();
 	if (!data->win->mlx_ptr)
 		return (1);
-	data->win->win_ht = 1080;
-	data->win->win_wt = data->win->win_ht * ASPECT_RATIO;
-	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_wt,
-			data->win->win_ht, "Minirt");
+	data->win->win_h = 1080;
+	data->win->win_w = data->win->win_h * ASPECT_RATIO;
+	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
+			data->win->win_h, "Minirt");
 	if (!data->win->mlx_win)
 		return (1);
-	data->img.mlx_img = mlx_new_image(data->win->mlx_ptr, data->win->win_wt,
-			data->win->win_ht);
+	data->img.mlx_img = mlx_new_image(data->win->mlx_ptr, data->win->win_w,
+			data->win->win_h);
 	if (!data->img.mlx_img)
 		return (1);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
@@ -33,7 +45,7 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-int main(void)
+int	main(void)
 {
 	t_data		data;
 
@@ -42,9 +54,9 @@ int main(void)
 		printf("Error : initialisation");
 		return (EXIT_FAILURE);
 	}
-	draw_filled_sphere(&data, create_sphere((t_vector){200, 200, 200}, 100, 0x77B5FE));
+	draw_filled_sphere(&data, create_sphere((t_vec){200, 200, 200}, 100, 0x77B5FE));
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
-	mlx_hook(data.win->mlx_win, 17, 0, &exit_programm, &data);
+	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);
 	mlx_loop(data.win->mlx_ptr);
 	return (EXIT_SUCCESS);
