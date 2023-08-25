@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:32:26 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:24:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_spot_light
 typedef struct s_camera
 {
 	int			fov;
-	t_vec		coordinate;
-	t_vec		orientation;
+	t_vec		pos;
+	t_vec		dir;
 }	t_camera;
 
 typedef struct s_scene
@@ -59,5 +59,8 @@ typedef struct s_intersection
 // cylinder N = P - C - dot(cam, P - C) * cam
 // plan N = orientation of plan
 t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
+
+// Raytracer functions
+void	rayshooter(t_data *data, t_camera cam);
 
 #endif

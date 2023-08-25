@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:28:28 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:21:55 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_sphere create_sphere(t_vec origin, int radius, int color)
 	return (sphere);
 }
 
-t_cylinder create_cylinder(t_vec origin, t_vec orientation, int radius,
+t_cylinder create_cylinder(t_vec origin, t_vec dir, int radius,
 int height, int color)
 {
 	t_cylinder cylinder;
 
 	cylinder.origin = origin;
-	cylinder.orientation = orientation;
+	cylinder.dir = dir;
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;
@@ -38,12 +38,12 @@ int height, int color)
 	return (cylinder);
 }
 
-t_plan create_plan(t_vec origin, t_vec orientation, int color)
+t_plan create_plan(t_vec origin, t_vec dir, int color)
 {
 	t_plan plan;
 
 	plan.origin = origin;
-	plan.orientation = orientation;
+	plan.dir = dir;
 	plan.color = color;
 
 	return (plan);
