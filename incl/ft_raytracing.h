@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytracing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:32:26 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:07:15 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "ft_vector.h"
 # include "ft_shapes.h"
-# include "libft.h"
 
 // tout les processus du raytraing vont aller dans ce fichier
 
@@ -50,7 +49,8 @@ typedef struct s_scene
 
 typedef struct s_intersection
 {
-	t_vec					p;
+	t_vec					coordinate;
+	enum e_shapes			type;
 	void					*shape;
 	struct s_intersection	*next;
 }	t_intersection;
@@ -58,6 +58,8 @@ typedef struct s_intersection
 // sphere N = P - C
 // cylinder N = P - C - dot(cam, P - C) * cam
 // plan N = orientation of plan
-t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
+t_vec	get_normalized_n_sphere(t_intersection *p);
+t_vec	get_normalized_n_cylinder(t_intersection *p);
+t_vec	get_normalized_n_plan(t_intersection *p);
 
 #endif
