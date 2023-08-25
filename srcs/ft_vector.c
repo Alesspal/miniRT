@@ -3,21 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:32:04 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:49:21 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vector.h"
 #include <math.h>
 
+t_vec	ft_create_vec(float x, float y, float z)
+{
+	return ((t_vec){x, y, z});
+}
+
 t_vec	ft_normalize(t_vec v)
 {
-	float	magnitude;
+	double	magnitude;
 
-	magnitude = sqrt(v.x * 2.0f + v.y * 2.0f + v.z * 2.0f);
+	magnitude = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 	v.x /= magnitude;
 	v.y /= magnitude;
 	v.z /= magnitude;

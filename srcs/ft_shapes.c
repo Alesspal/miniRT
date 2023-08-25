@@ -6,11 +6,11 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:28:28 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 15:21:55 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 16:15:09 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_shapes.h"
+#include "ft_shapes.h"
 #include <math.h>
 
 t_sphere create_sphere(t_vec origin, int radius, int color)
@@ -20,7 +20,6 @@ t_sphere create_sphere(t_vec origin, int radius, int color)
 	sphere.origin = origin;
 	sphere.radius = radius;
 	sphere.color = color;
-
 	return (sphere);
 }
 
@@ -34,7 +33,6 @@ int height, int color)
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;
-
 	return (cylinder);
 }
 
@@ -45,7 +43,6 @@ t_plan create_plan(t_vec origin, t_vec dir, int color)
 	plan.origin = origin;
 	plan.dir = dir;
 	plan.color = color;
-
 	return (plan);
 }
 

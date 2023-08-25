@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:36:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 15:21:55 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 16:12:20 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 typedef struct s_sphere
 {
 	t_vec	origin;
-	int			radius;
-	int			color;
+	int		radius;
+	int		color;
 }	t_sphere;
 
 typedef struct s_cylinder
