@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_vector.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:29:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 14:23:53 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef struct s_vec
 	float z;
 }	t_vec;
 
+t_vec	ft_create_vec(float x, float y, float z);
 t_vec	ft_normalize(t_vec v);
-float		ft_dot(t_vec v1, t_vec v2);
+float	ft_dot(t_vec v1, t_vec v2);
 
 #endif
