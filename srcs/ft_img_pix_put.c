@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_img_pix_put.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 14:28:02 by alessandro        #+#    #+#             */
-/*   Updated: 2023/08/25 11:25:57 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 13:02:33 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_mlx.h"
+#include "ft_mlx.h"
 
 void	ft_img_pix_put(t_data *data, int x, int y, int color)
 {

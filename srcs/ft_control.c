@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_control.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 11:06:53 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:32:04 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 13:09:56 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_mlx.h"
+#include "ft_mlx.h"
 #include <stdlib.h>
 
 int	exit_program(t_data *prm)

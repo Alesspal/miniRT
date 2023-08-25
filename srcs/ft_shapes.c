@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:28:28 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 15:52:06 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/ft_shapes.h"
+#include "ft_shapes.h"
 #include <math.h>
 
 t_sphere create_sphere(t_vec origin, int radius, int color)
@@ -20,7 +20,6 @@ t_sphere create_sphere(t_vec origin, int radius, int color)
 	sphere.origin = origin;
 	sphere.radius = radius;
 	sphere.color = color;
-
 	return (sphere);
 }
 
@@ -34,7 +33,6 @@ int height, int color)
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;
-
 	return (cylinder);
 }
 
@@ -45,7 +43,6 @@ t_plan create_plan(t_vec origin, t_vec orientation, int color)
 	plan.origin = origin;
 	plan.orientation = orientation;
 	plan.color = color;
-
 	return (plan);
 }
 

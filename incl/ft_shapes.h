@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:36:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:31:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/25 13:14:08 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@
 typedef struct s_sphere
 {
 	t_vec	origin;
-	int			radius;
-	int			color;
+	int		radius;
+	int		color;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
 	t_vec	origin;
 	t_vec	orientation;
-	int			radius;
-	int			height;
-	int			color;
+	int		radius;
+	int		height;
+	int		color;
 }	t_cylinder;
 
 typedef struct s_plan
 {
 	t_vec	origin;
 	t_vec	orientation;
-	int			color;
+	int		color;
 }	t_plan;
 
 enum e_shapes
