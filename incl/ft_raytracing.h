@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 14:07:15 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:02:39 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ft_vector.h"
 # include "ft_shapes.h"
-
+# include "stdbool.h"
 // tout les processus du raytraing vont aller dans ce fichier
 
 typedef struct s_ambiant_light
@@ -50,16 +50,13 @@ typedef struct s_scene
 typedef struct s_intersection
 {
 	t_vec					coordinate;
-	enum e_shapes			type;
-	void					*shape;
+	t_shape_type			shape_type;
+	t_shape					shape;
 	struct s_intersection	*next;
 }	t_intersection;
 
-// sphere N = P - C
-// cylinder N = P - C - dot(cam, P - C) * cam
-// plan N = orientation of plan
-t_vec	get_normalized_n_sphere(t_intersection *p);
-t_vec	get_normalized_n_cylinder(t_intersection *p);
-t_vec	get_normalized_n_plan(t_intersection *p);
+bool	intersection(t_vec v1, t_vec v2);
+
+t_vec	get_n(t_intersection *p);
 
 #endif

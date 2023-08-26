@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 13:07:19 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 15:58:23 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:03:43 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,35 @@
 #include "../incl/ft_vector.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "ft_raytracing.h"
 
 // sphere N = P - C
-t_vec	get_normalized_n_sphere(t_intersection *p)
+t_vec	get_n_sphere(t_intersection *p)
 {
 	t_vec		n;
-	t_sphere	*sphere;
+	t_sphere	sphere;
 
-	sphere = (t_sphere *)p->shape;
-	n = ft_create_vec(p->coordinate.x - sphere->origin.x,
-		p->coordinate.y - sphere->origin.y,
-		p->coordinate.z - sphere->origin.z);
-	return (ft_normalize(n));
+	sphere = (t_sphere)p->shape.sphere;
+	n = ft_create_vec(p->coordinate.x - sphere.origin.x,
+		p->coordinate.y - sphere.origin.y,
+		p->coordinate.z - sphere.origin.z);
+	return (n);
 }
 
 // cylinder N = P - C - dot(cam, P - C) * cam
-t_vec	get_normalized_n_cylinder(t_intersection *p)
+t_vec	get_n_cylinder(t_intersection *p)
 {
 	t_vec		n;
-	t_cylinder	*cylinder;
+	t_cylinder	cylinder;
 	t_vec		pc;
 	t_vec		v;
 	float		dot_v_pc;
 
-	cylinder = (t_cylinder *)p->shape;
-	pc = ft_create_vec(p->coordinate.x - cylinder->origin.x,
-		p->coordinate.y - cylinder->origin.y,
-		p->coordinate.z - cylinder->origin.z);
-	v = cylinder->orientation;
+	cylinder = (t_cylinder)p->shape.cylinder;
+	pc = ft_create_vec(p->coordinate.x - cylinder.origin.x,
+		p->coordinate.y - cylinder.origin.y,
+		p->coordinate.z - cylinder.origin.z);
+	v = cylinder.orientation;
 	dot_v_pc = ft_dot(v, pc);
 	v.x *= dot_v_pc;
 	v.y *= dot_v_pc;
@@ -49,20 +50,30 @@ t_vec	get_normalized_n_cylinder(t_intersection *p)
 	n.x = pc.x - v.x;
 	n.y = pc.y - v.y;
 	n.z = pc.z - v.z;
-	return (ft_normalize(n));
+	return (n);
 }
 
 // plan N = orientation of plan
-t_vec	get_normalized_n_plan(t_intersection *p)
+t_vec	get_n_plan(t_intersection *p)
 {
 	t_vec		n;
-	t_plan		*plan;
+	t_plan		plan;
 
-	plan = (t_plan *)p->shape;
-	n = ft_create_vec(plan->orientation.x,
-		plan->orientation.y,
-		plan->orientation.z);
-	return (ft_normalize(n));
+	plan = (t_plan)p->shape.plan;
+	n = ft_create_vec(plan.orientation.x,
+		plan.orientation.y,
+		plan.orientation.z);
+	return (n);
+}
+
+t_vec get_n(t_intersection *p)
+{
+	if (p->shape_type == SHPERE)
+		return (get_n_sphere(p));
+	else if (p->shape_type == CYLINDER)
+		return (get_n_cylinder(p));
+	else
+		return (get_n_plan(p));
 }
 
 // structure scene qui à comme variable
@@ -104,33 +115,43 @@ t_vec	get_normalized_n_plan(t_intersection *p)
 //	}
 // }
 
-/* int main(void)
+int main(void)
 {
+	t_vec			n;
 	t_cylinder		cylinder;
-	t_intersection	p1;
 	t_sphere		sphere;
-	t_intersection	p2;
 	t_plan			plan;
+	t_intersection	p1;
+	t_intersection	p2;
 	t_intersection	p3;
 
 	p1.coordinate = ft_create_vec(3, 4 , 0);
 	cylinder.origin = ft_create_vec(3, 5, -2);
 	cylinder.orientation = ft_create_vec(1, 4, -3);
-	p1.shape = &cylinder;
-	t_vec n_cylinder = get_normalized_n_cylinder(&p1);
-	printf("cylinder : n.x = %f, n.y = %f, n.z = %f\n", n_cylinder.x, n_cylinder.y, n_cylinder.z);
+	p1.shape.cylinder = cylinder;
+	p1.shape_type = CYLINDER;
+	n = get_n(&p1);
+	printf("cylinder : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	n = ft_normalize(n);
+	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
 	p2.coordinate = ft_create_vec(-5, -5 , -5);
 	sphere.origin = ft_create_vec(-10, -10, -10);
-	p2.shape = &sphere;
-	t_vec n_sphere = get_normalized_n_sphere(&p2);
-	printf("sphere : n.x = %f, n.y = %f, n.z = %f\n", n_sphere.x, n_sphere.y, n_sphere.z);
+	p2.shape.sphere = sphere;
+	p2.shape_type = SHPERE;
+	n = get_n(&p2);
+	printf("sphere : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	n = ft_normalize(n);
+	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
 	p3.coordinate = ft_create_vec(3, 4 , -5);
 	plan.orientation = ft_create_vec(9, -3, 275);
-	p3.shape = &plan;
-	t_vec n_plan = get_normalized_n_plan(&p3);
-	printf("plan : n.x = %f, n.y = %f, n.z = %f\n", n_plan.x, n_plan.y, n_plan.z);
-
+	p3.shape.plan = plan;
+	p3.shape_type = PLAN;
+	n = get_n(&p3);
+	printf("plan : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	n = ft_normalize(n);
+	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	
 	return (0);
-} */
+}

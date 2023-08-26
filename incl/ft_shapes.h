@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:36:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 13:14:08 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:01:45 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,25 @@ typedef struct s_plan
 	int		color;
 }	t_plan;
 
-enum e_shapes
+typedef enum e_shape_type
 {
 	SHPERE,
 	CYLINDER,
 	PLAN
-};
+}	t_shape_type;
+
+typedef union s_shape
+{
+	t_sphere	sphere;
+	t_cylinder	cylinder;
+	t_plan		plan;
+}	t_shape;
 
 typedef struct s_shapes
 {
 	int				id;
-	enum e_shapes	type;
-	void			*shape;
+	t_shape_type	shape_type;
+	t_shape			shape;
 	struct s_shapes	*next;
 }	t_shapes;
 
