@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 11:24:39 by eholzer           #+#    #+#             */
-/*   Updated: 2023/08/25 13:10:04 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/25 16:15:21 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 #include "ft_mlx.h"
 #include "ft_vector.h"
 #include "ft_shapes.h"
+#include "ft_raytracing.h"
 #include <stdio.h>
-
-//test
 
 int	init_data(t_data *data)
 {
@@ -31,7 +30,7 @@ int	init_data(t_data *data)
 	data->win->win_h = 1080;
 	data->win->win_w = data->win->win_h * ASPECT_RATIO;
 	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
-			data->win->win_h, "Minirt");
+			data->win->win_h, "miniRT");
 	if (!data->win->mlx_win)
 		return (1);
 	data->img.mlx_img = mlx_new_image(data->win->mlx_ptr, data->win->win_w,
@@ -48,13 +47,24 @@ int	init_data(t_data *data)
 int	main(void)
 {
 	t_data		data;
+	t_camera	cam;
+
+	cam.fov = 70;
+
+	cam.pos.x = 0;
+	cam.pos.y = 0;
+	cam.pos.z = 0;
+
+	cam.dir.x = 0;
+	cam.dir.y = 0;
+	cam.dir.z = 1;
 
 	if (init_data(&data))
-	{
-		printf("Error : initialisation");
-		return (EXIT_FAILURE);
-	}
-	draw_filled_sphere(&data, create_sphere((t_vec){200, 200, 200}, 100, 0x77B5FE));
+		ft_fatal_error("An Error occured when initializing data", -1);
+
+	// draw_filled_sphere(&data, create_sphere((t_vec){200, 200, 200}, 100, 0x77B5FE));
+	rayshooter(&data, cam);
+
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);

@@ -35,8 +35,8 @@ typedef struct s_spot_light
 typedef struct s_camera
 {
 	int			fov;
-	t_vec		coordinate;
-	t_vec		orientation;
+	t_vec		pos;
+	t_vec		dir;
 }	t_camera;
 
 typedef struct s_scene
@@ -58,5 +58,8 @@ typedef struct s_intersection
 bool	intersection(t_vec v1, t_vec v2);
 
 t_vec	get_n(t_intersection *p);
+
+// Raytracer functions
+void	rayshooter(t_data *data, t_camera cam);
 
 #endif
