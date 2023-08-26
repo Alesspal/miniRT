@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/25 13:07:19 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/26 17:03:43 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/26 17:12:48 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_vec get_n(t_intersection *p)
 //	}
 // }
 
-int main(void)
+/* int main(void)
 {
 	t_vec			n;
 	t_cylinder		cylinder;
@@ -154,4 +154,4 @@ int main(void)
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 	
 	return (0);
-}
+} */
