@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mlx.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 15:03:59 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 11:32:35 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/28 10:33:59 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_MLX_H
 
 # include "../mlx/mlx.h"
+# include <stdbool.h>
 
 # define ASPECT_RATIO 16.0 / 9.0
 

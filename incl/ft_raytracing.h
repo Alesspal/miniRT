@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytracing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 15:24:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/28 12:15:08 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,26 @@ typedef struct s_scene
 
 typedef struct s_intersection
 {
-	t_vec					p;
+	t_point3D				intersection_p;
+	t_point2D				pixel;
+	t_vec					prime_ray;
+	t_point3D				cam_pos;
 	void					*shape;
 	struct s_intersection	*next;
 }	t_intersection;
+
+typedef struct s_point2D
+{
+	int	x;
+	int y;
+}	t_point2D;
+
+typedef struct s_point3D
+{
+	int	x;
+	int y;
+	int z;
+}	t_point3D;
 
 // sphere N = P - C
 // cylinder N = P - C - dot(cam, P - C) * cam
