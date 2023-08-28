@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_shapes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 12:28:28 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 16:15:09 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/28 12:41:15 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_shapes.h"
 #include <math.h>
 
-t_sphere create_sphere(t_vec origin, int radius, int color)
+t_sphere create_sphere(t_point3D origin, int radius, int color)
 {
 	t_sphere sphere;
 
@@ -23,25 +23,25 @@ t_sphere create_sphere(t_vec origin, int radius, int color)
 	return (sphere);
 }
 
-t_cylinder create_cylinder(t_vec origin, t_vec dir, int radius,
+t_cylinder create_cylinder(t_point3D origin, t_vec orientation, int radius,
 int height, int color)
 {
 	t_cylinder cylinder;
 
 	cylinder.origin = origin;
-	cylinder.dir = dir;
+	cylinder.orientation = orientation;
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;
 	return (cylinder);
 }
 
-t_plan create_plan(t_vec origin, t_vec dir, int color)
+t_plan create_plan(t_point3D origin, t_vec orientation, int color)
 {
 	t_plan plan;
 
 	plan.origin = origin;
-	plan.dir = dir;
+	plan.orientation = orientation;
 	plan.color = color;
 	return (plan);
 }

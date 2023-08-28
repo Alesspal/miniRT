@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.h                                        :+:      :+:    :+:   */
+/*   ft_color.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/24 10:29:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/28 12:39:23 by alesspal         ###   ########.fr       */
+/*   Created: 2023/08/28 09:49:53 by alesspal          #+#    #+#             */
+/*   Updated: 2023/08/28 11:50:17 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_VECTOR_H
-# define FT_VECTOR_H
+#ifndef FT_COLOR_H
+# define FT_COLOR_H
 
-typedef struct s_vec
+typedef struct s_color
 {
-	float x;
-	float y;
-	float z;
-}	t_vec;
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
-t_vec	ft_create_vec(float x, float y, float z);
-t_vec	ft_normalize(t_vec v);
-float	ft_dot(t_vec v1, t_vec v2);
+t_color	change_intesity(t_color color, float intesity);
+t_color	add_color(t_color color1, t_color color2);
+t_color	mult_color(t_color color1, t_color color2);
+int		color_to_int(t_color color);
+
 
 #endif
