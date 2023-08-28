@@ -43,6 +43,12 @@ typedef struct s_intersection
 	struct s_intersection	*next;
 }	t_intersection;
 
+typedef struct s_ray
+{
+	t_point3D	origin;
+	t_vec		dir;
+}	t_ray;
+
 // bool	intersection(t_point3D p1, t_point3D p2);
 t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 

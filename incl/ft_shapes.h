@@ -30,9 +30,10 @@ typedef struct s_plan
 
 typedef enum e_shape_type
 {
-	SHPERE,
+	SPHERE,
 	CYLINDER,
-	PLAN
+	PLAN,
+	NO_SHAPE
 }	t_shape_type;
 
 typedef union s_shape

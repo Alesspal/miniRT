@@ -8,9 +8,9 @@ t_vec	get_n_sphere(t_intersection *p)
 	t_sphere	sphere;
 
 	sphere = (t_sphere)p->shape.sphere;
-	n = ft_create_vec(p->coordinate.x - sphere.origin.x,
-		p->coordinate.y - sphere.origin.y,
-		p->coordinate.z - sphere.origin.z);
+	n = ft_create_vec(p->pos.x - sphere.origin.x,
+		p->pos.y - sphere.origin.y,
+		p->pos.z - sphere.origin.z);
 	return (n);
 }
 
@@ -24,9 +24,9 @@ t_vec	get_n_cylinder(t_intersection *p)
 	float		dot_v_pc;
 
 	cylinder = (t_cylinder)p->shape.cylinder;
-	pc = ft_create_vec(p->coordinate.x - cylinder.origin.x,
-		p->coordinate.y - cylinder.origin.y,
-		p->coordinate.z - cylinder.origin.z);
+	pc = ft_create_vec(p->pos.x - cylinder.origin.x,
+		p->pos.y - cylinder.origin.y,
+		p->pos.z - cylinder.origin.z);
 	v = cylinder.orientation;
 	dot_v_pc = ft_dot(v, pc);
 	v.x *= dot_v_pc;
@@ -71,7 +71,7 @@ t_vec get_n(t_intersection *p)
 	t_intersection	p2;
 	t_intersection	p3;
 
-	p1.coordinate = ft_create_vec(3, 4 , 0);
+	p1.pos = ft_create_vec(3, 4 , 0);
 	cylinder.origin = ft_create_vec(3, 5, -2);
 	cylinder.orientation = ft_create_vec(1, 4, -3);
 	p1.shape.cylinder = cylinder;
@@ -81,7 +81,7 @@ t_vec get_n(t_intersection *p)
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
-	p2.coordinate = ft_create_vec(-5, -5 , -5);
+	p2.pos = ft_create_vec(-5, -5 , -5);
 	sphere.origin = ft_create_vec(-10, -10, -10);
 	p2.shape.sphere = sphere;
 	p2.shape_type = SHPERE;
@@ -90,7 +90,7 @@ t_vec get_n(t_intersection *p)
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
-	p3.coordinate = ft_create_vec(3, 4 , -5);
+	p3.pos = ft_create_vec(3, 4 , -5);
 	plan.orientation = ft_create_vec(9, -3, 275);
 	p3.shape.plan = plan;
 	p3.shape_type = PLAN;
