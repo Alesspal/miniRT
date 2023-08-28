@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raytracing.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 10:51:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/25 15:24:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/08/26 17:02:39 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include "ft_vector.h"
 # include "ft_shapes.h"
-# include "libft.h"
-
+# include "stdbool.h"
 // tout les processus du raytraing vont aller dans ce fichier
 
 typedef struct s_ambiant_light
@@ -50,15 +49,15 @@ typedef struct s_scene
 
 typedef struct s_intersection
 {
-	t_vec					p;
-	void					*shape;
+	t_vec					coordinate;
+	t_shape_type			shape_type;
+	t_shape					shape;
 	struct s_intersection	*next;
 }	t_intersection;
 
-// sphere N = P - C
-// cylinder N = P - C - dot(cam, P - C) * cam
-// plan N = orientation of plan
-t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
+bool	intersection(t_vec v1, t_vec v2);
+
+t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
 void	rayshooter(t_data *data, t_camera cam);
