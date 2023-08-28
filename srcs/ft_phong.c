@@ -1,86 +1,58 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_phong.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/25 13:07:19 by alesspal          #+#    #+#             */
-/*   Updated: 2023/08/26 17:12:48 by alesspal         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../incl/ft_raytracing.h"
 #include "../incl/ft_vector.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "ft_raytracing.h"
 
-// sphere N = P - C
-t_vec	get_n_sphere(t_intersection *p)
+/* int diffuse(t_scene scene, t_intersection *p)
 {
-	t_vec		n;
-	t_sphere	sphere;
-
-	sphere = (t_sphere)p->shape.sphere;
-	n = ft_create_vec(p->coordinate.x - sphere.origin.x,
-		p->coordinate.y - sphere.origin.y,
-		p->coordinate.z - sphere.origin.z);
-	return (n);
+	return (1);
 }
 
-// cylinder N = P - C - dot(cam, P - C) * cam
-t_vec	get_n_cylinder(t_intersection *p)
+int shadow(t_scene scene, t_intersection *p)
 {
-	t_vec		n;
-	t_cylinder	cylinder;
-	t_vec		pc;
-	t_vec		v;
-	float		dot_v_pc;
-
-	cylinder = (t_cylinder)p->shape.cylinder;
-	pc = ft_create_vec(p->coordinate.x - cylinder.origin.x,
-		p->coordinate.y - cylinder.origin.y,
-		p->coordinate.z - cylinder.origin.z);
-	v = cylinder.orientation;
-	dot_v_pc = ft_dot(v, pc);
-	v.x *= dot_v_pc;
-	v.y *= dot_v_pc;
-	v.z *= dot_v_pc;
-	n.x = pc.x - v.x;
-	n.y = pc.y - v.y;
-	n.z = pc.z - v.z;
-	return (n);
+	return (0x000000);
 }
 
-// plan N = orientation of plan
-t_vec	get_n_plan(t_intersection *p)
+int specular(t_scene scene, t_intersection *p)
 {
-	t_vec		n;
-	t_plan		plan;
-
-	plan = (t_plan)p->shape.plan;
-	n = ft_create_vec(plan.orientation.x,
-		plan.orientation.y,
-		plan.orientation.z);
-	return (n);
+	return (1);
 }
 
-t_vec get_n(t_intersection *p)
+// à proteger
+void ft_phong(t_data data, t_scene scene, t_intersection *p)
 {
-	if (p->shape_type == SHPERE)
-		return (get_n_sphere(p));
-	else if (p->shape_type == CYLINDER)
-		return (get_n_cylinder(p));
-	else
-		return (get_n_plan(p));
-}
-
-// structure scene qui à comme variable
-// lumière ambiante
-// light spot
-// caméra
-// liste de tout les objets
+	int x;
+	int y;
+	int color;
+	
+	x = 0;
+	y = 0;
+	// parcourir tout les pixels
+	while (y < data.win->win_h)
+	{
+		while (x < data.win->win_w)
+		{
+			color = 0;
+			if (x == p->pixel_coordinate.x && y == p->pixel_coordinate.y)
+			{
+				if (intersection(p->coordinate, scene.spot_light.coordinate))
+				{
+					// noir
+				}
+				else
+				{
+					// algo
+				}
+				p = p->next;
+			}
+			// ajout de la couleur ambiante
+			ft_img_pix_put(&data, p->pixel_coordinate.x, p->pixel_coordinate.y, color);
+			x++;
+		}
+		y++;
+	}
+} */
 
 // fonction qui calcul la couleur d'un pixel
 // prend en param la position de la lumière
@@ -114,44 +86,3 @@ t_vec get_n(t_intersection *p)
 //		peindre le pixel en la couleur trouvé
 //	}
 // }
-
-/* int main(void)
-{
-	t_vec			n;
-	t_cylinder		cylinder;
-	t_sphere		sphere;
-	t_plan			plan;
-	t_intersection	p1;
-	t_intersection	p2;
-	t_intersection	p3;
-
-	p1.coordinate = ft_create_vec(3, 4 , 0);
-	cylinder.origin = ft_create_vec(3, 5, -2);
-	cylinder.orientation = ft_create_vec(1, 4, -3);
-	p1.shape.cylinder = cylinder;
-	p1.shape_type = CYLINDER;
-	n = get_n(&p1);
-	printf("cylinder : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-	n = ft_normalize(n);
-	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-
-	p2.coordinate = ft_create_vec(-5, -5 , -5);
-	sphere.origin = ft_create_vec(-10, -10, -10);
-	p2.shape.sphere = sphere;
-	p2.shape_type = SHPERE;
-	n = get_n(&p2);
-	printf("sphere : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-	n = ft_normalize(n);
-	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-
-	p3.coordinate = ft_create_vec(3, 4 , -5);
-	plan.orientation = ft_create_vec(9, -3, 275);
-	p3.shape.plan = plan;
-	p3.shape_type = PLAN;
-	n = get_n(&p3);
-	printf("plan : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-	n = ft_normalize(n);
-	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
-	
-	return (0);
-} */
