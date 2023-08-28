@@ -1,7 +1,7 @@
 #include "ft_shapes.h"
 #include <math.h>
 
-t_sphere create_sphere(t_point3D origin, int radius, int color)
+t_sphere create_sphere(t_point3D origin, int radius, t_color color)
 {
 	t_sphere sphere;
 
@@ -12,7 +12,7 @@ t_sphere create_sphere(t_point3D origin, int radius, int color)
 }
 
 t_cylinder create_cylinder(t_point3D origin, t_vec orientation, int radius,
-int height, int color)
+int height, t_color color)
 {
 	t_cylinder cylinder;
 
@@ -24,7 +24,7 @@ int height, int color)
 	return (cylinder);
 }
 
-t_plan create_plan(t_point3D origin, t_vec orientation, int color)
+t_plan create_plan(t_point3D origin, t_vec orientation, t_color color)
 {
 	t_plan plan;
 
@@ -47,7 +47,7 @@ void	draw_filled_sphere(t_data *data, t_sphere sphere)	// remplacer par structur
 		x2 = sqrt(sphere.radius * sphere.radius - i*i);  // Selon l'équation du cercle
 		for (int j = sphere.origin.x - x2; j <= sphere.origin.x + x2; j++)  // dessiner une ligne horizontale
 		{
-			ft_img_pix_put(data, j, y1, sphere.color);
+			ft_img_pix_put(data, j, y1, color_to_int(sphere.color));
 		}
 	}
 }

@@ -44,7 +44,7 @@ int	main(void)
 		printf("Error : initialisation");
 		return (EXIT_FAILURE);
 	}
-	printf("size of int = %lu\n", sizeof(int));
+	/* printf("size of int = %lu\n", sizeof(int));
 	t_color color = {255, 0, 0};
 	printf("color in int = %x\n", color_to_int(color));
 	t_color color2 = {0, 255, 0};
@@ -60,7 +60,25 @@ int	main(void)
 	draw_filled_sphere(&data, create_sphere((t_point3D){400, 200, 200}, 100, color_to_int(color2)));
 	draw_filled_sphere(&data, create_sphere((t_point3D){600, 200, 200}, 100, color_to_int(color3)));
 	draw_filled_sphere(&data, create_sphere((t_point3D){800, 200, 200}, 100, color_to_int(color4)));
-	draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5)));
+	draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5))); */
+
+	t_scene scene;
+	t_intersection p;
+
+	p.shape_type = SHPERE;
+	p.shape.sphere.origin = (t_point3D){0, 0, 0};
+	p.shape.sphere.color = (t_color){0, 0, 255};
+
+	p.coordinate = (t_point3D){2, 2, 2};
+
+	scene.spot_light.coordinate = (t_point3D){50.2, 10.0 ,-31.1};
+	scene.spot_light.color = (t_color){255, 255, 0};
+
+	scene.ambient_light.color = (t_color){100, 0, 25};
+
+	t_color pixel = phong(scene, &p);
+	printf("pixel r = %i, g = %i, b = %i\n", pixel.r, pixel.g, pixel.b);
+
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);

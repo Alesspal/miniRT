@@ -8,9 +8,7 @@ t_vec	get_n_sphere(t_intersection *p)
 	t_sphere	sphere;
 
 	sphere = (t_sphere)p->shape.sphere;
-	n = ft_create_vec(p->coordinate.x - sphere.origin.x,
-		p->coordinate.y - sphere.origin.y,
-		p->coordinate.z - sphere.origin.z);
+	n = ft_get_vec(sphere.origin, p->coordinate);
 	return (n);
 }
 
