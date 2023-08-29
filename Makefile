@@ -21,7 +21,9 @@ SRCS_LIST	=	main.c \
 				ft_img_pix_put.c \
 				ft_vector.c \
 				ft_shapes.c \
-				rayshooter.c
+				ft_phong.c \
+				get_n.c \
+				ft_color.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
