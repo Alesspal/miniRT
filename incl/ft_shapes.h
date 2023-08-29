@@ -46,7 +46,7 @@ typedef union s_shape
 typedef struct s_shapes
 {
 	int				id;
-	t_shape_type	shape_type;
+	t_shape_type	type;
 	t_shape			shape;
 	struct s_shapes	*next;
 }	t_shapes;
