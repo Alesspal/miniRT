@@ -70,9 +70,9 @@ int	main(void)
 	p.shape.sphere.origin = (t_point3D){0, 0, 0};
 	p.shape.sphere.color = (t_color){0, 0, 255};
 
-	p.coordinate = (t_point3D){2, 2, 2};
+	p.pos = (t_point3D){2, 2, 2};
 
-	scene.spot_light.coordinate = (t_point3D){50.2, 10.0 ,-31.1};
+	scene.spot_light.pos = (t_point3D){50.2, 10.0 ,-31.1};
 	scene.spot_light.color = (t_color){255, 255, 0};
 
 	scene.ambient_light.color = (t_color){100, 0, 25};
