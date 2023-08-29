@@ -39,7 +39,7 @@ t_color phong(t_scene scene, t_intersection *p)
 	t_color shape_color;
 	t_color final_color;
 
-	final_color = add_color(scene.ambient_light.color, i_diffuse(scene, p));	// ajout couleur ambiante + couleur diffuse
+	final_color = addition_color(scene.ambient_light.color, i_diffuse(scene, p));	// ajout couleur ambiante + couleur diffuse
 	printf("color ambiante = %i, g = %i, b = %i\n", scene.ambient_light.color.r, scene.ambient_light.color.g, scene.ambient_light.color.b);
 	printf("color diffuse + ambiante = %i, g = %i, b = %i\n", final_color.r, final_color.g, final_color.b);
 	if (p->shape_type == SHPERE)
@@ -48,9 +48,44 @@ t_color phong(t_scene scene, t_intersection *p)
 		shape_color = p->shape.cylinder.color;
 	else
 		shape_color = p->shape.plan.color;
-	final_color = mult_color(final_color, shape_color);							// multiplier avec la couleur de la forme
+	final_color = multiplication_color(final_color, shape_color);							// multiplier avec la couleur de la forme
 	printf("couleur final r = %i, g = %i, b = %i\n", final_color.r, final_color.g, final_color.b);
 	return (final_color);
+}
+
+void draw_scene(t_data data, t_scene scene, t_intersection *p)
+{
+	int		x;
+	int		y;
+	t_color	color;
+	
+	x = 0;
+	y = 0;
+	// parcourir tout les pixels
+	while (y < data.win->win_h)
+	{
+		while (x < data.win->win_w)
+		{
+			color = (t_color){0, 0, 0};
+			if (p && x == p->pixel_coordinate.x && y == p->pixel_coordinate.y)
+			{
+				if (intersection(p->coordinate, scene.spot_light.coordinate))
+				{
+					color = shadow();
+				}
+				else
+				{
+					color = phong(scene, p);
+				}
+				p = p->next;
+			}
+			else
+				color = scene.ambient_light.color;
+			ft_img_pix_put(&data, x, y, color_to_int(color));
+			x++;
+		}
+		y++;
+	}
 }
 
 /* int main(void)
@@ -69,69 +104,3 @@ t_color phong(t_scene scene, t_intersection *p)
 	t_color pixel = phong(scene, &p);
 	printf("pixel r = %i, g = %i, b = %i\n", pixel.r, pixel.g, pixel.b);
 } */
-
-// à proteger
-/* void draw_scene(t_data data, t_scene scene, t_intersection *p)
-{
-	int		x;
-	int		y;
-	t_color	color;
-	
-	x = 0;
-	y = 0;
-	// parcourir tout les pixels
-	while (y < data.win->win_h)
-	{
-		while (x < data.win->win_w)
-		{
-			if (x == p->pixel_coordinate.x && y == p->pixel_coordinate.y)
-			{
-				if (intersection(p->coordinate, scene.spot_light.coordinate))
-				{
-					color = shadow();
-				}
-				else
-				{
-					color = phong(scene, p);
-				}
-				p = p->next;
-			}
-			ft_img_pix_put(&data, p->pixel_coordinate.x, p->pixel_coordinate.y, color_to_int(color));
-			x++;
-		}
-		y++;
-	}
-} */
-
-// fonction qui calcul la couleur d'un pixel
-// prend en param la position de la lumière
-// et les intersections de la caméra jusqu'a un pixel d'une forme visible (P)
-// {
-// 	while (les points P)
-// 	{
-// 		calcule comment la lumière interagis avec la couleur de la sphere
-// 	}
-// 	met le reste dans la couleur ambiante définit
-// }
-
-// fonction qui calcule la couleur
-// prend en param un point P, la position de la lumière et la structure de la forme
-// {
-// 	if (P intersecte qqch de sa position jusqu'à la source lumineuse)
-// 		peindre le pixel en noir ou couleur ambiante
-// 	sinon
-//	{
-//		créer le vecteur N
-//		vect N = vect P - vect O (cendre de la forme) (fonction find_N) 
-//		le normaliser
-//		créer le vecteur L
-//		vect L = vect S (source lumineuse) - vect P
-//		le normaliser
-//		créer le vecteur V (optionnel)
-//		vect V =  vect cam - vect P (optionnel)
-//		le normaliser (optionnel)
-//		calculer le produit scalaire de N * L
-//		couleur = I source * RGB de la forme * produit scalaire de N * L
-//		peindre le pixel en la couleur trouvé
-//	}
-// }

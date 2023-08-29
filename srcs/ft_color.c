@@ -18,7 +18,7 @@ t_color change_intesity(t_color color, float intensity)
 	return (new_color);
 }
 
-t_color add_color(t_color color1, t_color color2)
+t_color addition_color(t_color color1, t_color color2)
 {
 	t_color new_color;
 
@@ -34,7 +34,7 @@ t_color add_color(t_color color1, t_color color2)
 	return (new_color);
 }
 
-t_color mult_color(t_color color1, t_color color2)
+t_color multiplication_color(t_color color1, t_color color2)
 {
 	t_color new_color;
 

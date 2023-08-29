@@ -22,9 +22,7 @@ t_vec	get_n_cylinder(t_intersection *p)
 	float		dot_v_pc;
 
 	cylinder = (t_cylinder)p->shape.cylinder;
-	pc = ft_create_vec(p->coordinate.x - cylinder.origin.x,
-		p->coordinate.y - cylinder.origin.y,
-		p->coordinate.z - cylinder.origin.z);
+	pc = ft_get_vec(cylinder.origin, p->coordinate);
 	v = cylinder.orientation;
 	dot_v_pc = ft_dot(v, pc);
 	v.x *= dot_v_pc;

@@ -6,8 +6,6 @@
 #include "ft_color.h"
 #include <stdio.h>
 
-//test
-
 int	init_data(t_data *data)
 {
 	data->win = malloc(sizeof(t_mlx_win));
