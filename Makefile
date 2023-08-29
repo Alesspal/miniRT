@@ -23,7 +23,8 @@ SRCS_LIST	=	main.c \
 				ft_shapes.c \
 				ft_phong.c \
 				get_n.c \
-				ft_color.c
+				ft_color.c \
+				rayshooter.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

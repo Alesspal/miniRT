@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"ft_shapes.h": "c",
+		"ft_point.h": "c",
+		"ft_raytracing.h": "c"
+	}
+}

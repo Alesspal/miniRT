@@ -49,6 +49,17 @@ typedef struct s_ray
 	t_vec		dir;
 }	t_ray;
 
+// Struct for a quadratic equation
+typedef struct s_eq
+{
+	float 	a;
+	float 	b;
+	float 	c;
+	float 	discriminant;
+	float	s1;
+	float	s2;
+}	t_eq;
+
 // bool	intersection(t_point3D p1, t_point3D p2);
 t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 

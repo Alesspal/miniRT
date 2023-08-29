@@ -5,6 +5,7 @@
 # include <stdbool.h>
 
 # define ASPECT_RATIO 16.0 / 9.0
+# define WIN_H 768
 
 typedef struct s_mlx_win
 {

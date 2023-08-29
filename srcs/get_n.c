@@ -53,7 +53,7 @@ t_vec	get_n_plan(t_intersection *p)
 
 t_vec get_n(t_intersection *p)
 {
-	if (p->shape_type == SHPERE)
+	if (p->shape_type == SPHERE)
 		return (get_n_sphere(p));
 	else if (p->shape_type == CYLINDER)
 		return (get_n_cylinder(p));
