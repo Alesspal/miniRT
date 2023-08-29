@@ -1,7 +1,7 @@
 #ifndef FT_MLX_H
 # define FT_MLX_H
 
-# include "../mlx/mlx.h"
+# include "mlx.h"
 # include <stdbool.h>
 
 # define ASPECT_RATIO 16.0 / 9.0

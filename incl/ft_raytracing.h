@@ -43,9 +43,6 @@ typedef struct s_intersection
 	struct s_intersection	*next;
 }	t_intersection;
 
-// bool	intersection(t_point3D p1, t_point3D p2);
-t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
-
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
