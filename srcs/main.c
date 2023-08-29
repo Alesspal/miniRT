@@ -35,13 +35,16 @@ int	init_data(t_data *data)
 
 int	main(void)
 {
-	t_data		data;
+	t_scene	scene;
+	t_data	data;
 
+	
 	if (init_data(&data))
 	{
 		printf("Error : initialisation");
 		return (EXIT_FAILURE);
 	}
+	// scene = parsing_file_scene(file);
 	/* printf("size of int = %lu\n", sizeof(int));
 	t_color color = {255, 0, 0};
 	printf("color in int = %x\n", color_to_int(color));
