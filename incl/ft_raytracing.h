@@ -46,4 +46,6 @@ typedef struct s_intersection
 
 t_vec	get_n(t_intersection *p);
 
+t_color phong(t_scene scene, t_intersection *p);
+
 #endif

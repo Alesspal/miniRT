@@ -63,7 +63,7 @@ int	main(void)
 	draw_filled_sphere(&data, create_sphere((t_point3D){800, 200, 200}, 100, color_to_int(color4)));
 	draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5))); */
 
-	t_scene scene;
+	/* t_scene scene; */
 	t_intersection p;
 
 	p.shape_type = SHPERE;
