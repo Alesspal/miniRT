@@ -2,18 +2,20 @@
 # define FT_RAYTRACING_H
 
 # include "ft_shapes.h"
-# include <stdbool.h>
+
+# include "ft_color.h"
+# include "stdbool.h"
 
 typedef struct s_ambiant_light
 {
-	int		color;
+	t_color	color;
 	float	intensity;
 }	t_ambiant_light;
 
 typedef struct s_spot_light
 {
 	int			id;
-	int			color;
+	t_color		color;
 	float		intensity;
 	t_point3D	pos;
 }	t_spot_light;

@@ -8,9 +8,7 @@ t_vec	get_n_sphere(t_intersection *p)
 	t_sphere	sphere;
 
 	sphere = (t_sphere)p->shape.sphere;
-	n = ft_create_vec(p->pos.x - sphere.origin.x,
-		p->pos.y - sphere.origin.y,
-		p->pos.z - sphere.origin.z);
+	n = ft_get_vec(sphere.origin, p->coordinate);
 	return (n);
 }
 
@@ -24,9 +22,7 @@ t_vec	get_n_cylinder(t_intersection *p)
 	float		dot_v_pc;
 
 	cylinder = (t_cylinder)p->shape.cylinder;
-	pc = ft_create_vec(p->pos.x - cylinder.origin.x,
-		p->pos.y - cylinder.origin.y,
-		p->pos.z - cylinder.origin.z);
+	pc = ft_get_vec(cylinder.origin, p->coordinate);
 	v = cylinder.orientation;
 	dot_v_pc = ft_dot(v, pc);
 	v.x *= dot_v_pc;

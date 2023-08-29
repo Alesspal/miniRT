@@ -10,34 +10,40 @@ t_color change_intesity(t_color color, float intensity)
 	else if (intensity < 0)
 		intensity = 0;
 	new_color.r = color.r * intensity;
-	printf("c.r = %i, intensity = %f, new c = %i\n", color.r, intensity, new_color.r);
+	/* printf("c.r = %i, intensity = %f, new c = %i\n", color.r, intensity, new_color.r); */
 	new_color.g = color.g * intensity;
-	printf("c.g = %i, intensity = %f, new c = %i\n", color.g, intensity, new_color.g);
+	/* printf("c.g = %i, intensity = %f, new c = %i\n", color.g, intensity, new_color.g); */
 	new_color.b = color.b * intensity;
-	printf("c.b = %i, intensity = %f, new c = %i\n", color.b, intensity, new_color.b);
+	/* printf("c.b = %i, intensity = %f, new c = %i\n", color.b, intensity, new_color.b); */
 	return (new_color);
 }
 
-t_color add_color(t_color color1, t_color color2)
+t_color addition_color(t_color color1, t_color color2)
 {
 	t_color new_color;
 
 	new_color.r = color1.r + color2.r;
+	if (new_color.r > 255)
+		new_color.r = 255;
 	new_color.g = color1.g + color2.g;
+	if (new_color.g > 255)
+		new_color.g = 255;
 	new_color.b = color1.b + color2.b;
+	if (new_color.b > 255)
+		new_color.b = 255;
 	return (new_color);
 }
 
-t_color mult_color(t_color color1, t_color color2)
+t_color multiplication_color(t_color color1, t_color color2)
 {
 	t_color new_color;
 
 	new_color.r = color1.r * color2.r / 255;
-	printf("c1.r = %i, c2.r = %i, new c = %i\n", color1.r, color2.r, new_color.r);
+	/* printf("c1.r = %i, c2.r = %i, new c = %i\n", color1.r, color2.r, new_color.r); */
 	new_color.g = color1.g * color2.g / 255;
-	printf("c1.g = %i, c2.g = %i, new c = %i\n", color1.g, color2.g, new_color.g);
+	/* printf("c1.g = %i, c2.g = %i, new c = %i\n", color1.g, color2.g, new_color.g); */
 	new_color.b = color1.b * color2.b / 255;
-	printf("c1.b = %i, c2.b = %i, new c = %i\n", color1.b, color2.b, new_color.b);
+	/* printf("c1.b = %i, c2.b = %i, new c = %i\n", color1.b, color2.b, new_color.b); */
 	return (new_color);
 }
 

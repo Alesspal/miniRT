@@ -4,12 +4,13 @@
 # include "ft_mlx.h"
 # include "ft_vector.h"
 # include "ft_point.h"
+# include "ft_color.h"
 
 typedef struct s_sphere
 {
 	t_point3D	origin;
 	float		radius;
-	int			color;
+	t_color		color;
 }	t_sphere;
 
 typedef struct s_cylinder
@@ -18,14 +19,14 @@ typedef struct s_cylinder
 	t_vec		orientation;
 	float		radius;
 	float		height;
-	int			color;
+	t_color		color;
 }	t_cylinder;
 
 typedef struct s_plan
 {
 	t_point3D	origin;
 	t_vec		orientation;
-	int			color;
+	t_color		color;
 }	t_plan;
 
 typedef enum e_shape_type
@@ -50,10 +51,10 @@ typedef struct s_shapes
 	struct s_shapes	*next;
 }	t_shapes;
 
-t_sphere	create_sphere(t_point3D origin, int radius, int color);
+t_sphere	create_sphere(t_point3D origin, int radius, t_color color);
 t_cylinder	create_cylinder(t_point3D origin, t_vec orientation, int radius,
-						int height, int color);
-t_plan		create_plan(t_point3D origin, t_vec orientation, int color);
+						int height, t_color color);
+t_plan		create_plan(t_point3D origin, t_vec orientation, t_color color);
 
 void		draw_filled_sphere(t_data *data, t_sphere sphere);
 
