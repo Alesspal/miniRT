@@ -14,9 +14,8 @@ void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p)
 	prime_ray->origin = cam.pos;
 }
 
-// Checks if there are intersections with spheres and the casted prime ray.
-// Fills the intersection struct with the closest sphere in front of the camera.
-// Sets intersection.shape_type to NO_SHAPE if there is no intersection.
+// Checks if there is an intersection between a ray and a sphere.
+// Fills the intersection struct with the closest intersection point if there is one.
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 {
 	t_vec		co;
@@ -51,9 +50,9 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	}
 }
 
-// Returns 1 if there is an intersection with an object and the casted prime ray.
-// Returns 0 if not.
-
+// Checks if there are intersections with spheres and the casted prime ray.
+// Fills the intersection struct with the closest sphere in front of the camera.
+// Sets intersection.shape_type to NO_SHAPE if there is no intersection.
 void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection)
 {
 	intersection->shape_type = NO_SHAPE;
@@ -71,41 +70,5 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection)
 		// cylinder
 
 		shape = shape->next;
-	}
-}
-
-void	rayshooter(t_data *data, t_scene scene)
-{
-	t_point2D		pixel;
-	t_ray			prime_ray;
-	t_intersection	intersection;
-	int				color;
-
-	pixel.y = -1;
-	while (++pixel.y < data->win->win_h)
-	{
-		pixel.x = -1;
-		while (++pixel.x < data->win->win_w)
-		{
-			// Fill the prime ray with its approriate components
-			fill_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
-
-			// Check if the prime ray intersects any objects
-			intersection.pixel = pixel; // maybe not necessary
-			fill_intersection(prime_ray, scene.shapes, &intersection);
-
-			// Compute the color of the pixel
-			if (intersection.shape_type != NO_SHAPE)
-			{
-				color = 0x77B5FE; // temporary
-				// compute_light(intersection, scene, &color);
-				ft_img_pix_put(data, pixel.x, pixel.y, color);
-			}
-			else
-			{
-				// Set the pixel to the background color
-				ft_img_pix_put(data, pixel.x, pixel.y, 0x000000);
-			}
-		}
 	}
 }

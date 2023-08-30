@@ -24,7 +24,8 @@ SRCS_LIST	=	main.c \
 				ft_phong.c \
 				get_n.c \
 				ft_color.c \
-				rayshooter.c
+				draw_scene.c \
+				intersection.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

@@ -89,7 +89,7 @@ int	main(void)
 	scene.camera = cam;
 	scene.shapes = &shapes;
 
-	rayshooter(&data, scene);
+	draw_scene(&data, scene);
 
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);

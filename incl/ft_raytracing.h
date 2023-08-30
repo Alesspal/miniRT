@@ -66,6 +66,9 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
-void	rayshooter(t_data *data, t_scene scene);
+void	draw_scene(t_data *data, t_scene scene);
+void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
+void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection);
+void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection);
 
 #endif
