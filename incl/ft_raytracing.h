@@ -66,6 +66,6 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
-void	rayshooter(t_data *data, t_camera cam);
+void	rayshooter(t_data *data, t_scene scene);
 
 #endif

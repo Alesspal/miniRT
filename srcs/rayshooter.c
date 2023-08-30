@@ -15,8 +15,8 @@ void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p)
 }
 
 // Checks if there are intersections with spheres and the casted prime ray.
-// Retunrs 1 if there is an intersection with a sphere.
-// Fills the intersection struct with the closest sphere to the camera.
+// Fills the intersection struct with the closest sphere in front of the camera.
+// Sets intersection.shape_type to NO_SHAPE if there is no intersection.
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 {
 	t_vec		co;
@@ -26,7 +26,7 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	eq.a = 1;
 	eq.b = 2.0 * ft_dot(co, ray.dir);
 	eq.c = ft_dot(co, co) - pow(sp.radius, 2);
-	eq.discriminant = pow(eq.b, 2) - (4 * eq.a * eq.c);
+	eq.discriminant = pow(eq.b, 2) - (4 * eq.c);
 
 	if (eq.discriminant < 0)
 	{
@@ -49,23 +49,6 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 		intersection->pos = v_to_p(vec_add(p_to_v(ray.origin), vec_mult(ray.dir, eq.s2)));
 		return ;
 	}
-
-	// oc = ray.origin - sphere.center
-    // a = ray.direction.dot(ray.direction)
-    // b = 2.0 * oc.dot(ray.direction)
-    // c = oc.dot(oc) - sphere.radius * sphere.radius
-    // discriminant = b*b - 4*a*c
-
-    // if discriminant < 0:
-    //     return None  # No intersection
-
-    // t1 = (-b - math.sqrt(discriminant)) / (2 * a)
-    // t2 = (-b + math.sqrt(discriminant)) / (2 * a)
-
-    // if t1 > 0 or t2 > 0:
-    //     return min(t1, t2) if t1 > 0 else t2
-    // else:
-    //     return None  # Both intersections are behind the ray's origin
 }
 
 // Returns 1 if there is an intersection with an object and the casted prime ray.
@@ -91,23 +74,12 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection)
 	}
 }
 
-void	rayshooter(t_data *data, t_camera cam)
+void	rayshooter(t_data *data, t_scene scene)
 {
 	t_point2D		pixel;
 	t_ray			prime_ray;
 	t_intersection	intersection;
-
-	// for testing purpose
-	t_shapes shapes;
-
-	shapes.shape.sphere.color = 0x77B5FE;
-	shapes.shape.sphere.radius = 7;
-	shapes.shape.sphere.origin.x = 0;
-	shapes.shape.sphere.origin.y = 0;
-	shapes.shape.sphere.origin.z = 30;
-	shapes.id = 0;
-	shapes.next = 0;
-	shapes.type = SPHERE;
+	int				color;
 
 	pixel.y = -1;
 	while (++pixel.y < data->win->win_h)
@@ -115,19 +87,25 @@ void	rayshooter(t_data *data, t_camera cam)
 		pixel.x = -1;
 		while (++pixel.x < data->win->win_w)
 		{
-			fill_prime_ray(&prime_ray, *data->win, cam, pixel);
+			// Fill the prime ray with its approriate components
+			fill_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
 
 			// Check if the prime ray intersects any objects
-			intersection.pixel = pixel;
-			fill_intersection(prime_ray, &shapes, &intersection);
+			intersection.pixel = pixel; // maybe not necessary
+			fill_intersection(prime_ray, scene.shapes, &intersection);
 
-			// Compute lighting or shadows
-			// if (intersection.shape_type != NO_SHAPE)
-				// compute_light();
-
-			// Set the pixel to the corresponding color
+			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
-				ft_img_pix_put(data, pixel.x, pixel.y, 0x77B5FE);
+			{
+				color = 0x77B5FE; // temporary
+				// compute_light(intersection, scene, &color);
+				ft_img_pix_put(data, pixel.x, pixel.y, color);
+			}
+			else
+			{
+				// Set the pixel to the background color
+				ft_img_pix_put(data, pixel.x, pixel.y, 0x000000);
+			}
 		}
 	}
 }

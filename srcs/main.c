@@ -6,8 +6,6 @@
 #include "ft_color.h"
 #include <stdio.h>
 
-//test
-
 int	init_data(t_data *data)
 {
 	data->win = malloc(sizeof(t_mlx_win));
@@ -61,9 +59,12 @@ int	main(void)
 	// draw_filled_sphere(&data, create_sphere((t_point3D){600, 200, 200}, 100, color_to_int(color3)));
 	// draw_filled_sphere(&data, create_sphere((t_point3D){800, 200, 200}, 100, color_to_int(color4)));
 	// draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5)));
+	// draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, 0x77B5FE));
 
-	// Eric's tests --------------------------------------
-	t_camera cam;
+	// ---------- Eric stuff ----------
+	t_scene		scene;
+	t_camera	cam;
+	t_shapes	shapes;
 
 	cam.fov = 90;
 
@@ -75,8 +76,20 @@ int	main(void)
 	cam.dir.y = 0;
 	cam.dir.z = 1;
 
-	rayshooter(&data, cam);
-	// draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, 0x77B5FE));
+
+	shapes.shape.sphere.color = 0x77B5FE;
+	shapes.shape.sphere.radius = 7;
+	shapes.shape.sphere.origin.x = 0;
+	shapes.shape.sphere.origin.y = 0;
+	shapes.shape.sphere.origin.z = 30;
+	shapes.id = 0;
+	shapes.next = 0;
+	shapes.type = SPHERE;
+
+	scene.camera = cam;
+	scene.shapes = &shapes;
+
+	rayshooter(&data, scene);
 
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
