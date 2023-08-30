@@ -18,8 +18,8 @@ int	init_data(t_data *data)
 	data->win->mlx_ptr = mlx_init();
 	if (!data->win->mlx_ptr)
 		return (1);
-	// data->win->win_h = 768;
-	data->win->win_h = 1080;
+	data->win->win_h = 768;
+	// data->win->win_h = 1080;
 	data->win->win_w = data->win->win_h * ASPECT_RATIO;
 	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
 			data->win->win_h, "Minirt");
@@ -41,10 +41,7 @@ int	main(void)
 	t_data		data;
 
 	if (init_data(&data))
-	{
-		printf("Error : initialisation");
-		return (EXIT_FAILURE);
-	}
+		ft_fatal_error("Error when initialising data", -1);
 
 	// Aless's stuff
 	// printf("size of int = %lu\n", sizeof(int));
@@ -68,7 +65,7 @@ int	main(void)
 	// Eric's tests --------------------------------------
 	t_camera cam;
 
-	cam.fov = 70;
+	cam.fov = 90;
 
 	cam.pos.x = 0;
 	cam.pos.y = 0;

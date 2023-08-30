@@ -41,11 +41,13 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	{
 		intersection->shape_type = SPHERE;
 		intersection->pos = v_to_p(vec_add(p_to_v(ray.origin), vec_mult(ray.dir, eq.s1)));
+		return ;
 	}
 	if (eq.s2 > 0 && eq.s2 < eq.s1)
 	{
 		intersection->shape_type = SPHERE;
 		intersection->pos = v_to_p(vec_add(p_to_v(ray.origin), vec_mult(ray.dir, eq.s2)));
+		return ;
 	}
 
 	// oc = ray.origin - sphere.center
@@ -102,7 +104,7 @@ void	rayshooter(t_data *data, t_camera cam)
 	shapes.shape.sphere.radius = 7;
 	shapes.shape.sphere.origin.x = 0;
 	shapes.shape.sphere.origin.y = 0;
-	shapes.shape.sphere.origin.z = 10;
+	shapes.shape.sphere.origin.z = 30;
 	shapes.id = 0;
 	shapes.next = 0;
 	shapes.type = SPHERE;
