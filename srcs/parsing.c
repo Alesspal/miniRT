@@ -352,10 +352,10 @@ int	cylindre_parsing(char *description, t_cylinder *cylinder)
 	return (0);
 }
 
-int	shapes_pasing(char *description, t_shapes *shapes)
+/* int	shapes_parsing(char *description, t_shapes *shapes)
 {
 
-}
+} */
 
 void	display_ambient_light(t_ambiant_light ambient_light)
 {
