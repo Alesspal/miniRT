@@ -6,13 +6,13 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/03/30 11:35:35 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:47:04 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin2(char const *s1, char const *s2)
 {
 	int		sizetotal;
 	char	*res;
@@ -40,7 +40,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (res);
 }
 
-char	*ft_strchr(const char *string, int searchedChar )
+char	*ft_strchr2(const char *string, int searchedChar )
 {
 	char	*str;
 
@@ -53,7 +53,7 @@ char	*ft_strchr(const char *string, int searchedChar )
 		return (NULL);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero2(void *s, size_t n)
 {
 	char	*str;
 	size_t	i;
@@ -67,14 +67,14 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t elementCount, size_t elementSize)
+void	*ft_calloc2(size_t elementCount, size_t elementSize)
 {
 	char	*res;
 
 	res = malloc(elementSize * elementCount);
 	if (!res)
 		return (NULL);
-	ft_bzero(res, elementSize * elementCount);
+	ft_bzero2(res, elementSize * elementCount);
 	return (res);
 }
 
