@@ -67,7 +67,7 @@ int	main(void)
 	t_intersection p;
 
 	p.shape_type = SHPERE;
-	p.shape.sphere.origin = (t_point3D){0, 0, 0};
+	p.shape.sphere.pos = (t_point3D){0, 0, 0};
 	p.shape.sphere.color = (t_color){0, 0, 255};
 
 	p.pos = (t_point3D){2, 2, 2};

@@ -5,8 +5,8 @@ t_sphere create_sphere(t_point3D origin, int radius, t_color color)
 {
 	t_sphere sphere;
 
-	sphere.origin = origin;
-	sphere.radius = radius;
+	sphere.pos = origin;
+	sphere.diameter = radius;
 	sphere.color = color;
 	return (sphere);
 }
@@ -16,9 +16,9 @@ int height, t_color color)
 {
 	t_cylinder cylinder;
 
-	cylinder.origin = origin;
-	cylinder.orientation = orientation;
-	cylinder.radius = radius;
+	cylinder.pos = origin;
+	cylinder.dir = orientation;
+	cylinder.diameter = radius;
 	cylinder.height = height;
 	cylinder.color = color;
 	return (cylinder);
@@ -28,8 +28,8 @@ t_plan create_plan(t_point3D origin, t_vec orientation, t_color color)
 {
 	t_plan plan;
 
-	plan.origin = origin;
-	plan.orientation = orientation;
+	plan.pos = origin;
+	plan.dir = orientation;
 	plan.color = color;
 	return (plan);
 }
@@ -40,12 +40,12 @@ void	draw_filled_sphere(t_data *data, t_sphere sphere)	// remplacer par structur
 	int				y1;
 	double			x2;
 
-	for(i = -sphere.radius; i <= sphere.radius; i++)  // Parcourir la hauteur du cercle.
+	for(i = -sphere.diameter; i <= sphere.diameter; i++)  // Parcourir la hauteur du cercle.
 	{
-		y1 = sphere.origin.y + i;
+		y1 = sphere.pos.y + i;
 		// Pour un y donné, trouver la distance horizontale x2 du centre du cercle au bord du cercle.
-		x2 = sqrt(sphere.radius * sphere.radius - i*i);  // Selon l'équation du cercle
-		for (int j = sphere.origin.x - x2; j <= sphere.origin.x + x2; j++)  // dessiner une ligne horizontale
+		x2 = sqrt(sphere.diameter * sphere.diameter - i*i);  // Selon l'équation du cercle
+		for (int j = sphere.pos.x - x2; j <= sphere.pos.x + x2; j++)  // dessiner une ligne horizontale
 		{
 			ft_img_pix_put(data, j, y1, color_to_int(sphere.color));
 		}
