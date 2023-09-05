@@ -45,13 +45,6 @@ typedef enum e_element_type
 	PL
 }	t_element_type;
 
-typedef struct s_element_descriptor
-{
-	const char		*prefix;
-	const int		len;
-	t_element_type	type;
-}	t_element_descriptor;
-
 typedef struct s_intersection
 {
 	t_point3D				pos;
