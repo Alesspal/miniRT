@@ -16,28 +16,28 @@ char	*skip_space(char *str)
 
 void	display_ambient_light(t_ambiant_light ambient_light)
 {
-	printf("-----AMBIENT LIGHT SAVE-----\n");
+	printf("-----AMBIENT LIGHT-----\n");
 	printf("intensity : %f\n", ambient_light.intensity);
 	printf("rgb : %d, %d, %d\n", ambient_light.color.r, ambient_light.color.g, ambient_light.color.b);
-	printf("----------------------------\n");
+	printf("-----------------------\n");
 }
 
 void	display_spot_light(t_spot_light spot_light)
 {
-	printf("-----SPOT LIGHT SAVE-----\n");
+	printf("-----SPOT LIGHT-----\n");
 	printf("pos : %f, %f, %f\n", spot_light.pos.x, spot_light.pos.y, spot_light.pos.z);
 	printf("intensity : %f\n", spot_light.intensity);
 	printf("rgb : %d, %d, %d\n", spot_light.color.r, spot_light.color.g, spot_light.color.b);
-	printf("-------------------------\n");
+	printf("--------------------\n");
 }
 
 void	display_camera(t_camera camera)
 {
-	printf("-----CAMERA SAVE-----\n");
+	printf("-----CAMERA-----\n");
 	printf("pos : %f, %f, %f\n", camera.pos.x, camera.pos.y, camera.pos.z);
 	printf("dir : %f, %f, %f\n", camera.dir.x, camera.dir.y, camera.dir.z);
 	printf("fov : %d\n", camera.fov);
-	printf("---------------------\n");
+	printf("----------------\n");
 }
 
 void	display_sphere(t_sphere sphere)
@@ -167,13 +167,13 @@ bool	is_in_int_range(int val, int range_min, int range_max)
 
 bool	is_in_float_range(float val, float range_min, float range_max)
 {
-	float precision;
+	float	precision;
 
 	precision = 0.00001f;
 	return (val + precision >= range_min && val - precision <= range_max);
 }
 
-bool is_end_of_line(char *line)
+bool	is_end_of_line(char *line)
 {
 	line = skip_space(line);
 	if (line && *line)
@@ -210,10 +210,11 @@ bool is_end_of_line(char *line)
 
 /* float	ft_atof(char *nb)
 {
+	nb = skip_space(nb);
 
 } */
 
-int find_comma_or_white_space(char *str)
+int	find_comma_or_white_space(char *str)
 {
 	int	i;
 
@@ -225,16 +226,16 @@ int find_comma_or_white_space(char *str)
 	return (i);
 }
 
-char *go_next_value(char *description)
+char	*go_next_value(char *descr)
 {
-	if (!description || !*description)
-		return (description);
-	description = skip_space(description);
-	while (*description && *description != ',' && !ft_is_white_space(*description))
-		description++;
-	if (*description == ',')
-		description++;
-	return (description);
+	if (!descr || !*descr)
+		return (descr);
+	descr = skip_space(descr);
+	while (*descr && *descr != ',' && !ft_is_white_space(*descr))
+		descr++;
+	if (*descr == ',')
+		descr++;
+	return (descr);
 }
 
 #pragma region Get
@@ -300,7 +301,7 @@ int	get_int(char **description, int *ret)
 	return (0);
 }
 
-int get_intensity(char **description, float *intensity)
+int	get_intensity(char **description, float *intensity)
 {
 	if (get_float(description, intensity))
 		return (1);
@@ -316,7 +317,7 @@ int	get_fov(char **description, int *fov)
 
 int	get_pos(char **description, t_point3D *pos)
 {
-	if (!description|| !*description)
+	if (!description || !*description)
 		return (1);
 	if (get_float(description, &pos->x))
 		return (1);
@@ -329,7 +330,7 @@ int	get_pos(char **description, t_point3D *pos)
 
 int	get_dir(char **description, t_vec *dir)
 {
-	if (!description|| !*description)
+	if (!description || !*description)
 		return (1);
 	if (get_float(description, &dir->x))
 		return (1);
@@ -348,7 +349,7 @@ int	get_dir(char **description, t_vec *dir)
 
 int	get_rgb(char **description, t_color *color)
 {
-	if (!description|| !*description)
+	if (!description || !*description)
 		return (1);
 	if (get_int(description, &color->r))
 		return (1);
@@ -405,7 +406,7 @@ int	ambient_light_parsing(char *description, t_ambiant_light *ambiant_light)
 	return (0);
 }
 
-int spot_light_parsing(char *description, t_spot_light *spot_light)
+int	spot_light_parsing(char *description, t_spot_light *spot_light)
 {
 	if (!description)
 		return (1);
@@ -437,7 +438,7 @@ int	camera_parsing(char *description, t_camera *camera)
 	return (0);
 }
 
-int sphere_parsing(char *description, t_sphere *sphere)
+int	sphere_parsing(char *description, t_sphere *sphere)
 {
 	if (!description)
 		return (1);
@@ -489,33 +490,62 @@ int	plan_parsing(char *description, t_plan *plan)
 	return (0);
 }
 
+int	shapes_len(t_shapes *shapes)
+{
+	int			len;
+	t_shapes	*temp;
+
+	if (!shapes)
+		return (0);
+	len = 0;
+	temp = shapes;
+	while (temp)
+	{
+		len++;
+		temp = temp->next;
+	}
+	return (len);
+}
+
+t_shapes	*create_new_node(int id)
+{
+	t_shapes *new_node;
+
+	new_node = malloc(sizeof(t_shapes));
+	if (!new_node)
+		return (NULL);
+	new_node->id = id;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+int	append_to_list(t_shapes **shapes, t_shapes *new_node)
+{
+	t_shapes *tail;
+	
+	if (!shapes)
+		return (1);
+	tail = *shapes;
+	while (tail && tail->next)
+		tail = tail->next;
+	if (tail)
+		tail->next = new_node;
+	else
+		*shapes = new_node;
+	return (0);
+}
+
 int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 {
-	int			id;
-	t_shapes	*tail;
 	t_shapes	*new_node;
 
 	if (!shapes)
 		return (1);
-	id = 0;
-	tail = *shapes;
-	while (tail && tail->next)
-	{
-		id++;
-		tail = tail->next;
-	}
-	new_node = malloc(sizeof(t_shapes));
+	new_node = create_new_node(shapes_len(*shapes));
 	if (!new_node)
-		return (1);
-	new_node->next = NULL;
-	if (tail)
-	{
-		id++;
-		tail->next = new_node;
-	}
-	else
-		*shapes = new_node;
-	new_node->id = id;
+		return (printf("shape creation for list of shapes failed\n"), 1);
+	if (append_to_list(shapes, new_node))
+		return (printf("new shape could not be added to the list\n"), 1);
 	if (el == SP)
 		return (new_node->type = SHPERE,
 			sphere_parsing(description, &new_node->shape.sphere));
@@ -576,69 +606,86 @@ int	element_parsing(t_scene *scene, char *description, t_element_type el)
 	return (0);
 } */
 
-t_element_type	*init_el_tab(int size)
+t_element_type	*init_el_tab()
 {
 	int				i;
 	t_element_type	*el_tab;
 
-	el_tab = malloc(sizeof(t_element_type) * size);
+	el_tab = malloc(sizeof(t_element_type) * 3);
 	if (!el_tab)
 		return (NULL);
 	i = -1;
-	while (++i < size)
+	while (++i < 3)
 		el_tab[i] = 0;
 	return (el_tab);
 }
 
 bool	check_missing_elements(t_element_type *el_tab)
 {
-	return (el_tab[AMBIANT_LIGHT] != 1 ||
-		el_tab[SPOT_LIGHT] != 1 ||
-		el_tab[CAMERA] != 1);
+	return (el_tab[AMBIANT_LIGHT] != 1
+		|| el_tab[SPOT_LIGHT] != 1
+		|| el_tab[CAMERA] != 1);
 }
 
-int file_parsing(char *name, t_scene *scene)
+int		check_element_is_already_set_and_update(t_element_type *el_tab, t_element_type el)
 {
-	int				fd;
+	if (el == AMBIANT_LIGHT || el == SPOT_LIGHT || el == CAMERA)
+	{
+		if (el_tab[el] == 1)
+			return (1);
+		el_tab[el] = 1;
+	}
+	return (0);
+}
+
+int	scene_parsing(int fd, t_scene *scene)
+{
 	char			*line;
 	char			*description;
 	t_element_type	el;
 	t_element_type	*el_tab;
 
-	if (!name || name_is_incorrect(name))
-		return (printf("name of file is incorrect\n"), 1);
-	fd = open(name, O_RDONLY);
-	if (fd < 0)
-		return (printf("opening file failed\n"), 1);
-	el_tab = init_el_tab(3);
+	el_tab = init_el_tab();
+	if (!el_tab)
+		return (printf("el_tab initialisation failed\n"), 1);
 	line = get_next_line(fd);
 	while (line)
 	{
 		if (line[0] != '\0' && line[0] != '\n')
 		{
 			description = get_element(line, &el);
-			if (el == AMBIANT_LIGHT || el == SPOT_LIGHT || el == CAMERA)
-			{
-				if (el_tab[el] == 1)
-					return (printf("duplication of elements detected\n"), 1);
-				el_tab[el] = 1;
-			}
+			if (check_element_is_already_set_and_update(el_tab, el))
+				return (printf("duplication of elements detected\n"), 1);
 			if (element_parsing(scene, description, el))
-				return (printf("description error : %s",line), 1);
+				return (printf("description error : %s\n", line), 1);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (close(fd) < 0)
-		return (printf("closing file failed\n"), 1);
 	if (check_missing_elements(el_tab))
 		return (printf("missing scene element in file\n"), 1);
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	file_parsing(char *name, t_scene *scene)
 {
-	t_scene scene = {0};
+	int				fd;
+
+	if (!name || name_is_incorrect(name))
+		return (printf("name of file is incorrect\n"), 1);
+	fd = open(name, O_RDONLY);
+	if (fd < 0)
+		return (printf("opening file failed\n"), 1);
+	if (scene_parsing(fd, scene))
+		return (printf("scene parsing interrupted\n"), 1);
+	if (close(fd) < 0)
+		return (printf("closing file failed\n"), 1);
+	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	t_scene	scene = {0};
 
 	if (argc != 2)
 		return (printf("put file\n"), 1);
@@ -648,6 +695,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	display_scene(scene);
+	while (1);	
+	return (0);
 }
 
 #pragma endregion
