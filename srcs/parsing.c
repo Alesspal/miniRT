@@ -71,7 +71,6 @@ void	display_plan(t_plan plan)
 
 void	display_shapes(t_shapes *shapes)
 {
-	printf("disp shapes\n");
 	while (shapes)
 	{
 		printf("ID = %d\n", shapes->id);
@@ -492,7 +491,6 @@ int	plan_parsing(char *description, t_plan *plan)
 
 int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 {
-	printf("SHAPES_PARSING\n");
 	int			id;
 	t_shapes	*tail;
 	t_shapes	*new_node;
@@ -501,17 +499,14 @@ int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 		return (1);
 	id = 0;
 	tail = *shapes;
-	printf("HERE\n");
 	while (tail && tail->next)
 	{
-		printf("ICI\n");
 		id++;
 		tail = tail->next;
 	}
 	new_node = malloc(sizeof(t_shapes));
 	if (!new_node)
 		return (1);
-	printf("HERE\n");
 	new_node->next = NULL;
 	if (tail)
 	{
@@ -519,27 +514,17 @@ int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 		tail->next = new_node;
 	}
 	else
-	{
-		printf("bruh\n");
 		*shapes = new_node;
-	}
 	new_node->id = id;
-	printf("HERE\n");
 	if (el == SP)
-	{
-		new_node->type = SHPERE;
-		return (sphere_parsing(description, &new_node->shape.sphere));
-	}
+		return (new_node->type = SHPERE,
+			sphere_parsing(description, &new_node->shape.sphere));
 	if (el == CY)
-	{
-		new_node->type = CYLINDER;
-		return (cylindre_parsing(description, &new_node->shape.cylinder));
-	}
+		return (new_node->type = CYLINDER,
+			cylindre_parsing(description, &new_node->shape.cylinder));
 	if (el == PL)
-	{
-		new_node->type = PLAN;
-		return (plan_parsing(description, &new_node->shape.plan));
-	}
+		return (new_node->type = PLAN,
+			plan_parsing(description, &new_node->shape.plan));
 	return (1);
 }
 
@@ -612,14 +597,13 @@ bool	check_missing_elements(t_element_type *el_tab)
 		el_tab[CAMERA] != 1);
 }
 
-int file_parsing(char *name)
+int file_parsing(char *name, t_scene *scene)
 {
 	int				fd;
 	char			*line;
 	char			*description;
 	t_element_type	el;
 	t_element_type	*el_tab;
-	t_scene scene;
 
 	if (!name || name_is_incorrect(name))
 		return (printf("name of file is incorrect\n"), 1);
@@ -639,7 +623,7 @@ int file_parsing(char *name)
 					return (printf("duplication of elements detected\n"), 1);
 				el_tab[el] = 1;
 			}
-			if (element_parsing(&scene, description, el))
+			if (element_parsing(scene, description, el))
 				return (printf("description error : %s",line), 1);
 		}
 		free(line);
@@ -654,13 +638,13 @@ int file_parsing(char *name)
 
 int main(int argc, char **argv)
 {
-	t_scene scene;
+	t_scene scene = {0};
 
 	if (argc != 2)
 		return (printf("put file\n"), 1);
-	if (file_parsing(argv[1]))
+	if (file_parsing(argv[1], &scene))
 	{
-		printf("parsing error\n");
+		printf("parsing failed\n");
 		return (1);
 	}
 	display_scene(scene);
