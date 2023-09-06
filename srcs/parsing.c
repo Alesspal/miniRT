@@ -208,11 +208,46 @@ bool	is_end_of_line(char *line)
 
 #pragma endregion
 
-/* float	ft_atof(char *nb)
+int	check_sign(char **str)
 {
-	nb = skip_space(nb);
+	int	sign;
 
-} */
+	sign = 1;
+	if (**str == '-')
+	{
+		sign = -1;
+		(*str)++;
+	}
+	else if (**str == '+')
+		(*str)++;
+	return (sign);
+}
+
+float	ft_atof(char *nb)
+{
+	int		sign;
+	int		div;
+	double	integer_part;
+	double	fraction_part;
+
+	nb = skip_space(nb);
+	if (!nb)
+		return (0.0f);
+	div = 1;
+	integer_part = 0.0f;
+	fraction_part = 0.0f;
+	sign = check_sign(&nb);
+	while (ft_isdigit(*nb))
+		integer_part = integer_part * 10 + (*nb++ - '0');
+	if (*nb == '.')
+		nb++;
+	while (ft_isdigit(*nb))
+	{
+		fraction_part = fraction_part * 10 + (*nb++ - '0');
+		div *= 10;
+	}
+	return (integer_part + fraction_part / div);
+}
 
 int	find_comma_or_white_space(char *str)
 {
@@ -277,7 +312,7 @@ int	get_float(char **description, float *ret)
 	if (!is_flaot(val))
 		return (1);
 	/* printf("description 2 : %s\n", *description); */
-	*ret = atof(val);
+	*ret = ft_atof(val);
 	free(val);
 	*description = go_next_value(*description);
 	return (0);
@@ -509,7 +544,7 @@ int	shapes_len(t_shapes *shapes)
 
 t_shapes	*create_new_node(int id)
 {
-	t_shapes *new_node;
+	t_shapes	*new_node;
 
 	new_node = malloc(sizeof(t_shapes));
 	if (!new_node)
@@ -521,8 +556,8 @@ t_shapes	*create_new_node(int id)
 
 int	append_to_list(t_shapes **shapes, t_shapes *new_node)
 {
-	t_shapes *tail;
-	
+	t_shapes	*tail;
+
 	if (!shapes)
 		return (1);
 	tail = *shapes;
@@ -606,7 +641,7 @@ int	element_parsing(t_scene *scene, char *description, t_element_type el)
 	return (0);
 } */
 
-t_element_type	*init_el_tab()
+t_element_type	*init_el_tab(void)
 {
 	int				i;
 	t_element_type	*el_tab;
@@ -627,13 +662,13 @@ bool	check_missing_elements(t_element_type *el_tab)
 		|| el_tab[CAMERA] != 1);
 }
 
-int		check_element_is_already_set_and_update(t_element_type *el_tab, t_element_type el)
+int	check_el_is_already_set_and_update(t_element_type *tab, t_element_type el)
 {
 	if (el == AMBIANT_LIGHT || el == SPOT_LIGHT || el == CAMERA)
 	{
-		if (el_tab[el] == 1)
+		if (tab[el] == 1)
 			return (1);
-		el_tab[el] = 1;
+		tab[el] = 1;
 	}
 	return (0);
 }
@@ -654,7 +689,7 @@ int	scene_parsing(int fd, t_scene *scene)
 		if (line[0] != '\0' && line[0] != '\n')
 		{
 			description = get_element(line, &el);
-			if (check_element_is_already_set_and_update(el_tab, el))
+			if (check_el_is_already_set_and_update(el_tab, el))
 				return (printf("duplication of elements detected\n"), 1);
 			if (element_parsing(scene, description, el))
 				return (printf("description error : %s\n", line), 1);
@@ -695,7 +730,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	display_scene(scene);
-	while (1);	
+	/* while (1); */
 	return (0);
 }
 
