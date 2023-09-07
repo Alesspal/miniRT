@@ -2,7 +2,6 @@
 # define FT_RAYTRACING_H
 
 # include "ft_shapes.h"
-
 # include "ft_color.h"
 # include "stdbool.h"
 
@@ -35,6 +34,17 @@ typedef struct s_scene
 	t_shapes		*shapes;
 }	t_scene;
 
+typedef enum e_element_type
+{
+	NOT_IDENTIFIED = -1,
+	AMBIANT_LIGHT,
+	SPOT_LIGHT,
+	CAMERA,
+	SP,
+	CY,
+	PL
+}	t_element_type;
+
 typedef struct s_intersection
 {
 	t_point3D				pos;
@@ -47,7 +57,6 @@ typedef struct s_intersection
 
 t_vec	get_n(t_intersection *p);
 
-// Raytracer functions
-void	rayshooter(t_data *data, t_camera cam);
+t_color phong(t_scene scene, t_intersection *p);
 
 #endif

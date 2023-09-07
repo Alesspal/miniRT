@@ -8,24 +8,24 @@
 
 typedef struct s_sphere
 {
-	t_point3D	origin;
-	float		radius;
+	t_point3D	pos;
+	float		diameter;
 	t_color		color;
 }	t_sphere;
 
 typedef struct s_cylinder
 {
-	t_point3D	origin;
-	t_vec		orientation;
-	float		radius;
+	t_point3D	pos;
+	t_vec		dir;
+	float		diameter;
 	float		height;
 	t_color		color;
 }	t_cylinder;
 
 typedef struct s_plan
 {
-	t_point3D	origin;
-	t_vec		orientation;
+	t_point3D	pos;
+	t_vec		dir;
 	t_color		color;
 }	t_plan;
 

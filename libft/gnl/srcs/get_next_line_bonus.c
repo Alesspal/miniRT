@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:09:06 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/03/30 11:35:35 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:46:34 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*fr_free(char *buffer, char *buf)
 {
 	char	*temp;
 
-	temp = ft_strjoin(buffer, buf);
+	temp = ft_strjoin2(buffer, buf);
 	free(buffer);
 	return (temp);
 }
@@ -35,7 +35,7 @@ char	*ft_next(char *buffer)
 		free(buffer);
 		return (NULL);
 	}
-	line = ft_calloc((ft_strlen2(buffer) - i + 1), sizeof(char));
+	line = ft_calloc2((ft_strlen2(buffer) - i + 1), sizeof(char));
 	i++;
 	j = 0;
 	while (buffer[i])
@@ -54,7 +54,7 @@ char	*ft_line(char *buffer)
 		return (NULL);
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_calloc(i + 2, sizeof(char));
+	line = ft_calloc2(i + 2, sizeof(char));
 	i = 0;
 	while (buffer[i] && buffer[i] != '\n')
 	{
@@ -72,8 +72,8 @@ char	*read_file(int fd, char *res)
 	int		byte_read;
 
 	if (!res)
-		res = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		res = ft_calloc2(1, 1);
+	buffer = ft_calloc2(BUFFER_SIZE + 1, sizeof(char));
 	byte_read = 1;
 	while (byte_read > 0)
 	{
@@ -85,7 +85,7 @@ char	*read_file(int fd, char *res)
 		}
 		buffer[byte_read] = 0;
 		res = fr_free(res, buffer);
-		if (ft_strchr(buffer, '\n'))
+		if (ft_strchr2(buffer, '\n'))
 			break ;
 	}
 	free(buffer);

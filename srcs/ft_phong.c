@@ -15,7 +15,7 @@ t_color i_diffuse(t_scene scene, t_intersection *p)
 
 	n = ft_normalize(get_n(p));
 	printf("get_n x = %f, y = %f, z = %f\n", n.x, n.y, n.z);
-	l = ft_normalize(ft_get_vec(p->coordinate, scene.spot_light.coordinate));
+	l = ft_normalize(ft_get_vec(p->pos, scene.spot_light.pos));
 	printf("get_l x = %f, y = %f, z = %f\n", l.x, l.y, l.z);
 	dot_nl = ft_dot(n, l);
 	printf("dot_nl = %f\n", fmax(0, dot_nl));
@@ -67,16 +67,16 @@ void draw_scene(t_data data, t_scene scene, t_intersection *p)
 		while (x < data.win->win_w)
 		{
 			color = (t_color){0, 0, 0};
-			if (p && x == p->pixel_coordinate.x && y == p->pixel_coordinate.y)
+			if (p && x == p->pixel.x && y == p->pixel.y)
 			{
-				if (intersection(p->coordinate, scene.spot_light.coordinate))
+				/* if (intersection(p->pos, scene.spot_light.pos))
 				{
 					color = shadow();
 				}
 				else
 				{
 					color = phong(scene, p);
-				}
+				} */
 				p = p->next;
 			}
 			else

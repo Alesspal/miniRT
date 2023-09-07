@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:38:20 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 17:21:24 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/08/30 12:45:54 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_read_file(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		temp = ft_strjoin(file, line);
+		temp = ft_strjoin2(file, line);
 		if (file)
 			free(file);
 		file = temp;
