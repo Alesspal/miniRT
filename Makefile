@@ -11,10 +11,12 @@ INCL_DIR	=	incl/
 OBJS_DIR	=	objs/
 LIBFT_DIR	=	libft/
 LIBMLX_DIR	=	mlx/
+PARSING_DIR	=	parsing/
 
 INCL_LIST	=	-I${LIBFT_DIR} \
 				-I${LIBMLX_DIR} \
-				-I${INCL_DIR}
+				-I${INCL_DIR} \
+				-I${INCL_DIR}${PARSING_DIR}
 
 SRCS_LIST	=	main.c \
 				ft_control.c \
@@ -23,7 +25,18 @@ SRCS_LIST	=	main.c \
 				ft_shapes.c \
 				ft_phong.c \
 				get_n.c \
-				ft_color.c
+				ft_color.c \
+				${PARSING_DIR}display.c \
+				${PARSING_DIR}element_parsing.c \
+				${PARSING_DIR}element_parsing2.c \
+				${PARSING_DIR}element_parsing3.c \
+				${PARSING_DIR}element_parsing4.c \
+				${PARSING_DIR}file_parsing.c \
+				${PARSING_DIR}get_value.c \
+				${PARSING_DIR}get_value2.c \
+				${PARSING_DIR}parsing_utils.c \
+				${PARSING_DIR}parsing_utils2.c \
+				
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
@@ -35,6 +48,7 @@ ${OBJS_DIR}:
 				mkdir -p ${OBJS_DIR}
 
 ${OBJS_DIR}%.o:	${SRCS_DIR}%.c
+				mkdir -p $(dir $@)
 				${CC} ${CFLAGS} ${INCL_LIST} -c $< -o $@
 
 ${LIBFT}:
