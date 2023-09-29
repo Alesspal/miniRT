@@ -78,11 +78,15 @@ int	main(void)
 	cam.dir.y = 0;
 	cam.dir.z = -1;
 
+	// cam.dir.x *= -1;
+	// cam.dir.z *= -1;
+
 	shapes.shape.sphere.color = 0x77B5FE;
 	shapes.shape.sphere.radius = 5;
-	shapes.shape.sphere.origin.x = 0;
-	shapes.shape.sphere.origin.y = 0;
+	shapes.shape.sphere.origin.x = 5;
+	shapes.shape.sphere.origin.y = 5;
 	shapes.shape.sphere.origin.z = 10;
+
 	shapes.id = 0;
 	shapes.next = 0;
 	shapes.type = SPHERE;
