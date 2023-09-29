@@ -81,3 +81,14 @@ t_vec	p_to_v(t_point3D p)
 	v.z = p.z;
 	return (v);
 }
+
+// Get the cross product of two vectors
+t_vec	cross_product(t_vec v1, t_vec v2)
+{
+	t_vec	res_vec;
+
+	res_vec.x = v1.y * v2.z - v1.z * v2.y;
+	res_vec.y = v1.z * v2.x - v1.x * v2.z;
+	res_vec.z = v1.x * v2.y - v1.y * v2.x;
+	return (res_vec);
+}

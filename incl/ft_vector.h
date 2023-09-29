@@ -18,5 +18,6 @@ t_vec		vec_add(t_vec vec1, t_vec vec2);
 t_point3D	v_to_p(t_vec v);
 t_vec		p_to_v(t_point3D p);
 t_vec		vec_mult(t_vec v, float scalar);
+t_vec		cross_product(t_vec v1, t_vec v2);
 
 #endif

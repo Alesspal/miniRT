@@ -25,7 +25,8 @@ SRCS_LIST	=	main.c \
 				get_n.c \
 				ft_color.c \
 				draw_scene.c \
-				intersection.c
+				intersection.c \
+				compute_camera.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

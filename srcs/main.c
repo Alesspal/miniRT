@@ -66,7 +66,7 @@ int	main(void)
 	t_camera	cam;
 	t_shapes	shapes;
 
-	cam.fov = 90;
+	cam.fov = 100;
 
 	cam.pos.x = 0;
 	cam.pos.y = 0;
@@ -74,14 +74,14 @@ int	main(void)
 
 	cam.dir.x = 0;
 	cam.dir.y = 0;
-	cam.dir.z = 1;
+	cam.dir.z = -1;
 
 
 	shapes.shape.sphere.color = 0x77B5FE;
-	shapes.shape.sphere.radius = 7;
+	shapes.shape.sphere.radius = 3;
 	shapes.shape.sphere.origin.x = 0;
-	shapes.shape.sphere.origin.y = 0;
-	shapes.shape.sphere.origin.z = 30;
+	shapes.shape.sphere.origin.y = -7;
+	shapes.shape.sphere.origin.z = 300;
 	shapes.id = 0;
 	shapes.next = 0;
 	shapes.type = SPHERE;
@@ -89,6 +89,7 @@ int	main(void)
 	scene.camera = cam;
 	scene.shapes = &shapes;
 
+	compute_camera(&scene.camera);
 	draw_scene(&data, scene);
 
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);

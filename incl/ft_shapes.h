@@ -7,7 +7,7 @@
 
 typedef struct s_sphere
 {
-	t_point3D	origin;
+	t_vec		origin;
 	float		radius;
 	int			color;
 }	t_sphere;
@@ -51,7 +51,7 @@ typedef struct s_shapes
 	struct s_shapes	*next;
 }	t_shapes;
 
-t_sphere	create_sphere(t_point3D origin, int radius, int color);
+t_sphere	create_sphere(t_vec origin, int radius, int color);
 t_cylinder	create_cylinder(t_point3D origin, t_vec orientation, int radius,
 						int height, int color);
 t_plan		create_plan(t_point3D origin, t_vec orientation, int color);

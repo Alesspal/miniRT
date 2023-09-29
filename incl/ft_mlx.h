@@ -3,6 +3,7 @@
 
 # include "../mlx/mlx.h"
 # include <stdbool.h>
+# include <stdio.h>
 
 # define ASPECT_RATIO 16.0 / 9.0
 

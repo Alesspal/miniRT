@@ -18,11 +18,25 @@ typedef struct s_spot_light
 	t_point3D	pos;
 }	t_spot_light;
 
+typedef struct s_virtual_screen
+{
+	double	width;
+	double	height;
+	t_vec	center;
+	t_vec	top_left;
+	int		d;
+	double	u;
+	double	v;
+}	t_virtual_screen;
+
 typedef struct s_camera
 {
-	int			fov;
-	t_point3D	pos;
-	t_vec		dir;
+	int					fov;
+	t_vec				pos;
+	t_vec				dir;
+	t_vec				up;
+	t_vec				right;
+	t_virtual_screen	v_screen;
 }	t_camera;
 
 typedef struct s_scene
@@ -35,7 +49,7 @@ typedef struct s_scene
 
 typedef struct s_intersection
 {
-	t_point3D				pos;
+	t_vec					pos;
 	t_point2D				pixel;
 	t_vec					prime_ray;
 	t_shape_type			shape_type;
@@ -45,7 +59,7 @@ typedef struct s_intersection
 
 typedef struct s_ray
 {
-	t_point3D	origin;
+	t_vec		origin;
 	t_vec		dir;
 }	t_ray;
 
@@ -66,6 +80,7 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
+void	compute_camera(t_camera *cam);
 void	draw_scene(t_data *data, t_scene scene);
 void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection);

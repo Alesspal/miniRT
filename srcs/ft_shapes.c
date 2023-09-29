@@ -1,9 +1,9 @@
 #include "ft_shapes.h"
 #include <math.h>
 
-t_sphere create_sphere(t_point3D origin, int radius, int color)
+t_sphere	create_sphere(t_vec origin, int radius, int color)
 {
-	t_sphere sphere;
+	t_sphere	sphere;
 
 	sphere.origin = origin;
 	sphere.radius = radius;

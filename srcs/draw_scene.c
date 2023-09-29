@@ -8,6 +8,7 @@ void	draw_scene(t_data *data, t_scene scene)
 	t_intersection	intersection;
 	int				color;
 
+	prime_ray.origin = scene.camera.pos;
 	pixel.y = -1;
 	while (++pixel.y < data->win->win_h)
 	{
@@ -16,14 +17,16 @@ void	draw_scene(t_data *data, t_scene scene)
 		{
 			// Fill the prime ray with its approriate components
 			fill_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
+			// printf("prime_ray.dir = (%f, %f, %f)\n", prime_ray.dir.x, prime_ray.dir.y, prime_ray.dir.z);
 
 			// Check if the prime ray intersects any objects
 			intersection.pixel = pixel; // maybe not necessary
 			fill_intersection(prime_ray, scene.shapes, &intersection);
-
+			// printf("casting ray at (%d, %d)\n", pixel.x, pixel.y);
 			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
 			{
+				// printf("intersection at (%d, %d)\n", pixel.x, pixel.y);
 				color = 0x77B5FE; // temporary
 				// compute_light(intersection, scene, &color);
 				ft_img_pix_put(data, pixel.x, pixel.y, color);
