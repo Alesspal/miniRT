@@ -14,7 +14,7 @@ void	fill_prime_ray(t_ray *pr, t_mlx_win win, t_camera cam, t_point2D p)
 	v = (double)p.y / win.win_h;
 	pixel_pos = vec_add(cam.v_screen.top_left,
 			vec_add(vec_mult(cam.right, u * cam.v_screen.width),
-				vec_mult(cam.up, v * cam.v_screen.height)));
+				vec_mult(cam.up, -v * cam.v_screen.height)));
 	pr->dir = ft_normalize(vec_sub(pixel_pos, cam.pos));
 }
 

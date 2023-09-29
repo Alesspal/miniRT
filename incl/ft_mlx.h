@@ -13,6 +13,7 @@ typedef struct s_mlx_win
 	void	*mlx_win;
 	int		win_h;
 	int		win_w;
+	double	aspect_ratio;
 }	t_mlx_win;
 
 typedef struct s_img
