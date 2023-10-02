@@ -2,7 +2,8 @@
 #include "ft_mlx.h"
 #include <math.h>
 
-void	compute_camera(t_camera *cam, double aspect_ratio)
+// Set up the camera's basis vectors and the virtual screen
+void	compute_camera(t_camera *cam, float aspect_ratio)
 {
 	t_vec	temp_up;
 

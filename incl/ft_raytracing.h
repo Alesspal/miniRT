@@ -20,13 +20,11 @@ typedef struct s_spot_light
 
 typedef struct s_virtual_screen
 {
-	double	width;
-	double	height;
+	float	width;
+	float	height;
 	t_vec	center;
 	t_vec	top_left;
-	double	d;
-	double	u;
-	double	v;
+	float	d;
 }	t_virtual_screen;
 
 typedef struct s_camera
@@ -66,10 +64,10 @@ typedef struct s_ray
 // Struct for a quadratic equation
 typedef struct s_eq
 {
-	float 	a;
-	float 	b;
-	float 	c;
-	float 	discriminant;
+	float	a;
+	float	b;
+	float	c;
+	float	discriminant;
 	float	s1;
 	float	s2;
 }	t_eq;
@@ -80,7 +78,7 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
-void	compute_camera(t_camera *cam, double aspect_ratio);
+void	compute_camera(t_camera *cam, float aspect_ratio);
 void	draw_scene(t_data *data, t_scene scene);
 void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection);

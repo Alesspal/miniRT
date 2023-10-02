@@ -16,11 +16,9 @@ int	init_data(t_data *data)
 	data->win->mlx_ptr = mlx_init();
 	if (!data->win->mlx_ptr)
 		return (1);
+	data->win->aspect_ratio = 16.0 / 9.0;
 	data->win->win_h = 1000;
-	// data->win->win_h = 1080;
-	// data->win->win_w = data->win->win_h * ASPECT_RATIO;
-	data->win->win_w = data->win->win_h;
-	data->win->aspect_ratio = (double)data->win->win_w / (double)data->win->win_h;
+	data->win->win_w = data->win->win_h * data->win->aspect_ratio;
 	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
 			data->win->win_h, "Minirt");
 	if (!data->win->mlx_win)
@@ -70,22 +68,19 @@ int	main(void)
 
 	cam.fov = 90;
 
-	cam.pos.x = 0;
-	cam.pos.y = 0;
-	cam.pos.z = 0;
+	cam.pos.x = 0.0;
+	cam.pos.y = 0.0;
+	cam.pos.z = 0.0;
 
-	cam.dir.x = 0;
-	cam.dir.y = 0;
-	cam.dir.z = -1;
-
-	// cam.dir.x *= -1;
-	// cam.dir.z *= -1;
+	cam.dir.x = 0.0;
+	cam.dir.y = 0.0;
+	cam.dir.z = -1.0;
 
 	shapes.shape.sphere.color = 0x77B5FE;
-	shapes.shape.sphere.radius = 5;
-	shapes.shape.sphere.origin.x = 5;
-	shapes.shape.sphere.origin.y = 5;
-	shapes.shape.sphere.origin.z = 10;
+	shapes.shape.sphere.radius = 5.0;
+	shapes.shape.sphere.origin.x = 5.0;
+	shapes.shape.sphere.origin.y = 5.0;
+	shapes.shape.sphere.origin.z = -10.0;
 
 	shapes.id = 0;
 	shapes.next = 0;

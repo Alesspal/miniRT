@@ -4,9 +4,9 @@
 
 typedef struct s_vec
 {
-	float x;
-	float y;
-	float z;
+	float	x;
+	float	y;
+	float	z;
 }	t_vec;
 
 t_vec		ft_create_vec(float x, float y, float z);
