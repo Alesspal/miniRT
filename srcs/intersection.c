@@ -32,10 +32,7 @@ void sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
     eq.discriminant = pow(eq.b, 2) - (4 * eq.a * eq.c);
 
     if (eq.discriminant < 0)
-    {
-        intersection->shape_type = NO_SHAPE;
         return;
-    }
 
     eq.s1 = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
     eq.s2 = (-eq.b + sqrt(eq.discriminant)) / (2 * eq.a);
@@ -43,18 +40,27 @@ void sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
     // Determine the closest intersection that's in front of the ray's origin
     if (eq.s1 > 0 && (eq.s2 < 0 || eq.s1 < eq.s2))
     {
-        intersection->shape_type = SPHERE;
-        intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s1));
+		if (eq.s1 < intersection->dist || intersection->dist == -1)
+		{
+			intersection->shape.sphere = sp;
+        	intersection->shape_type = SPHERE;
+        	intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s1));
+			intersection->dist = eq.s1;
+		}
         return;
     }
     else if (eq.s2 > 0 && (eq.s1 < 0 || eq.s2 < eq.s1))
     {
-        intersection->shape_type = SPHERE;
-        intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s2));
+		if (eq.s2 < intersection->dist || intersection->dist == -1)
+		{
+			intersection->shape_type = SPHERE;
+			intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s2));
+			intersection->dist = eq.s2;
+		}
         return;
     }
 
-    intersection->shape_type = NO_SHAPE;
+    // intersection->shape_type = NO_SHAPE;
 }
 
 // Checks if there are intersections with spheres and the casted prime ray.
@@ -63,6 +69,7 @@ void sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection)
 {
 	intersection->shape_type = NO_SHAPE;
+	intersection->dist = -1;
 	// Go through the shapes list
 	while (shape)
 	{
@@ -97,6 +104,7 @@ bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape)
 
 		shape = shape->next;
 	}
+	return (false);
 }
 
 // Return whether or not there is an intersection with a sphere between two points.

@@ -52,6 +52,7 @@ typedef struct s_intersection
 	t_vec					prime_ray;
 	t_shape_type			shape_type;
 	t_shape					shape;
+	float					dist;
 	struct s_intersection	*next;
 }	t_intersection;
 

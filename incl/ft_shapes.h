@@ -36,7 +36,7 @@ typedef enum e_shape_type
 	NO_SHAPE
 }	t_shape_type;
 
-typedef union s_shape
+typedef struct s_shape
 {
 	t_sphere	sphere;
 	t_cylinder	cylinder;

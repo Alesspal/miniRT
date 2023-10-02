@@ -44,8 +44,11 @@ int	main(void)
 	t_scene		scene;
 	t_camera	cam;
 	t_shapes	shapes;
+	t_sphere	sphere1;
+	t_sphere	sphere2;
+	t_sphere	sphere3;
 
-	cam.fov = 90;
+	cam.fov = 150;
 
 	cam.pos.x = 0;
 	cam.pos.y = 0;
@@ -55,15 +58,38 @@ int	main(void)
 	cam.dir.y = 0;
 	cam.dir.z = -1;
 
-	shapes.shape.sphere.color = 0x77B5FE;
-	shapes.shape.sphere.radius = 5;
-	shapes.shape.sphere.origin.x = 5;
-	shapes.shape.sphere.origin.y = 5;
-	shapes.shape.sphere.origin.z = -10;
+	sphere1.color = 0xFFFFFF;
+	sphere1.radius = 5;
+	sphere1.origin.x = 5;
+	sphere1.origin.y = -3;
+	sphere1.origin.z = -20;
 
+	sphere2.color = 0xFFFFFF;
+	sphere2.radius = -5;
+	sphere2.origin.x = -5;
+	sphere2.origin.y = -3;
+	sphere2.origin.z = -20;
+
+	sphere3.color = 0xFF0000;
+	sphere3.radius = 6;
+	sphere3.origin.x = 0;
+	sphere3.origin.y = 0;
+	sphere3.origin.z = -20;
+
+	shapes.shape.sphere = sphere1;
 	shapes.id = 0;
-	shapes.next = 0;
 	shapes.type = SPHERE;
+	shapes.next = malloc(sizeof(t_shapes));
+
+	shapes.next->shape.sphere = sphere2;
+	shapes.next->id = 1;
+	shapes.next->type = SPHERE;
+	shapes.next->next = malloc(sizeof(t_shapes));
+
+	shapes.next->next->shape.sphere = sphere3;
+	shapes.next->next->id = 2;
+	shapes.next->next->type = SPHERE;
+	shapes.next->next->next = NULL;
 
 	scene.camera = cam;
 	scene.shapes = &shapes;

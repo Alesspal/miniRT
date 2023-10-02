@@ -26,7 +26,18 @@ void	draw_scene(t_data *data, t_scene scene)
 			if (intersection.shape_type != NO_SHAPE)
 			{
 				// printf("intersection at (%d, %d)\n", pixel.x, pixel.y);
-				color = 0x77B5FE; // temporary
+				if (intersection.shape_type == SPHERE)
+				{
+					color = intersection.shape.sphere.color;
+				}
+				else if (intersection.shape_type == CYLINDER)
+				{
+					color = intersection.shape.cylinder.color;
+				}
+				else if (intersection.shape_type == PLAN)
+				{
+					color = intersection.shape.plan.color;
+				}
 				// compute_light(intersection, scene, &color);
 				ft_img_pix_put(data, pixel.x, pixel.y, color);
 			}
