@@ -83,5 +83,7 @@ void	draw_scene(t_data *data, t_scene scene);
 void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection);
 void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection);
+bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape);
+bool	sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
 
 #endif

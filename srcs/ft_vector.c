@@ -92,3 +92,9 @@ t_vec	cross_product(t_vec v1, t_vec v2)
 	res_vec.z = v1.x * v2.y - v1.y * v2.x;
 	return (res_vec);
 }
+
+// Get the size of a vector
+float	vec_size(t_vec v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+}

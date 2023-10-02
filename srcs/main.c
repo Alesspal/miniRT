@@ -41,46 +41,25 @@ int	main(void)
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);
 
-	// Aless's stuff
-	// printf("size of int = %lu\n", sizeof(int));
-	// t_color color = {255, 0, 0};
-	// printf("color in int = %x\n", color_to_int(color));
-	// t_color color2 = {0, 255, 0};
-	// printf("color2 in int = %x\n", color_to_int(color2));
-	// t_color color3 = add_color(color, color2);
-	// printf("color3 in int = %x\n", color_to_int(color3));
-	// t_color color4 = mult_color((t_color){100, 25, 230}, (t_color){45, 150, 200});
-	// printf("color4 in int = %x\n", color_to_int(color4));
-	// t_color color5 = change_intesity(color, 0.5);
-	// printf("color5 in int = %x\n", color_to_int(color));
-	
-	// draw_filled_sphere(&data, create_sphere((t_point3D){200, 200, 200}, 100, color_to_int(color)));
-	// draw_filled_sphere(&data, create_sphere((t_point3D){400, 200, 200}, 100, color_to_int(color2)));
-	// draw_filled_sphere(&data, create_sphere((t_point3D){600, 200, 200}, 100, color_to_int(color3)));
-	// draw_filled_sphere(&data, create_sphere((t_point3D){800, 200, 200}, 100, color_to_int(color4)));
-	// draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5)));
-	// draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, 0x77B5FE));
-
-	// ---------- Eric stuff ----------
 	t_scene		scene;
 	t_camera	cam;
 	t_shapes	shapes;
 
 	cam.fov = 90;
 
-	cam.pos.x = 0.0;
-	cam.pos.y = 0.0;
-	cam.pos.z = 0.0;
+	cam.pos.x = 0;
+	cam.pos.y = 0;
+	cam.pos.z = 0;
 
-	cam.dir.x = 0.0;
-	cam.dir.y = 0.0;
-	cam.dir.z = -1.0;
+	cam.dir.x = 0;
+	cam.dir.y = 0;
+	cam.dir.z = -1;
 
 	shapes.shape.sphere.color = 0x77B5FE;
-	shapes.shape.sphere.radius = 5.0;
-	shapes.shape.sphere.origin.x = 5.0;
-	shapes.shape.sphere.origin.y = 5.0;
-	shapes.shape.sphere.origin.z = -10.0;
+	shapes.shape.sphere.radius = 5;
+	shapes.shape.sphere.origin.x = 5;
+	shapes.shape.sphere.origin.y = 5;
+	shapes.shape.sphere.origin.z = -10;
 
 	shapes.id = 0;
 	shapes.next = 0;
