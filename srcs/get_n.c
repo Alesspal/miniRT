@@ -34,22 +34,22 @@ t_vec	get_n_cylinder(t_intersection *p)
 	return (n);
 }
 
-// plan N = orientation of plan
+// plane N = dir of plane
 t_vec	get_n_plan(t_intersection *p)
 {
 	t_vec		n;
-	t_plan		plan;
+	t_plane		plane;
 
-	plan = (t_plan)p->shape.plan;
-	n = ft_create_vec(plan.dir.x,
-		plan.dir.y,
-		plan.dir.z);
+	plane = (t_plane)p->shape.plane;
+	n = ft_create_vec(plane.normal.x,
+		plane.normal.y,
+		plane.normal.z);
 	return (n);
 }
 
-t_vec get_n(t_intersection *p)
+t_vec	get_n(t_intersection *p)
 {
-	if (p->shape_type == SHPERE)
+	if (p->shape_type == SPHERE)
 		return (get_n_sphere(p));
 	else if (p->shape_type == CYLINDER)
 		return (get_n_cylinder(p));
@@ -62,14 +62,14 @@ t_vec get_n(t_intersection *p)
 	t_vec			n;
 	t_cylinder		cylinder;
 	t_sphere		sphere;
-	t_plan			plan;
+	t_plan			plane;
 	t_intersection	p1;
 	t_intersection	p2;
 	t_intersection	p3;
 
-	p1.coordinate = ft_create_vec(3, 4 , 0);
+	p1.pos = ft_create_vec(3, 4 , 0);
 	cylinder.origin = ft_create_vec(3, 5, -2);
-	cylinder.orientation = ft_create_vec(1, 4, -3);
+	cylinder.dir = ft_create_vec(1, 4, -3);
 	p1.shape.cylinder = cylinder;
 	p1.shape_type = CYLINDER;
 	n = get_n(&p1);
@@ -77,7 +77,7 @@ t_vec get_n(t_intersection *p)
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
-	p2.coordinate = ft_create_vec(-5, -5 , -5);
+	p2.pos = ft_create_vec(-5, -5 , -5);
 	sphere.origin = ft_create_vec(-10, -10, -10);
 	p2.shape.sphere = sphere;
 	p2.shape_type = SHPERE;
@@ -86,12 +86,12 @@ t_vec get_n(t_intersection *p)
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
-	p3.coordinate = ft_create_vec(3, 4 , -5);
-	plan.orientation = ft_create_vec(9, -3, 275);
-	p3.shape.plan = plan;
+	p3.pos = ft_create_vec(3, 4 , -5);
+	plane.dir = ft_create_vec(9, -3, 275);
+	p3.shape.plane = plane;
 	p3.shape_type = PLAN;
 	n = get_n(&p3);
-	printf("plan : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	printf("plane : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 	

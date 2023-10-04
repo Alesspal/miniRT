@@ -1,37 +1,36 @@
 #include "ft_shapes.h"
 #include <math.h>
 
-t_sphere create_sphere(t_point3D origin, int radius, t_color color)
+t_sphere create_sphere(t_vec pos, float diameter, int color)
 {
-	t_sphere sphere;
+	t_sphere	sphere;
 
-	sphere.pos = origin;
-	sphere.diameter = radius;
+	sphere.pos = pos;
+	sphere.radius = diameter / 2;
 	sphere.color = color;
 	return (sphere);
 }
 
-t_cylinder create_cylinder(t_point3D origin, t_vec orientation, int radius,
-int height, t_color color)
+t_cylinder create_cylinder(t_vec pos, t_vec dir, float diameter, float height, int color)
 {
 	t_cylinder cylinder;
 
-	cylinder.pos = origin;
-	cylinder.dir = orientation;
-	cylinder.diameter = radius;
+	cylinder.pos = pos;
+	cylinder.dir = dir;
+	cylinder.radius = diameter / 2;
 	cylinder.height = height;
 	cylinder.color = color;
 	return (cylinder);
 }
 
-t_plan create_plan(t_point3D origin, t_vec orientation, t_color color)
+t_plan create_plane(t_vec pos, t_vec dir, t_color color)
 {
-	t_plan plan;
+	t_plane plane;
 
-	plan.pos = origin;
-	plan.dir = orientation;
-	plan.color = color;
-	return (plan);
+	plane.pos = pos;
+	plane.dir = dir;
+	plane.color = color;
+	return (plane);
 }
 
 void	draw_filled_sphere(t_data *data, t_sphere sphere)	// remplacer par structure sphere

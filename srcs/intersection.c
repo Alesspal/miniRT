@@ -84,7 +84,7 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 // Checks if there is an intersection between a ray and a cylinder.
 // Fills the intersection struct with the closest intersection point
 // if there is one.
-void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
-{
-	
-}
+// void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
+// {
+
+// }
