@@ -65,6 +65,7 @@ typedef struct s_ray
 // Struct for a quadratic equation
 typedef struct s_eq
 {
+	t_vec	co;
 	float	a;
 	float	b;
 	float	c;
@@ -79,7 +80,7 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
-void	compute_camera(t_camera *cam, float aspect_ratio);
+void	init_camera(t_camera *cam, float aspect_ratio);
 void	draw_scene(t_data *data, t_scene scene);
 void	fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
 void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection);

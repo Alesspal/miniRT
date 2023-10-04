@@ -19,13 +19,11 @@ void	draw_scene(t_data *data, t_scene scene)
 			fill_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
 
 			// Check if the prime ray intersects any objects
-			intersection.pixel = pixel; // maybe not necessary
 			fill_intersection(prime_ray, scene.shapes, &intersection);
 			
 			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
 			{
-				// printf("intersection at (%d, %d)\n", pixel.x, pixel.y);
 				if (intersection.shape_type == SPHERE)
 				{
 					color = intersection.shape.sphere.color;
@@ -38,6 +36,7 @@ void	draw_scene(t_data *data, t_scene scene)
 				{
 					color = intersection.shape.plan.color;
 				}
+				// ------------------------------- Aless you have to compute the color of the pixel here -------------------------------
 				// compute_light(intersection, scene, &color);
 				ft_img_pix_put(data, pixel.x, pixel.y, color);
 			}

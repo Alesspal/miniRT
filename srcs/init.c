@@ -3,7 +3,7 @@
 #include <math.h>
 
 // Set up the camera's basis vectors and the virtual screen
-void	compute_camera(t_camera *cam, float aspect_ratio)
+void	init_camera(t_camera *cam, float aspect_ratio)
 {
 	t_vec	temp_up;
 

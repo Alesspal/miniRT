@@ -94,7 +94,7 @@ int	main(void)
 	scene.camera = cam;
 	scene.shapes = &shapes;
 
-	compute_camera(&scene.camera, data.win->aspect_ratio);
+	init_camera(&scene.camera, data.win->aspect_ratio);
 	draw_scene(&data, scene);
 
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
