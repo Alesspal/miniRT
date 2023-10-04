@@ -5,6 +5,8 @@
 #include "ft_raytracing.h"
 #include "ft_color.h"
 #include <stdio.h>
+#include "file_scene_parsing.h"
+#include "display.h"
 
 int	init_data(t_data *data)
 {
@@ -33,18 +35,20 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_scene	scene;
 	t_data	data;
+	(void) argc;
 
-	
+
 	if (init_data(&data))
 	{
 		printf("Error : initialisation");
 		return (EXIT_FAILURE);
 	}
-	// scene = parsing_file_scene(file);
+	file_parsing(argv[1], &scene);
+	display_scene(scene);
 	/* printf("size of int = %lu\n", sizeof(int));
 	t_color color = {255, 0, 0};
 	printf("color in int = %x\n", color_to_int(color));
