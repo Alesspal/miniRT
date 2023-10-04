@@ -32,9 +32,9 @@ void	draw_scene(t_data *data, t_scene scene)
 				{
 					color = intersection.shape.cylinder.color;
 				}
-				else if (intersection.shape_type == PLAN)
+				else if (intersection.shape_type == PLANE)
 				{
-					color = intersection.shape.plan.color;
+					color = intersection.shape.plane.color;
 				}
 				// ------------------------------- Aless you have to compute the color of the pixel here -------------------------------
 				// compute_light(intersection, scene, &color);

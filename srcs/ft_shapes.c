@@ -24,14 +24,14 @@ int height, int color)
 	return (cylinder);
 }
 
-t_plan create_plan(t_point3D origin, t_vec orientation, int color)
+t_plane create_plane(t_vec origin, t_vec normal, int color)
 {
-	t_plan plan;
+	t_plane plane;
 
-	plan.origin = origin;
-	plan.orientation = orientation;
-	plan.color = color;
-	return (plan);
+	plane.origin = origin;
+	plane.normal = normal;
+	plane.color = color;
+	return (plane);
 }
 
 void	draw_filled_sphere(t_data *data, t_sphere sphere)	// remplacer par structure sphere

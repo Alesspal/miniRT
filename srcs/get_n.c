@@ -38,16 +38,16 @@ t_vec	get_n_cylinder(t_intersection *p)
 	return (n);
 }
 
-// plan N = orientation of plan
+// plane N = orientation of plane
 t_vec	get_n_plan(t_intersection *p)
 {
 	t_vec		n;
-	t_plan		plan;
+	t_plane		plane;
 
-	plan = (t_plan)p->shape.plan;
-	n = ft_create_vec(plan.orientation.x,
-		plan.orientation.y,
-		plan.orientation.z);
+	plane = (t_plane)p->shape.plane;
+	n = ft_create_vec(plane.normal.x,
+		plane.normal.y,
+		plane.normal.z);
 	return (n);
 }
 
@@ -66,7 +66,7 @@ t_vec get_n(t_intersection *p)
 	t_vec			n;
 	t_cylinder		cylinder;
 	t_sphere		sphere;
-	t_plan			plan;
+	t_plan			plane;
 	t_intersection	p1;
 	t_intersection	p2;
 	t_intersection	p3;
@@ -91,11 +91,11 @@ t_vec get_n(t_intersection *p)
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 
 	p3.pos = ft_create_vec(3, 4 , -5);
-	plan.orientation = ft_create_vec(9, -3, 275);
-	p3.shape.plan = plan;
+	plane.orientation = ft_create_vec(9, -3, 275);
+	p3.shape.plane = plane;
 	p3.shape_type = PLAN;
 	n = get_n(&p3);
-	printf("plan : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
+	printf("plane : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 	n = ft_normalize(n);
 	printf("normalized : n.x = %f, n.y = %f, n.z = %f\n", n.x, n.y, n.z);
 	

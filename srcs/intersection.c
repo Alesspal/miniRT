@@ -17,6 +17,10 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
 		}
 
 		// plane
+		if (shape->type == PLANE)
+		{
+			pl_intersection(ray, shape->shape.plane, inter);
+		}
 
 		// cylinder
 
@@ -55,3 +59,44 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 		intersection->dist = eq.s2;
 	}
 }
+
+// Checks if there is an intersection between a ray and a plane.
+// Fills the intersection struct with the closest intersection point
+// if there is one.
+void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
+{
+	float	t;
+	float	ray_n_dot_product;
+
+	ray_n_dot_product = ft_dot(ray.dir, pl.normal);
+	if (ray_n_dot_product == 0)
+		return ;
+	t = ft_dot(vec_sub(pl.origin, ray.origin), pl.normal) / ray_n_dot_product;
+	if (t > 0 && (t < intersection->dist || intersection->dist == -1))
+	{
+		intersection->shape.plane = pl;
+		intersection->shape_type = PLANE;
+		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, t));
+		intersection->dist = t;
+	}
+}
+
+// Standing by
+// void	pl_intersection(t_ray ray, t_plan pl, t_intersection *intersection)
+// {
+// 	t_eq	eq;
+
+// 	eq.co = vec_sub(ray.origin, pl.origin);
+// 	eq.b = ft_dot(eq.co, pl.normal);
+// 	eq.c = ft_dot(ray.dir, pl.normal);
+// 	if (eq.c == 0)
+// 		return ;
+// 	eq.s1 = -eq.b / eq.c;
+// 	if (eq.s1 > 0 && (eq.s1 < intersection->dist || intersection->dist == -1))
+// 	{
+// 		intersection->shape.plane = pl;
+// 		intersection->shape_type = PLAN;
+// 		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s1));
+// 		intersection->dist = eq.s1;
+// 	}
+// }

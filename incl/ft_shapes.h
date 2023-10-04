@@ -21,18 +21,18 @@ typedef struct s_cylinder
 	int			color;
 }	t_cylinder;
 
-typedef struct s_plan
+typedef struct s_plane
 {
-	t_point3D	origin;
-	t_vec		orientation;
+	t_vec		origin;
+	t_vec		normal;
 	int			color;
-}	t_plan;
+}	t_plane;
 
 typedef enum e_shape_type
 {
 	SPHERE,
 	CYLINDER,
-	PLAN,
+	PLANE,
 	NO_SHAPE
 }	t_shape_type;
 
@@ -40,7 +40,7 @@ typedef struct s_shape
 {
 	t_sphere	sphere;
 	t_cylinder	cylinder;
-	t_plan		plan;
+	t_plane		plane;
 }	t_shape;
 
 typedef struct s_shapes
@@ -54,7 +54,7 @@ typedef struct s_shapes
 t_sphere	create_sphere(t_vec origin, int radius, int color);
 t_cylinder	create_cylinder(t_point3D origin, t_vec orientation, int radius,
 						int height, int color);
-t_plan		create_plan(t_point3D origin, t_vec orientation, int color);
+t_plane		create_plan(t_point3D origin, t_vec orientation, int color);
 
 void		draw_filled_sphere(t_data *data, t_sphere sphere);
 
