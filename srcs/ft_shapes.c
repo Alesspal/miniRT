@@ -11,13 +11,13 @@ t_sphere	create_sphere(t_vec origin, int radius, int color)
 	return (sphere);
 }
 
-t_cylinder create_cylinder(t_point3D origin, t_vec orientation, int radius,
+t_cylinder create_cylinder(t_vec origin, t_vec dir, int radius,
 int height, int color)
 {
 	t_cylinder cylinder;
 
 	cylinder.origin = origin;
-	cylinder.orientation = orientation;
+	cylinder.dir = dir;
 	cylinder.radius = radius;
 	cylinder.height = height;
 	cylinder.color = color;

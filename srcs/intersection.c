@@ -81,22 +81,10 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 	}
 }
 
-// Standing by
-// void	pl_intersection(t_ray ray, t_plan pl, t_intersection *intersection)
+// Checks if there is an intersection between a ray and a cylinder.
+// Fills the intersection struct with the closest intersection point
+// if there is one.
+// void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
 // {
-// 	t_eq	eq;
 
-// 	eq.co = vec_sub(ray.origin, pl.origin);
-// 	eq.b = ft_dot(eq.co, pl.normal);
-// 	eq.c = ft_dot(ray.dir, pl.normal);
-// 	if (eq.c == 0)
-// 		return ;
-// 	eq.s1 = -eq.b / eq.c;
-// 	if (eq.s1 > 0 && (eq.s1 < intersection->dist || intersection->dist == -1))
-// 	{
-// 		intersection->shape.plane = pl;
-// 		intersection->shape_type = PLAN;
-// 		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s1));
-// 		intersection->dist = eq.s1;
-// 	}
 // }

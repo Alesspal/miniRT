@@ -14,8 +14,8 @@ typedef struct s_sphere
 
 typedef struct s_cylinder
 {
-	t_point3D	origin;
-	t_vec		orientation;
+	t_vec		origin;
+	t_vec		dir;
 	float		radius;
 	float		height;
 	int			color;
@@ -52,9 +52,9 @@ typedef struct s_shapes
 }	t_shapes;
 
 t_sphere	create_sphere(t_vec origin, int radius, int color);
-t_cylinder	create_cylinder(t_point3D origin, t_vec orientation, int radius,
+t_cylinder	create_cylinder(t_vec origin, t_vec dir, int radius,
 						int height, int color);
-t_plane		create_plan(t_point3D origin, t_vec orientation, int color);
+t_plane		create_plan(t_vec origin, t_vec orientation, int color);
 
 void		draw_filled_sphere(t_data *data, t_sphere sphere);
 
