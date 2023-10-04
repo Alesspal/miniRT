@@ -60,13 +60,13 @@ int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 	if (append_to_list(shapes, new_node))
 		return (printf("new shape could not be added to the list\n"), 1);
 	if (el == SP)
-		return (new_node->type = SHPERE,
+		return (new_node->type = SPHERE,
 			sphere_parsing(description, &new_node->shape.sphere));
 	if (el == CY)
 		return (new_node->type = CYLINDER,
 			cylindre_parsing(description, &new_node->shape.cylinder));
 	if (el == PL)
-		return (new_node->type = PLAN,
-			plan_parsing(description, &new_node->shape.plan));
+		return (new_node->type = PLANE,
+			plan_parsing(description, &new_node->shape.plane));
 	return (1);
 }

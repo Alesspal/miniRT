@@ -6,9 +6,9 @@ void	draw_scene(t_data *data, t_scene scene)
 	t_point2D		pixel;
 	t_ray			prime_ray;
 	t_intersection	intersection;
-	int				color;
+	t_color			color;
 
-	prime_ray.origin = scene.camera.pos;
+	prime_ray.pos = scene.camera.pos;
 	pixel.y = -1;
 	while (++pixel.y < data->win->win_h)
 	{
@@ -24,21 +24,27 @@ void	draw_scene(t_data *data, t_scene scene)
 			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
 			{
-				if (intersection.shape_type == SPHERE)
-				{
-					color = intersection.shape.sphere.color;
-				}
-				else if (intersection.shape_type == CYLINDER)
-				{
-					color = intersection.shape.cylinder.color;
-				}
-				else if (intersection.shape_type == PLANE)
-				{
-					color = intersection.shape.plane.color;
-				}
-				// ------------------------------- Aless you have to compute the color of the pixel here -------------------------------
-				// compute_light(intersection, scene, &color);
-				ft_img_pix_put(data, pixel.x, pixel.y, color);
+				// if (intersection.shape_type == SPHERE)
+				// {
+				// 	color = intersection.shape.sphere.color;
+				// }
+				// else if (intersection.shape_type == CYLINDER)
+				// {
+				// 	color = intersection.shape.cylinder.color;
+				// }
+				// else if (intersection.shape_type == PLANE)
+				// {
+				// 	color = intersection.shape.plane.color;
+				// }
+				// printf("color1 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
+				// if (check_intersection(intersection.pos, scene.spot_light.pos, scene.shapes))
+				// {
+				// 	color = shadow();
+				// }
+				// else
+				color = phong(scene, &intersection);
+				// printf("color2 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
+				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 			}
 			else
 			{

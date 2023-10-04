@@ -70,7 +70,7 @@ typedef struct s_intersection
 
 typedef struct s_ray
 {
-	t_vec		origin;
+	t_vec		pos;
 	t_vec		dir;
 }	t_ray;
 
@@ -86,7 +86,7 @@ typedef struct s_eq
 	float	s2;
 }	t_eq;
 
-// bool	intersection(t_point3D p1, t_point3D p2);
+// bool	intersection(t_vec p1, t_vec p2);
 t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 
 t_vec	get_n(t_intersection *p);
@@ -102,5 +102,6 @@ bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape);
 bool	sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
 t_vec	get_n(t_intersection *p);
 t_color phong(t_scene scene, t_intersection *p);
+t_color shadow(void);
 
 #endif

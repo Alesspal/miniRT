@@ -35,7 +35,7 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 {
 	t_eq	eq;
 
-	eq.co = vec_sub(ray.origin, sp.origin);
+	eq.co = vec_sub(ray.pos, sp.pos);
 	eq.b = 2.0 * ft_dot(eq.co, ray.dir);
 	eq.c = ft_dot(eq.co, eq.co) - pow(sp.radius, 2);
 	eq.discriminant = pow(eq.b, 2) - (4 * eq.c);
@@ -48,14 +48,14 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	{
 		intersection->shape.sphere = sp;
 		intersection->shape_type = SPHERE;
-		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s1));
+		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s1));
 		intersection->dist = eq.s1;
 	}
 	else if (eq.s2 > 0 && (eq.s1 < 0 || eq.s2 < eq.s1)
 		&& (eq.s2 < intersection->dist || intersection->dist == -1))
 	{
 		intersection->shape_type = SPHERE;
-		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, eq.s2));
+		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s2));
 		intersection->dist = eq.s2;
 	}
 }
@@ -71,12 +71,12 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 	ray_n_dot_product = ft_dot(ray.dir, pl.normal);
 	if (ray_n_dot_product == 0)
 		return ;
-	t = ft_dot(vec_sub(pl.origin, ray.origin), pl.normal) / ray_n_dot_product;
+	t = ft_dot(vec_sub(pl.pos, ray.pos), pl.normal) / ray_n_dot_product;
 	if (t > 0 && (t < intersection->dist || intersection->dist == -1))
 	{
 		intersection->shape.plane = pl;
 		intersection->shape_type = PLANE;
-		intersection->pos = vec_add(ray.origin, vec_mult(ray.dir, t));
+		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, t));
 		intersection->dist = t;
 	}
 }

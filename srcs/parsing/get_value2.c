@@ -2,7 +2,7 @@
 #include "parsing_utils.h"
 #include "libft.h"
 
-int	get_pos(char **description, t_point3D *pos)
+int	get_pos(char **description, t_vec *pos)
 {
 	if (!description || !*description)
 		return (1);

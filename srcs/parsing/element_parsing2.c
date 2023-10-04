@@ -9,7 +9,7 @@ int	sphere_parsing(char *description, t_sphere *sphere)
 		return (1);
 	if (get_pos(&description, &sphere->pos))
 		return (1);
-	if (get_float(&description, &sphere->diameter))
+	if (get_float(&description, &sphere->radius))
 		return (1);
 	if (get_rgb(&description, &sphere->color))
 		return (1);
@@ -27,7 +27,7 @@ int	cylindre_parsing(char *description, t_cylinder *cylinder)
 		return (1);
 	if (get_dir(&description, &cylinder->dir))
 		return (1);
-	if (get_float(&description, &cylinder->diameter))
+	if (get_float(&description, &cylinder->radius))
 		return (1);
 	if (get_float(&description, &cylinder->height))
 		return (1);
@@ -39,13 +39,13 @@ int	cylindre_parsing(char *description, t_cylinder *cylinder)
 	return (0);
 }
 
-int	plan_parsing(char *description, t_plan *plan)
+int	plan_parsing(char *description, t_plane *plan)
 {
 	if (!description)
 		return (1);
 	if (get_pos(&description, &plan->pos))
 		return (1);
-	if (get_dir(&description, &plan->dir))
+	if (get_dir(&description, &plan->normal))
 		return (1);
 	if (get_rgb(&description, &plan->color))
 		return (1);

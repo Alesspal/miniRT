@@ -35,9 +35,9 @@ bool	sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 
 	dir = vec_sub(p2, p1);
 	len = vec_size(dir);
-	ray.origin = p1;
+	ray.pos = p1;
 	ray.dir = ft_normalize(dir);
-	co = vec_sub(ray.origin, shape->shape.sphere.origin);
+	co = vec_sub(ray.pos, shape->shape.sphere.pos);
 	eq.a = 1;
 	eq.b = 2.0 * ft_dot(co, ray.dir);
 	eq.c = ft_dot(co, co) - pow(shape->shape.sphere.radius, 2);

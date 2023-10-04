@@ -25,7 +25,7 @@ typedef struct s_cylinder
 typedef struct s_plane
 {
 	t_vec		pos;
-	t_vec		dir;
+	t_vec		normal;
 	t_color		color;
 }	t_plane;
 
