@@ -8,7 +8,6 @@
 
 t_color i_diffuse(t_scene scene, t_intersection *p)
 {
-	t_color	spot_light_with_intensity;
 	t_color i_diffuse;
 	t_vec	n;
 	t_vec	l;
@@ -21,8 +20,7 @@ t_color i_diffuse(t_scene scene, t_intersection *p)
 	dot_nl = ft_dot(n, l);
 	// printf("dot_nl = %f\n", fmax(0, dot_nl));
 	// printf("color diffuse1 = %i, g = %i, b = %i\n", i_diffuse.r, i_diffuse.g, i_diffuse.b);
-	spot_light_with_intensity = change_intesity(scene.spot_light.color, scene.spot_light.intensity);
-	i_diffuse = change_intesity(spot_light_with_intensity, fmax(0, dot_nl));
+	i_diffuse = change_intesity(scene.spot_light.mod_color, fmax(0, dot_nl));
 	// printf("color diffuse2 = %i, g = %i, b = %i\n", i_diffuse.r, i_diffuse.g, i_diffuse.b);
 	return (i_diffuse);
 }
@@ -62,11 +60,9 @@ t_color shadow(/* t_scene scene, t_intersection *p */)
 t_color phong(t_scene scene, t_intersection *p)
 {
 	t_color shape_color;
-	t_color ambient_light_with_intensity;
 	t_color final_color;
 
-	ambient_light_with_intensity = change_intesity(scene.ambient_light.color, scene.ambient_light.intensity);
-	final_color = addition_color(ambient_light_with_intensity, i_diffuse(scene, p));	// ajout couleur ambiante + couleur diffuse
+	final_color = addition_color(scene.ambient_light.mod_color, i_diffuse(scene, p));	// ajout couleur ambiante + couleur diffuse
 	// printf("color ambiante = %i, g = %i, b = %i\n", scene.ambient_light.color.r, scene.ambient_light.color.g, scene.ambient_light.color.b);
 	// printf("color diffuse + ambiante = %i, g = %i, b = %i\n", final_color.r, final_color.g, final_color.b);
 	if (p->shape_type == SPHERE)

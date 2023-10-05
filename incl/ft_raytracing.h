@@ -9,6 +9,7 @@ typedef struct s_ambiant_light
 {
 	t_color	color;
 	float	intensity;
+	t_color	mod_color;
 }	t_ambiant_light;
 
 typedef struct s_spot_light
@@ -16,6 +17,7 @@ typedef struct s_spot_light
 	int			id;
 	t_color		color;
 	float		intensity;
+	t_color		mod_color;
 	t_vec		pos;
 }	t_spot_light;
 
