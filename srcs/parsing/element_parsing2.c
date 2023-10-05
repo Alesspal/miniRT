@@ -5,6 +5,7 @@
 
 int	sphere_parsing(char *description, t_sphere *sphere)
 {
+	printf("here4\n");
 	if (!description)
 		return (1);
 	if (get_pos(&description, &sphere->pos))

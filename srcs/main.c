@@ -38,9 +38,14 @@ int	init_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_scene	scene;
+	t_scene	scene = {0};
 	t_data	data;
-	(void) argc;
+
+	if (argc != 2)
+	{
+		printf("Error of inputs of arguments\n arguments valid : [name of program] [file of scene]\n");
+		return (EXIT_FAILURE);
+	}
 
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);

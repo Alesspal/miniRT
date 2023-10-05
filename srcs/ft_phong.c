@@ -19,8 +19,9 @@ t_color i_diffuse(t_scene scene, t_intersection *p)
 	// printf("get_l x = %f, y = %f, z = %f\n", l.x, l.y, l.z);
 	dot_nl = ft_dot(n, l);
 	// printf("dot_nl = %f\n", fmax(0, dot_nl));
+	// printf("color diffuse1 = %i, g = %i, b = %i\n", i_diffuse.r, i_diffuse.g, i_diffuse.b);
 	i_diffuse = change_intesity(scene.spot_light.color, fmax(0, dot_nl));
-	// printf("color diffuse = %i, g = %i, b = %i\n", i_diffuse.r, i_diffuse.g, i_diffuse.b);
+	// printf("color diffuse2 = %i, g = %i, b = %i\n", i_diffuse.r, i_diffuse.g, i_diffuse.b);
 	return (i_diffuse);
 }
 
