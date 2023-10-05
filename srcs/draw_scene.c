@@ -45,6 +45,10 @@ void	draw_scene(t_data *data, t_scene scene)
 				// }
 				// else
 				color = phong(scene, &intersection);
+				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
+				{
+					color = change_intesity(color, 0.3);
+				}
 				// printf("color2 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
 				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 			}

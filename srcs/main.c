@@ -50,7 +50,11 @@ int	main(int argc, char **argv)
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);
 
-	file_parsing(argv[1], &scene);
+	if (file_parsing(argv[1], &scene))
+	{
+		printf("Error parsing\n");
+		return (EXIT_FAILURE);
+	}
 	display_scene(scene);
 	/* printf("size of int = %lu\n", sizeof(int));
 	t_color color = {255, 0, 0};

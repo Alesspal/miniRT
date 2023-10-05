@@ -27,6 +27,28 @@ t_color i_diffuse(t_scene scene, t_intersection *p)
 	return (i_diffuse);
 }
 
+/* t_color i_specular(t_scene scene, t_intersection *p)
+{
+    t_color specular_color;
+    t_vec reflect_dir;
+    float spec_intensity;
+
+    // Calculate the reflection vector R
+	t_vec n = ft_normalize(get_n(p));
+	t_vec l = ft_normalize(vec_sub(p->pos, scene.spot_light.pos));
+    reflect_dir = vec_sub(vec_mult(n,l), 2)
+    
+    // Specular reflection formula
+    spec_intensity = pow(fmax(0.0, dot_product(view_dir, reflect_dir)), shininess);
+
+    // Multiply by the light color and intensity
+    specular_color.r = light_color.r * spec_intensity;
+    specular_color.g = light_color.g * spec_intensity;
+    specular_color.b = light_color.b * spec_intensity;
+
+    return specular_color;
+} */
+
 /* int specular(t_scene scene, t_intersection *p)
 {
 	return (1);
