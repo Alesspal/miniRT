@@ -36,7 +36,11 @@ SRCS_LIST	=	main.c \
 				${PARSING_DIR}get_value2.c \
 				${PARSING_DIR}parsing_utils.c \
 				${PARSING_DIR}parsing_utils2.c \
-				
+				draw_scene.c \
+				intersection.c \
+				intersection2.c \
+				init.c \
+				prime_ray.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

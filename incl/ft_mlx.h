@@ -3,6 +3,7 @@
 
 # include "mlx.h"
 # include <stdbool.h>
+# include <stdio.h>
 
 # define ASPECT_RATIO 16.0 / 9.0
 
@@ -12,6 +13,7 @@ typedef struct s_mlx_win
 	void	*mlx_win;
 	int		win_h;
 	int		win_w;
+	double	aspect_ratio;
 }	t_mlx_win;
 
 typedef struct s_img

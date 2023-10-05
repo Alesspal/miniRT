@@ -30,7 +30,7 @@ void	intersection(t_vec ray, t_shapes *shape, t_intersection *intersection)
 	while (shape)
 	{
 		// sphere
-		if (shape->type == SHPERE)
+		if (shape->type == SPHERE)
 		{
 			sp_intersection(ray, shape, intersection);
 		}

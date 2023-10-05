@@ -8,7 +8,7 @@ void	display_spot_light(t_spot_light spot_light);
 void	display_camera(t_camera camera);
 void	display_sphere(t_sphere sphere);
 void	display_cylinder(t_cylinder cylinder);
-void	display_plan(t_plan plan);
+void	display_plan(t_plane plane);
 void	display_shapes(t_shapes *shapes);
 void	display_scene(t_scene scene);
 

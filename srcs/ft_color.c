@@ -10,11 +10,11 @@ t_color change_intesity(t_color color, float intensity)
 	else if (intensity < 0)
 		intensity = 0;
 	new_color.r = color.r * intensity;
-	/* printf("c.r = %i, intensity = %f, new c = %i\n", color.r, intensity, new_color.r); */
+	// printf("c.r = %i, intensity = %f, new c = %i\n", color.r, intensity, new_color.r);
 	new_color.g = color.g * intensity;
-	/* printf("c.g = %i, intensity = %f, new c = %i\n", color.g, intensity, new_color.g); */
+	// printf("c.g = %i, intensity = %f, new c = %i\n", color.g, intensity, new_color.g);
 	new_color.b = color.b * intensity;
-	/* printf("c.b = %i, intensity = %f, new c = %i\n", color.b, intensity, new_color.b); */
+	// printf("c.b = %i, intensity = %f, new c = %i\n", color.b, intensity, new_color.b);
 	return (new_color);
 }
 

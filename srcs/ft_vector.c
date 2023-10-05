@@ -7,23 +7,11 @@ t_vec	ft_create_vec(float x, float y, float z)
 	return ((t_vec){x, y, z});
 }
 
-t_vec	ft_get_vec(t_point3D p1, t_point3D p2)
-{
-	t_vec v;
-
-	v.x = p2.x - p1.x;
-	v.y = p2.y - p1.y;
-	v.z = p2.z - p1.z;
-	printf("vec x = %f, y = %f, z = %f\n", v.x, v.y, v.z);
-	return (v);
-}
-
 t_vec	ft_normalize(t_vec v)
 {
-	double	magnitude;
+	float	magnitude;
 
 	magnitude = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-	printf("magntiude = %f\n", magnitude);
 	v.x /= magnitude;
 	v.y /= magnitude;
 	v.z /= magnitude;
@@ -32,6 +20,82 @@ t_vec	ft_normalize(t_vec v)
 
 float	ft_dot(t_vec v1, t_vec v2)
 {
-	printf("x1 = %f, x2 = %f, y1 = %f, y2 = %f, z1 = %f, z2 = %f\n", v1.x, v2.x, v1.y, v2.y, v1.z, v2.z);
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
+}
+
+t_vec	vec_add(t_vec vec1, t_vec vec2)
+{
+	t_vec res_vec;
+
+	res_vec.x = vec1.x + vec2.x;
+	res_vec.y = vec1.y + vec2.y;
+	res_vec.z = vec1.z + vec2.z;
+	return (res_vec);
+}
+
+t_vec	vec_sub(t_vec vec1, t_vec vec2)
+{
+	t_vec res_vec;
+
+	res_vec.x = vec1.x - vec2.x;
+	res_vec.y = vec1.y - vec2.y;
+	res_vec.z = vec1.z - vec2.z;
+	return (res_vec);
+}
+
+t_vec	ft_get_vec(t_vec p1, t_vec p2)
+{
+	t_vec v;
+
+	v.x = p2.x - p1.x;
+	v.y = p2.y - p1.y;
+	v.z = p2.z - p1.z;
+	return (v);
+}
+
+t_vec	vec_mult(t_vec v, float scalar)
+{
+	v.x *= scalar;
+	v.y *= scalar;
+	v.z *= scalar;
+	return (v);
+}
+
+// Get a 3D point from a vector
+t_vec	v_to_p(t_vec v)
+{
+	t_vec	p;
+
+	p.x = v.x;
+	p.y = v.y;
+	p.z = v.z;
+	return (p);
+}
+
+// Get a vector from a 3D point
+t_vec	p_to_v(t_vec p)
+{
+	t_vec	v;
+
+	v.x = p.x;
+	v.y = p.y;
+	v.z = p.z;
+	return (v);
+}
+
+// Get the cross product of two vectors
+t_vec	cross_product(t_vec v1, t_vec v2)
+{
+	t_vec	res_vec;
+
+	res_vec.x = v1.y * v2.z - v1.z * v2.y;
+	res_vec.y = v1.z * v2.x - v1.x * v2.z;
+	res_vec.z = v1.x * v2.y - v1.y * v2.x;
+	return (res_vec);
+}
+
+// Get the size of a vector
+float	vec_size(t_vec v)
+{
+	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }

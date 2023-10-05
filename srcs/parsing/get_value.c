@@ -4,7 +4,7 @@
 
 char	*get_element(char *description, t_element_type *el)
 {
-	if (!description)
+	if (!description || *description == '\n')
 		return (*el = NOT_IDENTIFIED, NULL);
 	description = skip_space(description);
 	if (!ft_strncmp(description, "A ", 2))
@@ -31,7 +31,7 @@ int	get_float(char **description, float *ret)
 {
 	char	*val;
 
-	if (!description || !*description || !**description)
+	if (!description || !*description || !**description || **description == '\n')
 		return (1);
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
@@ -47,7 +47,7 @@ int	get_int(char **description, int *ret)
 {
 	char	*val;
 
-	if (!description || !*description)
+	if (!description || !*description || !**description || **description == '\n')
 		return (1);
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
