@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		printf ("Error : missing file\n");
+		printf("Error of inputs of arguments\n arguments valid : [name of program] [file of scene]\n");
 		return (EXIT_FAILURE);
 	}
 	if (init_data(&data))
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	init_camera(&scene.camera, data.win->aspect_ratio);
 	draw_scene(&data, scene);
 
-	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0); */
+	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
 	
 	if (file_parsing(argv[1], &scene))
 	{
