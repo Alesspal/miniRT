@@ -1,5 +1,5 @@
 #ifndef PARSING_UTILS_H
-# define PARSRING_UTILS_H
+# define PARSING_UTILS_H
 
 # include "stdbool.h"
 

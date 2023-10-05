@@ -5,6 +5,8 @@
 #include "ft_raytracing.h"
 #include "ft_color.h"
 #include <stdio.h>
+#include "file_scene_parsing.h"
+#include "display.h"
 
 int	init_data(t_data *data)
 {
@@ -33,12 +35,16 @@ int	init_data(t_data *data)
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	t_scene	scene;
+	t_scene	scene = {0};
 	t_data	data;
 
-	
+	if (argc != 2)
+	{
+		printf ("Error : missing file\n");
+		return (EXIT_FAILURE);
+	}
 	if (init_data(&data))
 	{
 		printf("Error : initialisation");
@@ -64,7 +70,7 @@ int	main(void)
 	draw_filled_sphere(&data, create_sphere((t_point3D){1000, 200, 200}, 100, color_to_int(color5))); */
 
 	/* t_scene scene; */
-	t_intersection p;
+	/* t_intersection p;
 
 	p.shape_type = SHPERE;
 	p.shape.sphere.pos = (t_point3D){0, 0, 0};
@@ -80,7 +86,14 @@ int	main(void)
 	t_color pixel = phong(scene, &p);
 	printf("pixel r = %i, g = %i, b = %i\n", pixel.r, pixel.g, pixel.b);
 
-	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0); */
+	
+	if (file_parsing(argv[1], &scene))
+	{
+		printf("Error : parsing failed\n");
+		return (EXIT_FAILURE);
+	}
+	display_scene(scene);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);
 	mlx_loop(data.win->mlx_ptr);
