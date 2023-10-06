@@ -24,29 +24,28 @@ void	draw_scene(t_data *data, t_scene scene)
 			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
 			{
-				// théoriquement c'est mieux de faire comme ça mais c'est chelou
-				/* if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
+				// if (intersection.shape_type == SPHERE)
+				// {
+				// 	color = intersection.shape.sphere.color;
+				// }
+				// else if (intersection.shape_type == CYLINDER)
+				// {
+				// 	color = intersection.shape.cylinder.color;
+				// }
+				// else if (intersection.shape_type == PLANE)
+				// {
+				// 	color = intersection.shape.plane.color;
+				// }
+				if (check_intersection(intersection.pos, scene.spot_light.pos, scene.shapes, intersection.id))
 				{
-					if (intersection.shape_type == SPHERE)
-						color = change_intesity(intersection.shape.sphere.color, 0.3);
-					else if (intersection.shape_type == CYLINDER)
-						color = change_intesity(intersection.shape.cylinder.color, 0.3);
-					else if (intersection.shape_type == PLANE)
-						color = change_intesity(intersection.shape.plane.color, 0.3);
+					color = shadow();
 				}
-				else
-				{
-					color = phong(scene, &intersection);
-				} */
-
-				// ça fait les ombres dans les ombres à cause de i_diffuse
+				// else
 				color = phong(scene, &intersection);
-				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
+				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes, intersection.id))
 				{
 					color = change_intesity(color, 0.3);
 				}
-
-				// printf("color2 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
 				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 			}
 			else
