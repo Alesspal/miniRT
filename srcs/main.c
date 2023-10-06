@@ -59,13 +59,6 @@ int	main(int argc, char **argv)
 	draw_scene(&data, scene);
 
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win, data.img.mlx_img, 0, 0);
-	
-	if (file_parsing(argv[1], &scene))
-	{
-		printf("Error : parsing failed\n");
-		return (EXIT_FAILURE);
-	}
-	display_scene(scene);
 	mlx_hook(data.win->mlx_win, 17, 0, &exit_program, &data);
 	mlx_key_hook(data.win->mlx_win, &ft_key_event, &data);
 	mlx_loop(data.win->mlx_ptr);
