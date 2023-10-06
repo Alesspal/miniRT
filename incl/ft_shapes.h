@@ -11,6 +11,7 @@ typedef struct s_sphere
 	t_vec		pos;
 	float		radius;
 	t_color		color;
+	float		shininess;
 }	t_sphere;
 
 typedef struct s_cylinder

@@ -33,6 +33,7 @@ void	display_sphere(t_sphere sphere)
 	printf("pos : %f, %f, %f\n", sphere.pos.x, sphere.pos.y, sphere.pos.z);
 	printf("radius : %f\n", sphere.radius);
 	printf("rgb : %d, %d, %d\n", sphere.color.r, sphere.color.g, sphere.color.b);
+	printf("shininiess : %f\n", sphere.shininess);
 	printf("----------------\n");
 }
 

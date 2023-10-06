@@ -5,6 +5,7 @@
 
 int	element_parsing(t_scene *scene, char *description, t_element_type el)
 {
+	printf("here2\n");
 	if (!description)
 		return (1);
 	description = skip_space(description);

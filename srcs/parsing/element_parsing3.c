@@ -5,6 +5,7 @@
 
 int	shapes_len(t_shapes *shapes)
 {
+	printf("calculation of size\n");
 	int			len;
 	t_shapes	*temp;
 
@@ -17,11 +18,13 @@ int	shapes_len(t_shapes *shapes)
 		len++;
 		temp = temp->next;
 	}
+	printf("size is %i\n", len);
 	return (len);
 }
 
 t_shapes	*create_new_node(int id)
 {
+	printf("creation of new node\n");
 	t_shapes	*new_node;
 
 	new_node = malloc(sizeof(t_shapes));
@@ -29,6 +32,7 @@ t_shapes	*create_new_node(int id)
 		return (NULL);
 	new_node->id = id;
 	new_node->next = NULL;
+	printf("new node created\n");
 	return (new_node);
 }
 
@@ -50,15 +54,19 @@ int	append_to_list(t_shapes **shapes, t_shapes *new_node)
 
 int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 {
+	printf("here3\n");
 	t_shapes	*new_node;
 
 	if (!shapes)
 		return (1);
+	printf("here31\n");
 	new_node = create_new_node(shapes_len(*shapes));
 	if (!new_node)
 		return (printf("shape creation for list of shapes failed\n"), 1);
+	printf("here32\n");
 	if (append_to_list(shapes, new_node))
 		return (printf("new shape could not be added to the list\n"), 1);
+	printf("here33\n");
 	if (el == SP)
 		return (new_node->type = SPHERE,
 			sphere_parsing(description, &new_node->shape.sphere));

@@ -7,9 +7,11 @@ void	draw_scene(t_data *data, t_scene scene)
 	t_ray			prime_ray;
 	t_intersection	intersection;
 	t_color			color;
+	t_color			color_ambient_light_with_intensity;
 
 	prime_ray.pos = scene.camera.pos;
 	pixel.y = -1;
+	color_ambient_light_with_intensity = change_intesity(scene.ambient_light.color, scene.ambient_light.intensity);
 	while (++pixel.y < data->win->win_h)
 	{
 		pixel.x = -1;
@@ -43,13 +45,18 @@ void	draw_scene(t_data *data, t_scene scene)
 				}
 				// else
 				color = phong(scene, &intersection);
+				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
+				{
+					color = change_intesity(color, 0.3);
+				}
 				// printf("color2 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
 				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 			}
 			else
 			{
 				// Set the pixel to the background color
-				ft_img_pix_put(data, pixel.x, pixel.y, 0x000000);
+				// printf("A = %i, g = %i, b = %i\n", scene.ambient_light.color.r, scene.ambient_light.color.g, scene.ambient_light.color.b);
+				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color_ambient_light_with_intensity));
 			}
 		}
 	}

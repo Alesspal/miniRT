@@ -38,14 +38,23 @@ int	init_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_scene	scene;
+	t_scene	scene = {0};
 	t_data	data;
-	(void) argc;
+
+	if (argc != 2)
+	{
+		printf("Error of inputs of arguments\n arguments valid : [name of program] [file of scene]\n");
+		return (EXIT_FAILURE);
+	}
 
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);
 
-	file_parsing(argv[1], &scene);
+	if (file_parsing(argv[1], &scene))
+	{
+		printf("Error parsing\n");
+		return (EXIT_FAILURE);
+	}
 	display_scene(scene);
 	/* printf("size of int = %lu\n", sizeof(int));
 	t_color color = {255, 0, 0};
