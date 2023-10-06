@@ -84,20 +84,21 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 {
 	t_ray	ray;
 	t_vec	dir;
-	t_vec	co;
+	t_vec	oc;
 	t_eq	eq;
 	float	len;
 	t_cylinder	cy;
 
 	cy = shape->shape.cylinder;
+	cy.dir = ft_normalize(cy.dir);
 	dir = vec_sub(p2, p1);
 	len = vec_size(dir);
 	ray.pos = p1;
 	ray.dir = ft_normalize(dir);
-	co = vec_sub(ray.pos, cy.pos);
-	eq.a = pow(ray.dir.x, 2) + pow(ray.dir.z, 2);
-	eq.b = 2 * (ray.dir.x * co.x + ray.dir.z * co.z);
-	eq.c = pow(co.x, 2) + pow(co.z, 2) - pow(cy.radius, 2);
+	oc = vec_sub(ray.pos, cy.pos);
+	eq.a = ft_dot(ray.dir, ray.dir) - pow(ft_dot(ray.dir, cy.dir), 2);
+	eq.b = 2 * (ft_dot(ray.dir, oc) - ft_dot(ray.dir, cy.dir) * ft_dot(oc, cy.dir));
+	eq.c = ft_dot(oc, oc) - pow(ft_dot(oc, cy.dir), 2) - pow(cy.radius, 2);
 	eq.discriminant = pow(eq.b, 2) - (4 * eq.a * eq.c);
 	if (eq.discriminant < 0)
 		return (false);

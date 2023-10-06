@@ -68,7 +68,6 @@ typedef struct s_intersection
 	t_shape					shape;
 	float					dist;
 	int						id;
-	struct s_intersection	*next;
 }	t_intersection;
 
 typedef struct s_ray
