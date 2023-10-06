@@ -4,10 +4,15 @@
 
 // Return whether or not there is an intersection with a shape
 // between two points.
-bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape)
+bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
 {
 	while (shape)
 	{
+		if (shape->id == id)
+		{
+			shape = shape->next;
+			continue ;
+		}
 		if (shape->type == SPHERE)
 			if (sp_intersection_between_points(p1, p2, shape))
 				return (true);

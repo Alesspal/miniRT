@@ -9,14 +9,15 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
 {
 	inter->shape_type = NO_SHAPE;
 	inter->dist = -1;
+	inter->id = -1;
 	while (shape)
 	{
 		if (shape->type == SPHERE)
-			sp_intersection(ray, shape->shape.sphere, inter);
+			sp_intersection(ray, shape->shape.sphere, inter, shape->id);
 		if (shape->type == PLANE)
-			pl_intersection(ray, shape->shape.plane, inter);
+			pl_intersection(ray, shape->shape.plane, inter, shape->id);
 		if (shape->type == CYLINDER)
-			cy_intersection(ray, shape->shape.cylinder, inter);
+			cy_intersection(ray, shape->shape.cylinder, inter, shape->id);
 		shape = shape->next;
 	}
 }
@@ -24,10 +25,10 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
 // Checks if there is an intersection between a ray and a sphere.
 // Fills the intersection struct with the closest intersection point 
 // if there is one.
-void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
+void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection, int id)
 {
 	t_eq	eq;
-
+	
 	eq.co = vec_sub(ray.pos, sp.pos);
 	eq.b = 2.0 * ft_dot(eq.co, ray.dir);
 	eq.c = ft_dot(eq.co, eq.co) - pow(sp.radius, 2);
@@ -39,6 +40,7 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	if (eq.s1 > 0 && (eq.s2 < 0 || eq.s1 < eq.s2)
 		&& (eq.s1 < intersection->dist || intersection->dist == -1))
 	{
+		intersection->id = id;
 		intersection->shape.sphere = sp;
 		intersection->shape_type = SPHERE;
 		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s1));
@@ -47,6 +49,8 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 	else if (eq.s2 > 0 && (eq.s1 < 0 || eq.s2 < eq.s1)
 		&& (eq.s2 < intersection->dist || intersection->dist == -1))
 	{
+		intersection->id = id;
+		intersection->shape.sphere = sp;
 		intersection->shape_type = SPHERE;
 		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s2));
 		intersection->dist = eq.s2;
@@ -56,7 +60,7 @@ void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection)
 // Checks if there is an intersection between a ray and a plane.
 // Fills the intersection struct with the closest intersection point
 // if there is one.
-void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
+void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection, int id)
 {
 	float	t;
 	float	ray_n_dot_product;
@@ -68,6 +72,7 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 	t = ft_dot(vec_sub(pl.pos, ray.pos), pl.normal) / ray_n_dot_product;
 	if (t > 0 && (t < intersection->dist || intersection->dist == -1))
 	{
+		intersection->id = id;
 		intersection->shape.plane = pl;
 		intersection->shape_type = PLANE;
 		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, t));
@@ -78,7 +83,7 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 // Checks if there is an intersection between a ray and a cylinder.
 // Fills the intersection struct with the closest intersection point
 // if there is one.
-void cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
+void cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection, int id)
 {
 	t_vec	oc;
 	t_eq	eq;
@@ -102,6 +107,7 @@ void cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
 
 	if (eq.s1 > 0 && (eq.s2 < 0 || eq.s1 < eq.s2) && (eq.s1 < intersection->dist || intersection->dist == -1))
 	{
+		intersection->id = id;
 		intersection->shape.cylinder = cy;
 		intersection->shape_type = CYLINDER;
 		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s1));
@@ -109,6 +115,7 @@ void cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection)
 	}
 	else if (eq.s2 > 0 && (eq.s1 < 0 || eq.s2 < eq.s1) && (eq.s2 < intersection->dist || intersection->dist == -1))
 	{
+		intersection->id = id;
 		intersection->shape.cylinder = cy;
 		intersection->shape_type = CYLINDER;
 		intersection->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s2));
