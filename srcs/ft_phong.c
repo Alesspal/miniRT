@@ -47,11 +47,6 @@ t_color i_diffuse(t_scene scene, t_intersection *p)
     return specular_color;
 } */
 
-/* int specular(t_scene scene, t_intersection *p)
-{
-	return (1);
-} */
-
 t_color shadow(/* t_scene scene, t_intersection *p */)
 {
 	return ((t_color){0, 0, 0});
@@ -75,41 +70,6 @@ t_color phong(t_scene scene, t_intersection *p)
 	// printf("couleur final r = %i, g = %i, b = %i\n", final_color.r, final_color.g, final_color.b);
 	return (final_color);
 }
-
-// void draw_scene(t_data data, t_scene scene, t_intersection *p)
-// {
-// 	int		x;
-// 	int		y;
-// 	t_color	color;
-	
-// 	x = 0;
-// 	y = 0;
-// 	// parcourir tout les pixels
-// 	while (y < data.win->win_h)
-// 	{
-// 		while (x < data.win->win_w)
-// 		{
-// 			color = (t_color){0, 0, 0};
-// 			if (p && x == p->pixel.x && y == p->pixel.y)
-// 			{
-// 				/* if (intersection(p->pos, scene.spot_light.pos))
-// 				{
-// 					color = shadow();
-// 				}
-// 				else
-// 				{
-// 					color = phong(scene, p);
-// 				} */
-// 				p = p->next;
-// 			}
-// 			else
-// 				color = scene.ambient_light.color;
-// 			ft_img_pix_put(&data, x, y, color_to_int(color));
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
 
 /* int main(void)
 {
