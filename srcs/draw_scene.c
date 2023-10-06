@@ -7,11 +7,9 @@ void	draw_scene(t_data *data, t_scene scene)
 	t_ray			prime_ray;
 	t_intersection	intersection;
 	t_color			color;
-	t_color			color_ambient_light_with_intensity;
 
 	prime_ray.pos = scene.camera.pos;
 	pixel.y = -1;
-	color_ambient_light_with_intensity = change_intesity(scene.ambient_light.color, scene.ambient_light.intensity);
 	while (++pixel.y < data->win->win_h)
 	{
 		pixel.x = -1;
@@ -26,29 +24,28 @@ void	draw_scene(t_data *data, t_scene scene)
 			// Compute the color of the pixel
 			if (intersection.shape_type != NO_SHAPE)
 			{
-				// if (intersection.shape_type == SPHERE)
-				// {
-				// 	color = intersection.shape.sphere.color;
-				// }
-				// else if (intersection.shape_type == CYLINDER)
-				// {
-				// 	color = intersection.shape.cylinder.color;
-				// }
-				// else if (intersection.shape_type == PLANE)
-				// {
-				// 	color = intersection.shape.plane.color;
-				// }
-				// printf("color1 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
-				// if (check_intersection(intersection.pos, scene.spot_light.pos, scene.shapes))
-				// {
-				// 	color = shadow();
-				// }
-				// else
+				// théoriquement c'est mieux de faire comme ça mais c'est chelou
+				/* if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
+				{
+					if (intersection.shape_type == SPHERE)
+						color = change_intesity(intersection.shape.sphere.color, 0.3);
+					else if (intersection.shape_type == CYLINDER)
+						color = change_intesity(intersection.shape.cylinder.color, 0.3);
+					else if (intersection.shape_type == PLANE)
+						color = change_intesity(intersection.shape.plane.color, 0.3);
+				}
+				else
+				{
+					color = phong(scene, &intersection);
+				} */
+
+				// ça fait les ombres dans les ombres à cause de i_diffuse
 				color = phong(scene, &intersection);
 				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes))
 				{
 					color = change_intesity(color, 0.3);
 				}
+
 				// printf("color2 = %i, g = %i, b = %i\n", color.r, color.g, color.b);
 				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 			}
@@ -56,7 +53,7 @@ void	draw_scene(t_data *data, t_scene scene)
 			{
 				// Set the pixel to the background color
 				// printf("A = %i, g = %i, b = %i\n", scene.ambient_light.color.r, scene.ambient_light.color.g, scene.ambient_light.color.b);
-				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color_ambient_light_with_intensity));
+				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(scene.ambient_light.mod_color));
 			}
 		}
 	}

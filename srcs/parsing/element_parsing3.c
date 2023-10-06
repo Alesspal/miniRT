@@ -54,19 +54,19 @@ int	append_to_list(t_shapes **shapes, t_shapes *new_node)
 
 int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 {
-	printf("here3\n");
+	// printf("here3\n");
 	t_shapes	*new_node;
 
 	if (!shapes)
 		return (1);
-	printf("here31\n");
+	// printf("here31\n");
 	new_node = create_new_node(shapes_len(*shapes));
 	if (!new_node)
 		return (printf("shape creation for list of shapes failed\n"), 1);
-	printf("here32\n");
+	// printf("here32\n");
 	if (append_to_list(shapes, new_node))
 		return (printf("new shape could not be added to the list\n"), 1);
-	printf("here33\n");
+	// printf("here33\n");
 	if (el == SP)
 		return (new_node->type = SPHERE,
 			sphere_parsing(description, &new_node->shape.sphere));
