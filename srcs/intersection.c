@@ -12,22 +12,11 @@ void	fill_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
 	while (shape)
 	{
 		if (shape->type == SPHERE)
-		{
 			sp_intersection(ray, shape->shape.sphere, inter);
-		}
-
-		// plane
 		if (shape->type == PLANE)
-		{
 			pl_intersection(ray, shape->shape.plane, inter);
-		}
-
-		// cylinder
 		if (shape->type == CYLINDER)
-		{
 			cy_intersection(ray, shape->shape.cylinder, inter);
-		}
-
 		shape = shape->next;
 	}
 }
@@ -85,28 +74,6 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection)
 		intersection->dist = t;
 	}
 }
-
-// example function to check for intersections between a ray and a cylinder
-// bool intersectRayCylinder(const Ray* ray, const Cylinder* cylinder) {
-//     t_vec oc = vecSubtract(&ray->origin, &cylinder->position);
-//     double a = vecDot(&ray->direction, &ray->direction);
-//     double b = 2 * vecDot(&oc, &ray->direction);
-//     double c = vecDot(&oc, &oc) - cylinder->radius * cylinder->radius;
-
-//     double discriminant = b * b - 4 * a * c;
-
-//     if (discriminant < 0) {
-//         // No intersection
-//         return false;
-//     }
-
-//     // You might need to refine this based on your specific requirements
-//     // For example, you might need to check if the intersection point is within
-//     // the height of the cylinder.
-
-//     // If you reach this point, the ray intersects the infinite cylinder
-//     return true;
-// }
 
 // Checks if there is an intersection between a ray and a cylinder.
 // Fills the intersection struct with the closest intersection point
