@@ -5,7 +5,7 @@ void	draw_scene(t_data *data, t_scene scene)
 {
 	t_point2D		pixel;
 	t_ray			prime_ray;
-	t_intersection	intersection;
+	t_intersection	inter;
 	t_color			color;
 
 	prime_ray.pos = scene.camera.pos;
@@ -15,45 +15,26 @@ void	draw_scene(t_data *data, t_scene scene)
 		pixel.x = -1;
 		while (++pixel.x < data->win->win_w)
 		{
-			// Fill the prime ray with its approriate components
-			fill_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
-
-			// Check if the prime ray intersects any objects
-			fill_intersection(prime_ray, scene.shapes, &intersection);
-			
-			// Compute the color of the pixel
-			if (intersection.shape_type != NO_SHAPE)
-			{
-				// if (intersection.shape_type == SPHERE)
-				// {
-				// 	color = intersection.shape.sphere.color;
-				// }
-				// else if (intersection.shape_type == CYLINDER)
-				// {
-				// 	color = intersection.shape.cylinder.color;
-				// }
-				// else if (intersection.shape_type == PLANE)
-				// {
-				// 	color = intersection.shape.plane.color;
-				// }
-				if (check_intersection(intersection.pos, scene.spot_light.pos, scene.shapes, intersection.id))
-				{
-					color = shadow();
-				}
-				// else
-				color = phong(scene, &intersection);
-				if (check_intersection(scene.spot_light.pos, intersection.pos, scene.shapes, intersection.id))
-				{
-					color = change_intesity(color, 0.3);
-				}
-				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
-			}
-			else
-			{
-				// Set the pixel to the background color
-				// printf("A = %i, g = %i, b = %i\n", scene.ambient_light.color.r, scene.ambient_light.color.g, scene.ambient_light.color.b);
-				ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(scene.ambient_light.mod_color));
-			}
+			set_prime_ray(&prime_ray, *data->win, scene.camera, pixel);
+			set_intersection(prime_ray, scene.shapes, &inter);
+			color = get_pixel_color(inter, scene);
+			ft_img_pix_put(data, pixel.x, pixel.y, color_to_int(color));
 		}
 	}
+}
+
+t_color	get_pixel_color(t_intersection inter, t_scene scene)
+{
+	t_color	color;
+
+	if (inter.shape_type != NO_SHAPE)
+	{
+		color = phong(scene, &inter);
+		if (check_intersection(scene.spot_light.pos, inter.pos,
+				scene.shapes, inter.id))
+			color = change_intesity(color, 0.3);
+	}
+	else
+		color = scene.ambient_light.mod_color;
+	return (color);
 }

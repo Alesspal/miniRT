@@ -22,6 +22,7 @@ SRCS_LIST	=	main.c \
 				ft_control.c \
 				ft_img_pix_put.c \
 				ft_vector.c \
+				ft_vector2.c \
 				ft_shapes.c \
 				ft_phong.c \
 				get_n.c \
@@ -40,7 +41,8 @@ SRCS_LIST	=	main.c \
 				intersection.c \
 				intersection2.c \
 				init.c \
-				prime_ray.c
+				prime_ray.c \
+				compute_equation.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

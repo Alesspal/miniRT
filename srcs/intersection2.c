@@ -72,7 +72,7 @@ bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	if (ray_n_dot_product == 0)
 		return (false);
 	t = ft_dot(vec_sub(shape->shape.plane.pos, ray.pos),
-		shape->shape.plane.normal) / ray_n_dot_product;
+			shape->shape.plane.normal) / ray_n_dot_product;
 	if (t > 0 && t < vec_size(dir))
 		return (true);
 	return (false);
@@ -82,12 +82,11 @@ bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 // between two points.
 bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 {
-	t_ray	ray;
-	t_vec	dir;
-	t_vec	oc;
-	t_eq	eq;
-	float	len;
+	t_ray		ray;
+	t_vec		dir;
+	float		len;
 	t_cylinder	cy;
+	t_eq		eq;
 
 	cy = shape->shape.cylinder;
 	cy.dir = ft_normalize(cy.dir);
@@ -95,22 +94,9 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	len = vec_size(dir);
 	ray.pos = p1;
 	ray.dir = ft_normalize(dir);
-	oc = vec_sub(ray.pos, cy.pos);
-	eq.a = ft_dot(ray.dir, ray.dir) - pow(ft_dot(ray.dir, cy.dir), 2);
-	eq.b = 2 * (ft_dot(ray.dir, oc) - ft_dot(ray.dir, cy.dir) * ft_dot(oc, cy.dir));
-	eq.c = ft_dot(oc, oc) - pow(ft_dot(oc, cy.dir), 2) - pow(cy.radius, 2);
-	eq.discriminant = pow(eq.b, 2) - (4 * eq.a * eq.c);
+	compute_cy_equation(ray, cy, &eq);
 	if (eq.discriminant < 0)
 		return (false);
-	eq.s1 = (-eq.b - sqrt(eq.discriminant)) / (2 * eq.a);
-	eq.s2 = (-eq.b + sqrt(eq.discriminant)) / (2 * eq.a);
-
-	// check that the intersection is within the height of the cylinder (cy.height) by projecting the intersection point onto the cylinder's axis
-	if (ft_dot(vec_sub(vec_add(ray.pos, vec_mult(ray.dir, eq.s1)), cy.pos), vec_mult(cy.dir, cy.height)) < 0 || ft_dot(vec_sub(vec_add(ray.pos, vec_mult(ray.dir, eq.s1)), cy.pos), vec_mult(cy.dir, cy.height)) > ft_dot(vec_mult(cy.dir, cy.height), vec_mult(cy.dir, cy.height)))
-		eq.s1 = -1;
-	if (ft_dot(vec_sub(vec_add(ray.pos, vec_mult(ray.dir, eq.s2)), cy.pos), vec_mult(cy.dir, cy.height)) < 0 || ft_dot(vec_sub(vec_add(ray.pos, vec_mult(ray.dir, eq.s2)), cy.pos), vec_mult(cy.dir, cy.height)) > ft_dot(vec_mult(cy.dir, cy.height), vec_mult(cy.dir, cy.height)))
-		eq.s2 = -1;
-
 	if ((eq.s1 > 0 && eq.s1 < len) || (eq.s2 > 0 && eq.s2 < len))
 		return (true);
 	return (false);

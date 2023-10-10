@@ -5,8 +5,6 @@
 # include <stdbool.h>
 # include <stdio.h>
 
-# define ASPECT_RATIO 16.0 / 9.0
-
 typedef struct s_mlx_win
 {
 	void	*mlx_ptr;
@@ -34,5 +32,6 @@ typedef struct s_data
 void	ft_img_pix_put(t_data *data, int x, int y, int color);
 int		ft_key_event(int key, void *params);
 int		exit_program(t_data *prm);
+int		init_data(t_data *data);
 
 #endif

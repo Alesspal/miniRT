@@ -37,7 +37,7 @@ typedef struct s_camera
 	t_vec				dir;
 	t_vec				up;
 	t_vec				right;
-	t_virtual_screen	v_screen;
+	t_virtual_screen	v_scr;
 }	t_camera;
 
 typedef struct s_scene
@@ -94,19 +94,23 @@ t_vec	get_normalized_n(t_vec P, int id, t_scene scene);
 t_vec	get_n(t_intersection *p);
 
 // Raytracer functions
-void		init_camera(t_camera *cam, float aspect_ratio);
-void		draw_scene(t_data *data, t_scene scene);
-void		fill_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
-void		sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection, int id);
-void		pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection, int id);
-void		cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection, int id);
-void		fill_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection);
-bool		check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id);
-bool		sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
-bool		pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
-bool		cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
-t_vec		get_n(t_intersection *p);
-t_color 	phong(t_scene scene, t_intersection *p);
-t_color 	shadow(void);
+void	init_camera(t_camera *cam, float aspect_ratio);
+void	init_scene(t_scene *scene);
+void	draw_scene(t_data *data, t_scene scene);
+t_color	get_pixel_color(t_intersection inter, t_scene scene);
+void	set_prime_ray(t_ray *prime_ray, t_mlx_win win, t_camera cam, t_point2D p);
+void	sp_intersection(t_ray ray, t_sphere sp, t_intersection *intersection, int id);
+void	compute_sp_equation(t_ray ray, t_sphere sp, t_eq *eq);
+void	pl_intersection(t_ray ray, t_plane pl, t_intersection *intersection, int id);
+void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *intersection, int id);
+void	compute_cy_equation(t_ray ray, t_cylinder cy, t_eq *eq);
+void	set_intersection(t_ray ray, t_shapes *shape, t_intersection *intersection);
+bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id);
+bool	sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
+bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
+bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
+t_vec	get_n(t_intersection *p);
+t_color	phong(t_scene scene, t_intersection *p);
+t_color	shadow(void);
 
 #endif
