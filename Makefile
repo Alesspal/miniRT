@@ -1,4 +1,4 @@
-NAME	=		Minirt
+NAME	=		miniRT
 
 CC		=		gcc
 CFLAGS	=		-Wall -Werror -Wextra ${INCL_LIST} -g

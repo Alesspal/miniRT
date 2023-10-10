@@ -15,7 +15,7 @@ int	init_data(t_data *data)
 	if (!data->win->mlx_ptr)
 		return (-1);
 	data->win->aspect_ratio = 16.0 / 9.0;
-	data->win->win_h = 1000;
+	data->win->win_h = 1080;
 	data->win->win_w = data->win->win_h * data->win->aspect_ratio;
 	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
 			data->win->win_h, "miniRT");

@@ -16,10 +16,13 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		ft_fatal_error("Input Error, try: ./miniRT example_scene.rt", -1);
 	init_scene(&scene);
+	if (file_parsing(argv[1], &scene))
+	{
+		printf("Error when parsing the file\n");
+		return (EXIT_FAILURE);
+	}
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);
-	if (file_parsing(argv[1], &scene))
-		ft_fatal_error("Error when parsing the file", -1);
 	init_camera(&scene.camera, data.win->aspect_ratio);
 	// display_scene(scene);
 	draw_scene(&data, scene);
