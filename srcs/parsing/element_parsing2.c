@@ -50,7 +50,7 @@ int	plan_parsing(char *description, t_plane *plan)
 		return (1);
 	if (get_pos(&description, &plan->pos))
 		return (1);
-	if (get_dir(&description, &plan->normal))
+	if (get_dir(&description, &plan->n))
 		return (1);
 	if (get_rgb(&description, &plan->color))
 		return (1);

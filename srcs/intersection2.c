@@ -8,7 +8,7 @@ bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
 {
 	while (shape)
 	{
-		if (shape->id == id)
+		if (shape->id == id || shape->display == false)
 		{
 			shape = shape->next;
 			continue ;
@@ -67,12 +67,12 @@ bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	dir = vec_sub(p2, p1);
 	ray.pos = p1;
 	ray.dir = ft_normalize(dir);
-	shape->shape.plane.normal = ft_normalize(shape->shape.plane.normal);
-	ray_n_dot_product = ft_dot(ray.dir, shape->shape.plane.normal);
+	shape->shape.plane.n = ft_normalize(shape->shape.plane.n);
+	ray_n_dot_product = ft_dot(ray.dir, shape->shape.plane.n);
 	if (ray_n_dot_product == 0)
 		return (false);
 	t = ft_dot(vec_sub(shape->shape.plane.pos, ray.pos),
-			shape->shape.plane.normal) / ray_n_dot_product;
+			shape->shape.plane.n) / ray_n_dot_product;
 	if (t > 0 && t < vec_size(dir))
 		return (true);
 	return (false);

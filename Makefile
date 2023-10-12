@@ -42,7 +42,8 @@ SRCS_LIST	=	main.c \
 				intersection2.c \
 				init.c \
 				prime_ray.c \
-				compute_equation.c
+				compute_equation.c \
+				overlapping.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

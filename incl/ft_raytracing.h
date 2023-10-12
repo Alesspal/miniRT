@@ -112,5 +112,9 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape);
 t_vec	get_n(t_intersection *p);
 t_color	phong(t_scene scene, t_intersection *p);
 t_color	shadow(void);
+void	remove_overlapping_objects(t_shapes *shapes);
+void	remove_overlapping_sp(t_shapes *shapes);
+void	remove_overlapping_pl(t_shapes *shapes);
+void	remove_overlapping_cy(t_shapes *shapes);
 
 #endif

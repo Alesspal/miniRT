@@ -23,12 +23,12 @@ t_cylinder	create_cylinder(t_vec pos, t_vec dir, float diameter, float height, t
 	return (cylinder);
 }
 
-t_plane	create_plane(t_vec pos, t_vec normal, t_color color)
+t_plane	create_plane(t_vec pos, t_vec n, t_color color)
 {
 	t_plane	plane;
 
 	plane.pos = pos;
-	plane.normal = normal;
+	plane.n = n;
 	plane.color = color;
 	return (plane);
 }

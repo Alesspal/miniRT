@@ -41,9 +41,9 @@ t_vec	get_n_plan(t_intersection *p)
 	t_plane		plane;
 
 	plane = (t_plane)p->shape.plane;
-	n = ft_create_vec(plane.normal.x,
-		plane.normal.y,
-		plane.normal.z);
+	n = ft_create_vec(plane.n.x,
+		plane.n.y,
+		plane.n.z);
 	return (n);
 }
 

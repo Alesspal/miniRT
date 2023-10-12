@@ -52,7 +52,7 @@ void	display_plan(t_plane plan)
 {
 	printf("-----PLAN-----\n");
 	printf("pos : %f, %f, %f\n", plan.pos.x, plan.pos.y, plan.pos.z);
-	printf("dir : %f, %f, %f\n", plan.normal.x, plan.normal.y, plan.normal.z);
+	printf("dir : %f, %f, %f\n", plan.n.x, plan.n.y, plan.n.z);
 	printf("rgb : %d, %d, %d\n", plan.color.r, plan.color.g, plan.color.b);
 	printf("--------------\n");
 }

@@ -12,6 +12,11 @@ void	set_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
 	inter->id = -1;
 	while (shape)
 	{
+		if (shape->display == false)
+		{
+			shape = shape->next;
+			continue ;
+		}
 		if (shape->type == SPHERE)
 			sp_intersection(ray, shape->shape.sphere, inter, shape->id);
 		if (shape->type == PLANE)
@@ -58,11 +63,11 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *inter, int id)
 	float	t;
 	float	ray_n_dot_product;
 
-	pl.normal = ft_normalize(pl.normal);
-	ray_n_dot_product = ft_dot(ray.dir, pl.normal);
+	pl.n = ft_normalize(pl.n);
+	ray_n_dot_product = ft_dot(ray.dir, pl.n);
 	if (ray_n_dot_product == 0)
 		return ;
-	t = ft_dot(vec_sub(pl.pos, ray.pos), pl.normal) / ray_n_dot_product;
+	t = ft_dot(vec_sub(pl.pos, ray.pos), pl.n) / ray_n_dot_product;
 	if (t > 0 && (t < inter->dist || inter->dist == -1))
 	{
 		inter->id = id;

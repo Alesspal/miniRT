@@ -32,6 +32,7 @@ t_shapes	*create_new_node(int id)
 		return (NULL);
 	new_node->id = id;
 	new_node->next = NULL;
+	new_node->display = true;
 	printf("new node created\n");
 	return (new_node);
 }
