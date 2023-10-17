@@ -6,12 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:46 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:58:44 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raytracing.h"
-#include "ft_mlx.h"
+#include "scene.h"
+#include "my_mlx.h"
 #include <math.h>
 #include <stdlib.h>
 
@@ -63,9 +63,9 @@ void	init_camera(t_camera *cam, float aspect_ratio)
 		temp_up.z = 0;
 	}
 	cam->v_scr.d = 1;
-	cam->dir = ft_normalize(cam->dir);
-	cam->right = ft_normalize(cross_product(cam->dir, temp_up));
-	cam->up = ft_normalize(cross_product(cam->right, cam->dir));
+	cam->dir = normalize(cam->dir);
+	cam->right = normalize(cross_product(cam->dir, temp_up));
+	cam->up = normalize(cross_product(cam->right, cam->dir));
 	cam->v_scr.width = 2 * cam->v_scr.d * tan(cam->fov * M_PI / 360);
 	cam->v_scr.height = cam->v_scr.width / aspect_ratio;
 	cam->v_scr.center = vec_add(cam->pos, vec_mult(cam->dir, cam->v_scr.d));

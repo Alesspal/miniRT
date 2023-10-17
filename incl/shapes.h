@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_shapes.h                                        :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:14 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:48:16 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:45:38 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SHAPES_H
-# define FT_SHAPES_H
+#ifndef SHAPES_H
+# define SHAPES_H
 
-# include "ft_mlx.h"
-# include "ft_vector.h"
-# include "ft_point.h"
-# include "ft_color.h"
+# include "vector.h"
+# include "color.h"
+# include "stdbool.h"
 
 typedef struct s_sphere
 {
 	t_vec		pos;
 	float		radius;
 	t_color		color;
-	float		shininess;
 }	t_sphere;
 
 typedef struct s_cylinder

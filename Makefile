@@ -19,13 +19,13 @@ INCL_LIST	=	-I${LIBFT_DIR} \
 				-I${INCL_DIR}${PARSING_DIR}
 
 SRCS_LIST	=	main.c \
-				ft_control.c \
-				ft_img_pix_put.c \
-				ft_vector.c \
-				ft_vector2.c \
-				ft_phong.c \
+				control.c \
+				img_pix_put.c \
+				vector.c \
+				vector2.c \
+				phong.c \
 				get_n.c \
-				ft_color.c \
+				color.c \
 				${PARSING_DIR}element_parsing.c \
 				${PARSING_DIR}element_parsing2.c \
 				${PARSING_DIR}element_parsing3.c \

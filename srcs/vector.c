@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.c                                        :+:      :+:    :+:   */
+/*   vector.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:26 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:58:49 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vector.h"
+#include "vector.h"
 #include <math.h>
 
-t_vec	ft_create_vec(float x, float y, float z)
+t_vec	create_vec(float x, float y, float z)
 {
 	return ((t_vec){x, y, z});
 }
 
-t_vec	ft_normalize(t_vec v)
+t_vec	normalize(t_vec v)
 {
 	float	magnitude;
 
@@ -29,7 +29,7 @@ t_vec	ft_normalize(t_vec v)
 	return (v);
 }
 
-float	ft_dot(t_vec v1, t_vec v2)
+float	dot(t_vec v1, t_vec v2)
 {
 	return (v1.x * v2.x + v1.y * v2.y + v1.z * v2.z);
 }

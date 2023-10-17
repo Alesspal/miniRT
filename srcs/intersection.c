@@ -6,12 +6,11 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:43:15 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:47:11 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:58:49 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mlx.h"
-#include "ft_raytracing.h"
+#include "raytracing.h"
 #include <math.h>
 
 void	compute_sp_equation(t_ray ray, t_sphere sp, t_eq *eq);
@@ -53,11 +52,11 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *inter, int id)
 	float	t;
 	float	ray_n_dot_product;
 
-	pl.n = ft_normalize(pl.n);
-	ray_n_dot_product = ft_dot(ray.dir, pl.n);
+	pl.n = normalize(pl.n);
+	ray_n_dot_product = dot(ray.dir, pl.n);
 	if (ray_n_dot_product == 0)
 		return ;
-	t = ft_dot(vec_sub(pl.pos, ray.pos), pl.n) / ray_n_dot_product;
+	t = dot(vec_sub(pl.pos, ray.pos), pl.n) / ray_n_dot_product;
 	if (t > 0 && (t < inter->dist || inter->dist == -1))
 	{
 		inter->id = id;
@@ -74,7 +73,7 @@ void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *inter, int id)
 {
 	t_eq	eq;
 
-	cy.dir = ft_normalize(cy.dir);
+	cy.dir = normalize(cy.dir);
 	compute_cy_equation(ray, cy, &eq);
 	if (eq.discriminant < 0)
 		return ;

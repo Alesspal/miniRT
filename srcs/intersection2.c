@@ -6,12 +6,11 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:15 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:47:16 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:58:49 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mlx.h"
-#include "ft_raytracing.h"
+#include "raytracing.h"
 #include <math.h>
 
 void	compute_sp_equation(t_ray ray, t_sphere sp, t_eq *eq);
@@ -30,11 +29,11 @@ bool	sp_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	dir = vec_sub(p2, p1);
 	len = vec_size(dir);
 	ray.pos = p1;
-	ray.dir = ft_normalize(dir);
+	ray.dir = normalize(dir);
 	co = vec_sub(ray.pos, shape->shape.sphere.pos);
 	eq.a = 1;
-	eq.b = 2.0 * ft_dot(co, ray.dir);
-	eq.c = ft_dot(co, co) - pow(shape->shape.sphere.radius, 2);
+	eq.b = 2.0 * dot(co, ray.dir);
+	eq.c = dot(co, co) - pow(shape->shape.sphere.radius, 2);
 	eq.discriminant = pow(eq.b, 2) - (4 * eq.a * eq.c);
 	if (eq.discriminant < 0)
 		return (false);
@@ -56,12 +55,12 @@ bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 
 	dir = vec_sub(p2, p1);
 	ray.pos = p1;
-	ray.dir = ft_normalize(dir);
-	shape->shape.plane.n = ft_normalize(shape->shape.plane.n);
-	ray_n_dot_product = ft_dot(ray.dir, shape->shape.plane.n);
+	ray.dir = normalize(dir);
+	shape->shape.plane.n = normalize(shape->shape.plane.n);
+	ray_n_dot_product = dot(ray.dir, shape->shape.plane.n);
 	if (ray_n_dot_product == 0)
 		return (false);
-	t = ft_dot(vec_sub(shape->shape.plane.pos, ray.pos),
+	t = dot(vec_sub(shape->shape.plane.pos, ray.pos),
 			shape->shape.plane.n) / ray_n_dot_product;
 	if (t > 0 && t < vec_size(dir))
 		return (true);
@@ -79,11 +78,11 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	t_eq		eq;
 
 	cy = shape->shape.cylinder;
-	cy.dir = ft_normalize(cy.dir);
+	cy.dir = normalize(cy.dir);
 	dir = vec_sub(p2, p1);
 	len = vec_size(dir);
 	ray.pos = p1;
-	ray.dir = ft_normalize(dir);
+	ray.dir = normalize(dir);
 	compute_cy_equation(ray, cy, &eq);
 	if (eq.discriminant < 0)
 		return (false);

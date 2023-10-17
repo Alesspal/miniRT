@@ -6,14 +6,14 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:50 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:48:51 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:49:55 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VALUE_PARSING_H
 # define VALUE_PARSING_H
 
-# include "ft_raytracing.h"
+# include "scene.h"
 
 char	*get_element(char *description, t_element_type *el);
 int		get_float(char **description, float *ret);

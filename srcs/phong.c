@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_phong.c                                         :+:      :+:    :+:   */
+/*   phong.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:19 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:58:55 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_raytracing.h"
-#include "ft_vector.h"
-#include "ft_color.h"
+#include "raytracing.h"
+#include "vector.h"
+#include "color.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "ft_raytracing.h"
 
 t_color	i_diffuse(t_scene scene, t_intersection *p)
 {
@@ -25,9 +24,9 @@ t_color	i_diffuse(t_scene scene, t_intersection *p)
 	t_vec	l;
 	float	dot_nl;
 
-	n = ft_normalize(get_n(p));
-	l = ft_normalize(ft_get_vec(p->pos, scene.spot_light.pos));
-	dot_nl = ft_dot(n, l);
+	n = normalize(get_n(p));
+	l = normalize(get_vec(p->pos, scene.spot_light.pos));
+	dot_nl = dot(n, l);
 	i_diffuse = change_intesity(scene.spot_light.mod_color, fmax(0, dot_nl));
 	return (i_diffuse);
 }

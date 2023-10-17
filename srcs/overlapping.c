@@ -6,12 +6,11 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:23 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:47:29 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:53:17 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_shapes.h"
-#include "ft_raytracing.h"
+#include "raytracing.h"
 
 void	remove_overlapping_sp(t_shapes *shapes)
 {

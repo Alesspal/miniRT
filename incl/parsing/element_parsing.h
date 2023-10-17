@@ -6,14 +6,14 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:46 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:48:51 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/17 15:49:25 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ELEMENT_PARSING_H
 # define ELEMENT_PARSING_H
 
-# include "ft_raytracing.h"
+# include "scene.h"
 
 int	element_parsing(t_scene *scene, char *description, t_element_type el);
 int	ambient_light_parsing(char *description, t_ambiant_light *ambiant_light);
