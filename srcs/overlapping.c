@@ -1,21 +1,6 @@
 #include "ft_shapes.h"
 #include "ft_raytracing.h"
 
-void	remove_overlapping_objects(t_shapes *shapes)
-{
-	// I have to initialize shapes->display to true
-	while (shapes)
-	{
-		if (shapes->type == SPHERE)
-			remove_overlapping_sp(shapes);
-		if (shapes->type == PLANE)
-			remove_overlapping_pl(shapes);
-		if (shapes->type == CYLINDER)
-			remove_overlapping_cy(shapes);
-		shapes = shapes->next;
-	}
-}
-
 void	remove_overlapping_sp(t_shapes *shapes)
 {
 	t_shapes	*curr;
@@ -84,6 +69,20 @@ void	remove_overlapping_cy(t_shapes *shapes)
 				shapes->display = false;
 			}
 		}
+		shapes = shapes->next;
+	}
+}
+
+void	remove_overlapping_objects(t_shapes *shapes)
+{
+	while (shapes)
+	{
+		if (shapes->type == SPHERE)
+			remove_overlapping_sp(shapes);
+		if (shapes->type == PLANE)
+			remove_overlapping_pl(shapes);
+		if (shapes->type == CYLINDER)
+			remove_overlapping_cy(shapes);
 		shapes = shapes->next;
 	}
 }

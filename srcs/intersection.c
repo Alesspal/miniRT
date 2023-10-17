@@ -2,30 +2,8 @@
 #include "ft_raytracing.h"
 #include <math.h>
 
-// Checks if there are intersections with spheres and the casted prime ray.
-// Fills the intersection struct with the closest sphere in front of the camera.
-// Sets intersection.shape_type to NO_SHAPE if there is no intersection.
-void	set_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
-{
-	inter->shape_type = NO_SHAPE;
-	inter->dist = -1;
-	inter->id = -1;
-	while (shape)
-	{
-		if (shape->display == false)
-		{
-			shape = shape->next;
-			continue ;
-		}
-		if (shape->type == SPHERE)
-			sp_intersection(ray, shape->shape.sphere, inter, shape->id);
-		if (shape->type == PLANE)
-			pl_intersection(ray, shape->shape.plane, inter, shape->id);
-		if (shape->type == CYLINDER)
-			cy_intersection(ray, shape->shape.cylinder, inter, shape->id);
-		shape = shape->next;
-	}
-}
+void	compute_sp_equation(t_ray ray, t_sphere sp, t_eq *eq);
+void	compute_cy_equation(t_ray ray, t_cylinder cy, t_eq *eq);
 
 // Checks if there is an intersection between a ray and a sphere.
 // Fills the intersection struct with the closest intersection point 
@@ -105,5 +83,30 @@ void	cy_intersection(t_ray ray, t_cylinder cy, t_intersection *inter, int id)
 		inter->shape_type = CYLINDER;
 		inter->pos = vec_add(ray.pos, vec_mult(ray.dir, eq.s2));
 		inter->dist = eq.s2;
+	}
+}
+
+// Checks if there are intersections with spheres and the casted prime ray.
+// Fills the intersection struct with the closest sphere in front of the camera.
+// Sets intersection.shape_type to NO_SHAPE if there is no intersection.
+void	set_intersection(t_ray ray, t_shapes *shape, t_intersection *inter)
+{
+	inter->shape_type = NO_SHAPE;
+	inter->dist = -1;
+	inter->id = -1;
+	while (shape)
+	{
+		if (shape->display == false)
+		{
+			shape = shape->next;
+			continue ;
+		}
+		if (shape->type == SPHERE)
+			sp_intersection(ray, shape->shape.sphere, inter, shape->id);
+		if (shape->type == PLANE)
+			pl_intersection(ray, shape->shape.plane, inter, shape->id);
+		if (shape->type == CYLINDER)
+			cy_intersection(ray, shape->shape.cylinder, inter, shape->id);
+		shape = shape->next;
 	}
 }

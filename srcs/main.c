@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	if (init_data(&data))
 		ft_fatal_error("Error when initialising data", -1);
 	init_camera(&scene.camera, data.win->aspect_ratio);
-	/* remove_overlapping_objects(scene.shapes); */
+	remove_overlapping_objects(scene.shapes);
 	// display_scene(scene);
 	draw_scene(&data, scene);
 	mlx_put_image_to_window(data.win->mlx_ptr, data.win->mlx_win,
