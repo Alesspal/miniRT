@@ -5,7 +5,6 @@
 
 int	sphere_parsing(char *description, t_sphere *sphere)
 {
-	// printf("here4\n");
 	if (!description)
 		return (1);
 	if (get_pos(&description, &sphere->pos))
@@ -14,10 +13,6 @@ int	sphere_parsing(char *description, t_sphere *sphere)
 		return (1);
 	if (get_rgb(&description, &sphere->color))
 		return (1);
-	/* printf("desc1 = '%s'\n", description); */
-	/* if (get_float(&description, &sphere->shininess))
-		return (1); */
-	/* printf("desc2 = '%s'\n", description); */
 	if (!is_end_of_line(description))
 		return (1);
 	display_sphere(*sphere);

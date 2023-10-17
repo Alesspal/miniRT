@@ -34,19 +34,6 @@ t_vec	get_n_cylinder(t_intersection *p)
 	return (n);
 }
 
-// plane N = dir of plane
-t_vec	get_n_plan(t_intersection *p)
-{
-	t_vec		n;
-	t_plane		plane;
-
-	plane = (t_plane)p->shape.plane;
-	n = ft_create_vec(plane.n.x,
-		plane.n.y,
-		plane.n.z);
-	return (n);
-}
-
 t_vec	get_n(t_intersection *p)
 {
 	if (p->shape_type == SPHERE)
@@ -54,7 +41,7 @@ t_vec	get_n(t_intersection *p)
 	else if (p->shape_type == CYLINDER)
 		return (get_n_cylinder(p));
 	else
-		return (get_n_plan(p));
+		return (p->shape.plane.n);
 }
 
 /* int main(void)

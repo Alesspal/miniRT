@@ -38,7 +38,6 @@ int	check_el_is_already_set_and_update(t_element_type *tab, t_element_type el)
 
 int	scene_parsing(int fd, t_scene *scene)
 {
-	// printf("here\n");
 	char			*line;
 	char			*description;
 	t_element_type	el;
@@ -52,7 +51,6 @@ int	scene_parsing(int fd, t_scene *scene)
 	{
 		if (line[0] != '\0' && line[0] != '\n')
 		{
-			// printf("here1\n");
 			description = get_element(line, &el);
 			if (check_el_is_already_set_and_update(el_tab, el))
 				return (printf("duplication of elements detected\n"), 1);

@@ -6,7 +6,7 @@
 #include <math.h>
 #include "ft_raytracing.h"
 
-t_color i_diffuse(t_scene scene, t_intersection *p)
+t_color	i_diffuse(t_scene scene, t_intersection *p)
 {
 	t_color i_diffuse;
 	t_vec	n;

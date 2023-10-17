@@ -5,7 +5,6 @@
 
 int	element_parsing(t_scene *scene, char *description, t_element_type el)
 {
-	// printf("here2\n");
 	if (!description)
 		return (1);
 	description = skip_space(description);
@@ -28,7 +27,8 @@ int	ambient_light_parsing(char *description, t_ambiant_light *ambiant_light)
 		return (1);
 	if (get_rgb(&description, &ambiant_light->color))
 		return (1);
-	ambiant_light->mod_color = change_intesity(ambiant_light->color, ambiant_light->intensity);
+	ambiant_light->mod_color = change_intesity(ambiant_light->color,
+			ambiant_light->intensity);
 	if (!is_end_of_line(description))
 		return (1);
 	display_ambient_light(*ambiant_light);
@@ -45,7 +45,8 @@ int	spot_light_parsing(char *description, t_spot_light *spot_light)
 		return (1);
 	if (get_rgb(&description, &spot_light->color))
 		return (1);
-	spot_light->mod_color = change_intesity(spot_light->color, spot_light->intensity);
+	spot_light->mod_color = change_intesity(spot_light->color,
+			spot_light->intensity);
 	if (!is_end_of_line(description))
 		return (1);
 	display_spot_light(*spot_light);

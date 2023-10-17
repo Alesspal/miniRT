@@ -31,7 +31,8 @@ int	get_float(char **description, float *ret)
 {
 	char	*val;
 
-	if (!description || !*description || !**description || **description == '\n')
+	if (!description || !*description
+		|| !**description || **description == '\n')
 		return (1);
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
@@ -47,7 +48,8 @@ int	get_int(char **description, int *ret)
 {
 	char	*val;
 
-	if (!description || !*description || !**description || **description == '\n')
+	if (!description || !*description
+		|| !**description || **description == '\n')
 		return (1);
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
