@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "value_parsing.h"
-#include "display.h"
 
 t_element_type	*init_el_tab(void)
 {

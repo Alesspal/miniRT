@@ -1,7 +1,6 @@
 #include "element_parsing.h"
 #include "parsing_utils.h"
 #include "value_parsing.h"
-#include "display.h"
 
 int	element_parsing(t_scene *scene, char *description, t_element_type el)
 {
@@ -31,7 +30,6 @@ int	ambient_light_parsing(char *description, t_ambiant_light *ambiant_light)
 			ambiant_light->intensity);
 	if (!is_end_of_line(description))
 		return (1);
-	display_ambient_light(*ambiant_light);
 	return (0);
 }
 
@@ -49,7 +47,6 @@ int	spot_light_parsing(char *description, t_spot_light *spot_light)
 			spot_light->intensity);
 	if (!is_end_of_line(description))
 		return (1);
-	display_spot_light(*spot_light);
 	return (0);
 }
 
@@ -65,6 +62,5 @@ int	camera_parsing(char *description, t_camera *camera)
 		return (1);
 	if (!is_end_of_line(description))
 		return (1);
-	display_camera(*camera);
 	return (0);
 }

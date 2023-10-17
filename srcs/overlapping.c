@@ -3,7 +3,6 @@
 
 void	remove_overlapping_objects(t_shapes *shapes)
 {
-	// I have to initialize shapes->display to true
 	while (shapes)
 	{
 		if (shapes->type == SPHERE)

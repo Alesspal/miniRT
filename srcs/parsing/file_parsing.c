@@ -29,19 +29,3 @@ int	file_parsing(char *name, t_scene *scene)
 		return (printf("closing file failed\n"), 1);
 	return (0);
 }
-
-/* int	main(int argc, char **argv)
-{
-	t_scene	scene = {0};
-
-	if (argc != 2)
-		return (printf("put file\n"), 1);
-	if (file_parsing(argv[1], &scene))
-	{
-		printf("parsing failed\n");
-		return (1);
-	}
-	display_scene(scene);
-	// while (1);
-	return (0);
-} */

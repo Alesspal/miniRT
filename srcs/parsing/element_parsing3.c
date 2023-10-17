@@ -1,5 +1,4 @@
 #include "element_parsing.h"
-#include "display.h"
 #include <stdlib.h>
 #include <stdio.h>
 

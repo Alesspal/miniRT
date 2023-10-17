@@ -54,11 +54,4 @@ typedef struct s_shapes
 	struct s_shapes	*next;
 }	t_shapes;
 
-t_sphere	create_sphere(t_vec pos, float diameter, t_color color);
-t_cylinder	create_cylinder(t_vec pos, t_vec dir, float diameter,
-						float height, t_color color);
-t_plane		create_plan(t_vec pos, t_vec dir, t_color color);
-
-void		draw_filled_sphere(t_data *data, t_sphere sphere);
-
 #endif

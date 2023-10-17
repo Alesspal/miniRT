@@ -1,7 +1,6 @@
 #include "element_parsing.h"
 #include "parsing_utils.h"
 #include "value_parsing.h"
-#include "display.h"
 
 int	sphere_parsing(char *description, t_sphere *sphere)
 {
@@ -15,7 +14,6 @@ int	sphere_parsing(char *description, t_sphere *sphere)
 		return (1);
 	if (!is_end_of_line(description))
 		return (1);
-	display_sphere(*sphere);
 	return (0);
 }
 
@@ -35,7 +33,6 @@ int	cylindre_parsing(char *description, t_cylinder *cylinder)
 		return (1);
 	if (!is_end_of_line(description))
 		return (1);
-	display_cylinder(*cylinder);
 	return (0);
 }
 
@@ -51,6 +48,5 @@ int	plane_parsing(char *description, t_plane *plane)
 		return (1);
 	if (!is_end_of_line(description))
 		return (1);
-	display_plan(*plane);
 	return (0);
 }

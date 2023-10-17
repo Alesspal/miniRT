@@ -23,11 +23,9 @@ SRCS_LIST	=	main.c \
 				ft_img_pix_put.c \
 				ft_vector.c \
 				ft_vector2.c \
-				ft_shapes.c \
 				ft_phong.c \
 				get_n.c \
 				ft_color.c \
-				${PARSING_DIR}display.c \
 				${PARSING_DIR}element_parsing.c \
 				${PARSING_DIR}element_parsing2.c \
 				${PARSING_DIR}element_parsing3.c \
@@ -42,7 +40,8 @@ SRCS_LIST	=	main.c \
 				intersection2.c \
 				init.c \
 				prime_ray.c \
-				compute_equation.c
+				compute_equation.c \
+				overlapping.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

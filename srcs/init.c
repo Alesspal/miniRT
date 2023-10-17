@@ -62,7 +62,6 @@ void	init_camera(t_camera *cam, float aspect_ratio)
 			vec_mult(cam->up, cam->v_scr.height / 2));
 }
 
-
 // Initialize the scene to 0
 void	init_scene(t_scene *scene)
 {
