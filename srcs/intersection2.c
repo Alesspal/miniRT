@@ -1,31 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersection2.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 14:47:15 by alesspal          #+#    #+#             */
+/*   Updated: 2023/10/17 14:47:16 by alesspal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_mlx.h"
 #include "ft_raytracing.h"
 #include <math.h>
 
-// Return whether or not there is an intersection with a shape
-// between two points.
-bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
-{
-	while (shape)
-	{
-		if (shape->id == id || shape->display == false)
-		{
-			shape = shape->next;
-			continue ;
-		}
-		if (shape->type == SPHERE)
-			if (sp_intersection_between_points(p1, p2, shape))
-				return (true);
-		if (shape->type == PLANE)
-			if (pl_intersection_between_points(p1, p2, shape))
-				return (true);
-		if (shape->type == CYLINDER)
-			if (cy_intersection_between_points(p1, p2, shape))
-				return (true);
-		shape = shape->next;
-	}
-	return (false);
-}
+void	compute_sp_equation(t_ray ray, t_sphere sp, t_eq *eq);
+void	compute_cy_equation(t_ray ray, t_cylinder cy, t_eq *eq);
 
 // Return whether or not there is an intersection with a sphere
 // between two points.
@@ -99,5 +89,30 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 		return (false);
 	if ((eq.s1 > 0 && eq.s1 < len) || (eq.s2 > 0 && eq.s2 < len))
 		return (true);
+	return (false);
+}
+
+// Return whether or not there is an intersection with a shape
+// between two points.
+bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
+{
+	while (shape)
+	{
+		if (shape->id == id || shape->display == false)
+		{
+			shape = shape->next;
+			continue ;
+		}
+		if (shape->type == SPHERE)
+			if (sp_intersection_between_points(p1, p2, shape))
+				return (true);
+		if (shape->type == PLANE)
+			if (pl_intersection_between_points(p1, p2, shape))
+				return (true);
+		if (shape->type == CYLINDER)
+			if (cy_intersection_between_points(p1, p2, shape))
+				return (true);
+		shape = shape->next;
+	}
 	return (false);
 }

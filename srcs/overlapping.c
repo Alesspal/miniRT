@@ -1,19 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   overlapping.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 14:47:23 by alesspal          #+#    #+#             */
+/*   Updated: 2023/10/17 14:47:29 by alesspal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_shapes.h"
 #include "ft_raytracing.h"
-
-void	remove_overlapping_objects(t_shapes *shapes)
-{
-	while (shapes)
-	{
-		if (shapes->type == SPHERE)
-			remove_overlapping_sp(shapes);
-		if (shapes->type == PLANE)
-			remove_overlapping_pl(shapes);
-		if (shapes->type == CYLINDER)
-			remove_overlapping_cy(shapes);
-		shapes = shapes->next;
-	}
-}
 
 void	remove_overlapping_sp(t_shapes *shapes)
 {
@@ -83,6 +81,20 @@ void	remove_overlapping_cy(t_shapes *shapes)
 				shapes->display = false;
 			}
 		}
+		shapes = shapes->next;
+	}
+}
+
+void	remove_overlapping_objects(t_shapes *shapes)
+{
+	while (shapes)
+	{
+		if (shapes->type == SPHERE)
+			remove_overlapping_sp(shapes);
+		if (shapes->type == PLANE)
+			remove_overlapping_pl(shapes);
+		if (shapes->type == CYLINDER)
+			remove_overlapping_cy(shapes);
 		shapes = shapes->next;
 	}
 }

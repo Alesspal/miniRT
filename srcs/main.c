@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/17 14:47:21 by alesspal          #+#    #+#             */
+/*   Updated: 2023/10/17 14:52:31 by alesspal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "ft_mlx.h"
 #include "ft_vector.h"
@@ -13,15 +25,15 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		ft_fatal_error("Input Error, try: ./miniRT example_scene.rt", -1);
+		ft_fatal_error("Input Error, try: ./miniRT example_scene.rt", 1);
 	init_scene(&scene);
 	if (file_parsing(argv[1], &scene))
 	{
-		printf("Error when parsing the file\n");
+		ft_fatal_error("Error during parsing", 2);
 		return (EXIT_FAILURE);
 	}
 	if (init_data(&data))
-		ft_fatal_error("Error when initialising data", -1);
+		ft_fatal_error("Error initialising data", 3);
 	init_camera(&scene.camera, data.win->aspect_ratio);
 	remove_overlapping_objects(scene.shapes);
 	draw_scene(&data, scene);
