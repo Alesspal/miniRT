@@ -39,18 +39,18 @@ int	cylindre_parsing(char *description, t_cylinder *cylinder)
 	return (0);
 }
 
-int	plan_parsing(char *description, t_plane *plan)
+int	plane_parsing(char *description, t_plane *plane)
 {
 	if (!description)
 		return (1);
-	if (get_pos(&description, &plan->pos))
+	if (get_pos(&description, &plane->pos))
 		return (1);
-	if (get_dir(&description, &plan->n))
+	if (get_dir(&description, &plane->n))
 		return (1);
-	if (get_rgb(&description, &plan->color))
+	if (get_rgb(&description, &plane->color))
 		return (1);
 	if (!is_end_of_line(description))
 		return (1);
-	display_plan(*plan);
+	display_plan(*plane);
 	return (0);
 }

@@ -68,6 +68,6 @@ int	shapes_parsing(char *description, t_shapes **shapes, t_element_type el)
 			cylindre_parsing(description, &new_node->shape.cylinder));
 	if (el == PL)
 		return (new_node->type = PLANE,
-			plan_parsing(description, &new_node->shape.plane));
+			plane_parsing(description, &new_node->shape.plane));
 	return (1);
 }
