@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	plane_parsing(char *description, t_plane *plane)
 		return (1);
 	if (get_pos(&description, &plane->pos))
 		return (1);
-	if (get_dir(&description, &plane->n))
+	if (get_dir(&description, &plane->normal))
 		return (1);
 	if (get_rgb(&description, &plane->color))
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:38 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:58:55 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ t_vec	get_n(t_intersection *p)
 	else if (p->shape_type == CYLINDER)
 		return (get_n_cylinder(p));
 	else
-		return (p->shape.plane.n);
+		return (p->shape.plane.normal);
 }

@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:43:15 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:58:49 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	pl_intersection(t_ray ray, t_plane pl, t_intersection *inter, int id)
 	float	t;
 	float	ray_n_dot_product;
 
-	pl.n = normalize(pl.n);
-	ray_n_dot_product = dot(ray.dir, pl.n);
+	pl.normal = normalize(pl.normal);
+	ray_n_dot_product = dot(ray.dir, pl.normal);
 	if (ray_n_dot_product == 0)
 		return ;
-	t = dot(vec_sub(pl.pos, ray.pos), pl.n) / ray_n_dot_product;
+	t = dot(vec_sub(pl.pos, ray.pos), pl.normal) / ray_n_dot_product;
 	if (t > 0 && (t < inter->dist || inter->dist == -1))
 	{
 		inter->id = id;

@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:14 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:45:38 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_cylinder
 typedef struct s_plane
 {
 	t_vec		pos;
-	t_vec		n;
+	t_vec		normal;
 	t_color		color;
 }	t_plane;
 

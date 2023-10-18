@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:15 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:58:49 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ bool	pl_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 	dir = vec_sub(p2, p1);
 	ray.pos = p1;
 	ray.dir = normalize(dir);
-	shape->shape.plane.n = normalize(shape->shape.plane.n);
-	ray_n_dot_product = dot(ray.dir, shape->shape.plane.n);
+	shape->shape.plane.normal = normalize(shape->shape.plane.normal);
+	ray_n_dot_product = dot(ray.dir, shape->shape.plane.normal);
 	if (ray_n_dot_product == 0)
 		return (false);
 	t = dot(vec_sub(shape->shape.plane.pos, ray.pos),
-			shape->shape.plane.n) / ray_n_dot_product;
+			shape->shape.plane.normal) / ray_n_dot_product;
 	if (t > 0 && t < vec_size(dir))
 		return (true);
 	return (false);

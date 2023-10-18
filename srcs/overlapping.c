@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:23 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:53:17 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	remove_overlapping_pl(t_shapes *shapes)
 			if (curr->shape.plane.pos.x == shapes->shape.plane.pos.x
 				&& curr->shape.plane.pos.y == shapes->shape.plane.pos.y
 				&& curr->shape.plane.pos.z == shapes->shape.plane.pos.z
-				&& curr->shape.plane.n.x == shapes->shape.plane.n.x
-				&& curr->shape.plane.n.y == shapes->shape.plane.n.y
-				&& curr->shape.plane.n.z == shapes->shape.plane.n.z)
+				&& curr->shape.plane.normal.x == shapes->shape.plane.normal.x
+				&& curr->shape.plane.normal.y == shapes->shape.plane.normal.y
+				&& curr->shape.plane.normal.z == shapes->shape.plane.normal.z)
 			{
 				shapes->display = false;
 			}

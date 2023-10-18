@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:29 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:12:13 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@ bool	name_is_incorrect(char *name)
 	return (true);
 }
 
+void	free_shapes(t_shapes *shapes)
+{
+	t_shapes *next;
+
+	while (shapes)
+	{
+		next = shapes->next;
+		free(shapes);
+		shapes = next;
+	}
+}
+
 int	file_parsing(char *name, t_scene *scene)
 {
 	int				fd;
@@ -36,7 +48,12 @@ int	file_parsing(char *name, t_scene *scene)
 	if (fd < 0)
 		return (printf("opening file failed\n"), 1);
 	if (scene_parsing(fd, scene))
-		return (printf("scene parsing interrupted\n"), 1);
+	{
+		printf("scene parsing interrupted\n");
+		free_shapes(scene->shapes);
+		scene->shapes = NULL;
+		return (1);
+	}
 	if (close(fd) < 0)
 		return (printf("closing file failed\n"), 1);
 	return (0);
