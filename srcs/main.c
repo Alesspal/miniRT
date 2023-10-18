@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 10:07:04 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:17:01 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,50 +14,6 @@
 #include "my_mlx.h"
 #include "file_scene_parsing.h"
 #include "raytracing.h"
-
-void	display_sphere(t_sphere sphere)
-{
-	printf("-----SPHERE-----\n");
-	printf("pos : %f, %f, %f\n", sphere.pos.x, sphere.pos.y, sphere.pos.z);
-	printf("radius : %f\n", sphere.radius);
-	printf("rgb : %d, %d, %d\n", sphere.color.r, sphere.color.g, sphere.color.b);
-	printf("----------------\n");
-}
-
-void	display_cylinder(t_cylinder cylinder)
-{
-	printf("-----CYLINDER-----\n");
-	printf("pos : %f, %f, %f\n", cylinder.pos.x, cylinder.pos.y, cylinder.pos.z);
-	printf("dir : %f, %f, %f\n", cylinder.dir.x, cylinder.dir.y, cylinder.dir.z);
-	printf("radius : %f\n", cylinder.radius);
-	printf("height : %f\n", cylinder.height);
-	printf("rgb : %d, %d, %d\n", cylinder.color.r, cylinder.color.g, cylinder.color.b);
-	printf("------------------\n");
-}
-
-void	display_plan(t_plane plan)
-{
-	printf("-----PLAN-----\n");
-	printf("pos : %f, %f, %f\n", plan.pos.x, plan.pos.y, plan.pos.z);
-	printf("dir : %f, %f, %f\n", plan.normal.x, plan.normal.y, plan.normal.z);
-	printf("rgb : %d, %d, %d\n", plan.color.r, plan.color.g, plan.color.b);
-	printf("--------------\n");
-}
-
-void	display_shapes(t_shapes *shapes)
-{
-	while (shapes)
-	{
-		printf("ID = %d\n", shapes->id);
-		if (shapes->type == SPHERE)
-			display_sphere(shapes->shape.sphere);
-		else if (shapes->type == CYLINDER)
-			display_cylinder(shapes->shape.cylinder);
-		else if (shapes->type == PLANE)
-			display_plan(shapes->shape.plane);
-		shapes = shapes->next;
-	}
-}
 
 int	main(int argc, char **argv)
 {
