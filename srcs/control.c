@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   control.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:11 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:58:07 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:28:14 by apalumbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	exit_program(t_data *prm)
 {
+	(void)prm;
 	if (prm)
 	{
 		if (prm->img.mlx_img)

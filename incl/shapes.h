@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:14 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 14:49:37 by apalumbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef enum e_shape_type
 	NO_SHAPE
 }	t_shape_type;
 
-typedef struct s_shape
+typedef union s_shape
 {
 	t_sphere	sphere;
 	t_cylinder	cylinder;

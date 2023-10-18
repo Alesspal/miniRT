@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:29 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 13:04:33 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/10/18 15:15:29 by apalumbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	free_shapes(t_shapes *shapes)
 
 int	file_parsing(char *name, t_scene *scene)
 {
-	int				fd;
+	int	fd;
 
 	if (!name || name_is_incorrect(name))
 		return (printf("name of file is incorrect\n"), 1);
@@ -49,12 +49,13 @@ int	file_parsing(char *name, t_scene *scene)
 		return (printf("opening file failed\n"), 1);
 	if (scene_parsing(fd, scene))
 	{
-		printf("scene parsing interrupted\n");
 		free_shapes(scene->shapes);
-		scene->shapes = NULL;
-		return (1);
+		return (printf("scene parsing interrupted\n"), 1);
 	}
 	if (close(fd) < 0)
+	{
+		free_shapes(scene->shapes);
 		return (printf("closing file failed\n"), 1);
+	}
 	return (0);
 }

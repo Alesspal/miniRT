@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   element_parsing4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:24 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:29:28 by apalumbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,30 @@ int	check_el_is_already_set_and_update(t_element_type *tab, t_element_type el)
 	return (0);
 }
 
+int	handle_line_processing(char *line, t_element_type *el_tab, t_scene *scene)
+{
+	char			*description;
+	t_element_type	el;
+
+	if (line[0] == '\0' || line[0] == '\n')
+		return (0);
+	description = get_element(line, &el);
+	if (check_el_is_already_set_and_update(el_tab, el))
+	{
+		printf("duplication of elements detected\n");
+		return (1);
+	}
+	if (element_parsing(scene, description, el))
+	{
+		printf("description error : %s\n", line);
+		return (1);
+	}
+	return (0);
+}
+
 int	scene_parsing(int fd, t_scene *scene)
 {
 	char			*line;
-	char			*description;
-	t_element_type	el;
 	t_element_type	*el_tab;
 
 	el_tab = init_el_tab();
@@ -60,18 +79,20 @@ int	scene_parsing(int fd, t_scene *scene)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\0' && line[0] != '\n')
+		if (handle_line_processing(line, el_tab, scene))
 		{
-			description = get_element(line, &el);
-			if (check_el_is_already_set_and_update(el_tab, el))
-				return (printf("duplication of elements detected\n"), 1);
-			if (element_parsing(scene, description, el))
-				return (printf("description error : %s\n", line), 1);
+			free(line);
+			free(el_tab);
+			return (1);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (check_missing_elements(el_tab))
-		return (printf("missing scene element in file\n"), 1);
-	return (0);
+	{
+		free(el_tab);
+		printf("missing scene element in file\n");
+		return (1);
+	}
+	return (free(el_tab), 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:32 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:25:17 by apalumbi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	get_float(char **description, float *ret)
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
 	if (!is_flaot(val))
-		return (1);
+		return (free(val), 1);
 	*ret = ft_atof(val);
 	free(val);
 	*description = go_next_value(*description);
@@ -66,7 +66,7 @@ int	get_int(char **description, int *ret)
 	*description = skip_space(*description);
 	val = ft_substr(*description, 0, find_comma_or_white_space(*description));
 	if (!is_int(val))
-		return (1);
+		return (free(val), 1);
 	*ret = atoi(val);
 	free(val);
 	*description = go_next_value(*description);
