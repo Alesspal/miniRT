@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 10:17:01 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 12:16:57 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-		ft_fatal_error("Input Error, try: ./miniRT example_scene.rt",
-			EXIT_FAILURE);
+		return (printf("Input Error, try: ./miniRT example_scene.rt"));
 	init_scene(&scene);
 	if (file_parsing(argv[1], &scene))
-		ft_fatal_error("Error during parsing", EXIT_FAILURE);
+		return (printf("Error during parsing\n"));
 	if (init_data(&data))
-		ft_fatal_error("Error initialising data", EXIT_FAILURE);
+		return (printf("Error initialising data\n"));
 	init_camera(&scene.camera, data.win->aspect_ratio);
 	remove_overlapping_objects(scene.shapes);
 	draw_scene(&data, scene);

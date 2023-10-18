@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:29 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 10:12:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/18 13:04:33 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	name_is_incorrect(char *name)
 
 void	free_shapes(t_shapes *shapes)
 {
-	t_shapes *next;
+	t_shapes	*next;
 
 	while (shapes)
 	{
