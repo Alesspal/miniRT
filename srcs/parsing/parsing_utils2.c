@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:41:47 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 14:43:13 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:16:57 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ bool	is_flaot(char *str)
 	int	digit_count;
 	int	point_count;
 
-	if (!str)
+	if (!str || *str == '\0')
 		return (false);
 	digit_count = 0;
 	point_count = 0;
