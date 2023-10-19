@@ -6,12 +6,13 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:54:11 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 16:02:57 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:12:10 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_mlx.h"
 #include "raytracing.h"
+#include <math.h>
 
 t_color	get_pixel_color(t_intersection inter, t_scene scene)
 {
@@ -20,9 +21,9 @@ t_color	get_pixel_color(t_intersection inter, t_scene scene)
 	if (inter.shape_type != NO_SHAPE)
 	{
 		color = phong(scene, &inter);
-		if (check_intersection(scene.spot_light.pos, inter.pos,
+		if (is_intersection(scene.spot_light.pos, inter.pos,
 				scene.shapes, inter.id))
-			color = change_intesity(color, 0.3);
+			color = shade(scene, color);
 	}
 	else
 		color = (t_color){0, 0, 0};

@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:15 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 09:43:36 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/19 10:32:04 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	cy_intersection_between_points(t_vec p1, t_vec p2, t_shapes *shape)
 
 // Return whether or not there is an intersection with a shape
 // between two points.
-bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
+bool	is_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id)
 {
 	while (shape)
 	{

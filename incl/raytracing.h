@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:48:11 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:46:42 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:11:51 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ typedef struct s_eq
 // Raytracer functions
 void	set_prime_ray(t_ray *pr, t_mlx_win win, t_camera cam, t_point2D p);
 void	set_intersection(t_ray ray, t_shapes *shape, t_intersection *inter);
-bool	check_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id);
+bool	is_intersection(t_vec p1, t_vec p2, t_shapes *shape, int id);
 t_vec	get_n(t_intersection *p);
 t_color	phong(t_scene scene, t_intersection *p);
+t_color	shade(t_scene scene, t_color color);
 void	remove_overlapping_objects(t_shapes *shapes);
 
 #endif
