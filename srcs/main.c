@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apalumbi <apalumbi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:47:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/18 15:27:01 by apalumbi         ###   ########.fr       */
+/*   Updated: 2023/10/19 11:31:38 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ int	main(int argc, char **argv)
 		return (printf("Input Error, try: ./miniRT example_scene.rt"));
 	init_scene(&scene);
 	if (file_parsing(argv[1], &scene))
-	{
-		printf("shapes ptr : %p\n", scene.shapes);
 		return (printf("Error during parsing\n"));
-	}
 	if (init_data(&data))
 		return (printf("Error initialising data\n"));
 	init_camera(&scene.camera, data.win->aspect_ratio);
