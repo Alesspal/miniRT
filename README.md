@@ -1,6 +1,6 @@
-# miniRT - Minimal RayTracer
+# miniRT
 
-miniRT is a minimal raytracer project developed in collaboration with my good friend [Alessandro Palumbi](https://github.com/Alesspal) as part of the Ecole 42 curriculum. This raytracer is capable of rendering scenes with spheres, planes, and cylinders. Users have the freedom to position the camera, specify ambient lighting, and add a spotlight. The project calculates diffuse lighting on objects based on the provided scene description in a .rt file.
+miniRT is a minimal raytracer project developed as part of the Ecole 42 curriculum. This raytracer is capable of rendering scenes with spheres, planes, and cylinders. Users have the freedom to position the camera, specify ambient lighting, and add a spotlight. The project calculates diffuse lighting on objects based on the provided scene description in a .rt file.
 
 This project was written in C with the miniLibX graphic library that allowed us to open a window and to draw pixels in it. The rest is pure mathematics.
 
