@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 14:42:46 by alesspal          #+#    #+#             */
-/*   Updated: 2023/10/17 15:58:44 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:10:53 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_data(t_data *data)
 	if (!data->win->mlx_ptr)
 		return (-1);
 	data->win->aspect_ratio = 16.0 / 9.0;
-	data->win->win_h = 1080;
+	data->win->win_h = 756;
 	data->win->win_w = data->win->win_h * data->win->aspect_ratio;
 	data->win->mlx_win = mlx_new_window(data->win->mlx_ptr, data->win->win_w,
 			data->win->win_h, "miniRT");
